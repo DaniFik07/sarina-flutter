@@ -24,7 +24,6 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   void initState() {
-    initCarousel();
     initMenu();
     super.initState();
   }
@@ -52,7 +51,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 height: 10,
               ),
               buildCarousel(),
-              buildMenu()
+              buildMenu(context)
             ],
           ),
         ),
@@ -61,20 +60,20 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   Widget buildCarousel() {
-    return CarouselSlider(
+    return imgList.length <1? Container():CarouselSlider(
       items: imgList
           .map((item) => Container(
-                child: Container(
-                  margin: EdgeInsets.all(5.0),
-                  child: Center(
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                        child: Image.network(item,
-                            fit: BoxFit.cover,
-                            width: MediaQuery.of(context).size.width)),
-                  ),
-                ),
-              ))
+        child: Container(
+          margin: EdgeInsets.all(5.0),
+          child: Center(
+            child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                child: Image.asset(item,
+                    fit: BoxFit.cover,
+                    width: MediaQuery.of(context).size.width)),
+          ),
+        ),
+      ))
           .toList(),
       options: CarouselOptions(
           autoPlay: true,
@@ -90,77 +89,45 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  void initCarousel() {
-    setState(() {
-      imgList.add(
-          "https://graphie.co.id/uploads/blog/3_-Flutter-vs-React-Native-in-2020.jpg");
-      imgList.add(
-          "https://graphie.co.id/uploads/blog/3_-Flutter-vs-React-Native-in-2020.jpg");
-    });
-  }
 
-  // Widget buildMenu() {
-  //   return Container(
-  //     width: SizeConfig.screenWidth,
-  //     child: Column(
-  //       crossAxisAlignment: CrossAxisAlignment.center,
-  //       mainAxisAlignment: MainAxisAlignment.center,
-  //       children: [
-  //         Row(
-  //           crossAxisAlignment: CrossAxisAlignment.center,
-  //           mainAxisAlignment: MainAxisAlignment.center,
-  //           children: [
-  //             menuCircle(null,Icons.account_box,SizeConfig.screenWidth,SizeConfig.screenHight,"Profile Daerah"),
-  //             menuCircle(null,Icons.account_box,SizeConfig.screenWidth,SizeConfig.screenHight, "Program Dan Kegiatan"),
-  //             menuCircle(null,Icons.account_box,SizeConfig.screenWidth,SizeConfig.screenHight, "Program Dan Kegiatan"),
-  //         ],),
-  //         Row(
-  //           crossAxisAlignment: CrossAxisAlignment.center,
-  //           mainAxisAlignment: MainAxisAlignment.center,
-  //           children: [
-  //             menuCircle(null,Icons.account_box,SizeConfig.screenWidth,SizeConfig.screenHight,"Profile Daerah"),
-  //             menuCircle(null,Icons.account_box,SizeConfig.screenWidth,SizeConfig.screenHight, "Program Dan Kegiatan"),
-  //
-  //         ],),
-  //       ],
-  //     ),
-  //   );
-  // }
-
-  Widget buildMenu() {
+  Widget buildMenu(BuildContext context) {
     return Container(
-      height: SizeConfig.screenHight / 2,
       child: GridView.builder(
         physics: ClampingScrollPhysics(),
+        shrinkWrap: true,
         itemCount: itemDashboard.length,
         itemBuilder: (context, index) {
-          return Center(
+          return itemDashboard.length<1 ?Container: Center(
               child: Container(
                   height: SizeConfig.screenHight / 6,
                   width: SizeConfig.screenWidth / 2,
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      if (itemDashboard[index].title ==  "Profile Daerah") {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) => DashboardPage()));
+                      }                    },
                     child: Card(
-                      color: orangeColor,
+                        color: orangeColor,
                         elevation: 4,
                         child: Center(
                             child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Image.network(
-                              itemDashboard[index].img,
-                              width: 42,
-                            ),
-                            SizedBox(
-                              height: 4,
-                            ),
-                            Text(itemDashboard[index].title,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: "WorkSansSemiBold")),
-                          ],
-                        ))),
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Image.asset(
+                                  itemDashboard[index].img,
+                                  width: 42,
+                                ),
+                                SizedBox(
+                                  height: 4,
+                                ),
+                                Text(itemDashboard[index].title,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: "WorkSansSemiBold")),
+                              ],
+                            ))),
                   )));
         },
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -173,28 +140,30 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  void initMenu() {
+  void initMenu() async {
     setState(() {
+      imgList.add("assets/img/flutter.png");
+      imgList.add("assets/img/flutter.png");
       itemDashboard.add(new DashboardItems(
           title: "Profile Daerah",
           subtitle: "dsadas",
-          img: "https://graphie.co.id/uploads/blog/3_-Flutter-vs-React-Native-in-2020.jpg"));
+          img: "assets/img/document.png"));
       itemDashboard.add(new DashboardItems(
           title: "ttestestes",
           subtitle: "dsadas",
-          img:"https://graphie.co.id/uploads/blog/3_-Flutter-vs-React-Native-in-2020.jpg"));
+          img: "assets/img/document.png"));
       itemDashboard.add(new DashboardItems(
           title: "ttestestes",
           subtitle: "dsadas",
-          img: "https://graphie.co.id/uploads/blog/3_-Flutter-vs-React-Native-in-2020.jpg"));
+          img: "assets/img/document.png"));
       itemDashboard.add(new DashboardItems(
           title: "ttestestes",
           subtitle: "dsadas",
-          img: "https://graphie.co.id/uploads/blog/3_-Flutter-vs-React-Native-in-2020.jpg"));
+          img: "assets/img/document.png"));
       itemDashboard.add(new DashboardItems(
           title: "ttestestes",
           subtitle: "dsadas",
-          img:"https://graphie.co.id/uploads/blog/3_-Flutter-vs-React-Native-in-2020.jpg"));
+          img: "assets/img/document.png"));
     });
   }
 }

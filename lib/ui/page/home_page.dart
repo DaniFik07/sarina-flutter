@@ -17,7 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _page;
+  int _page = 0;
   GlobalKey _bottomNavigationKey = GlobalKey();
 
   @override
@@ -63,13 +63,13 @@ class _HomePageState extends State<HomePage> {
         return DashboardPage();
         break;
       case 1:
-        return Text("sau");
+        return Center(child: Text("sau"));
         break;
       case 2:
-        return Text('dsadhjksa');
+        return Center(child: Text('dsadhjksa'));
         break;
       case 3:
-        return Text('dsadhjksa');
+        return Center(child: Text('gfujdshfd'));
         break;
     }
   }
