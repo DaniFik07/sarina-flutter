@@ -29,7 +29,7 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 SizedBox(height: size.height * 0.03),
-                  Image.asset("https://i.pinimg.com/originals/33/b8/69/33b869f90619e81763dbf1fccc896d8d.jpg",
+                  Image.network("https://i.pinimg.com/originals/33/b8/69/33b869f90619e81763dbf1fccc896d8d.jpg",
                   height: size.height * 0.35,
                 ),
                 SizedBox(height: size.height * 0.03),
@@ -41,12 +41,24 @@ class _RegisterPageState extends State<RegisterPage> {
                         Icons.person,
                         color: kPrimaryColor,
                       ),
-                      hintText: "Name",
+                      hintText: "Nama",
                       border: InputBorder.none,
                     ),
                   ),
                 ),
                 TextFieldContainer(
+                  child: TextField(
+                    cursorColor: kPrimaryColor,
+                    decoration: InputDecoration(
+                      icon: Icon(
+                        Icons.call,
+                        color: kPrimaryColor,
+                      ),
+                      hintText: "Nomor Telepon",
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ), TextFieldContainer(
                   child: TextField(
                     cursorColor: kPrimaryColor,
                     decoration: InputDecoration(
@@ -110,6 +122,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   press: () {
                   },
                 ),
+                SizedBox(height: size.height * 0.03),
+
               ],
             ),
           ),
