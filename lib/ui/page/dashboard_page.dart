@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:sarina/models/model_home.dart';
+import 'package:sarina/ui/page/profile_daerah.dart';
 import 'package:sarina/ui/widget/menu_circle.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
@@ -11,7 +12,6 @@ import 'package:sarina/utils/size_config.dart';
  * Created by Bayu Nugroho
  * Copyright (c) 2020 . All rights reserved.
  */
-
 class DashboardPage extends StatefulWidget {
   @override
   _DashboardPageState createState() => _DashboardPageState();
@@ -43,10 +43,10 @@ class _DashboardPageState extends State<DashboardPage> {
               ),
               Container(
                   child: Text(
-                    'Sarina',
-                    style: TextStyle(
-                        fontSize: SizeConfig.blockVertical * 4, color: whiteColor),
-                  )),
+                'Sarina',
+                style: TextStyle(
+                    fontSize: SizeConfig.blockVertical * 4, color: whiteColor),
+              )),
               SizedBox(
                 height: 10,
               ),
@@ -60,35 +60,37 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   Widget buildCarousel() {
-    return imgList.length <1? Container():CarouselSlider(
-      items: imgList
-          .map((item) => Container(
-        child: Container(
-          margin: EdgeInsets.all(5.0),
-          child: Center(
-            child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                child: Image.asset(item,
-                    fit: BoxFit.cover,
-                    width: MediaQuery.of(context).size.width)),
-          ),
-        ),
-      ))
-          .toList(),
-      options: CarouselOptions(
-          autoPlay: true,
-          autoPlayInterval: Duration(seconds: 3),
-          autoPlayAnimationDuration: Duration(milliseconds: 800),
-          enlargeCenterPage: true,
-          aspectRatio: 2.0,
-          onPageChanged: (index, reason) {
-            setState(() {
-              _current = index;
-            });
-          }),
-    );
+    return imgList.length < 1
+        ? Container()
+        : CarouselSlider(
+            items: imgList
+                .map((item) => Container(
+                      child: Container(
+                        margin: EdgeInsets.all(5.0),
+                        child: Center(
+                          child: ClipRRect(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5.0)),
+                              child: Image.asset(item,
+                                  fit: BoxFit.cover,
+                                  width: MediaQuery.of(context).size.width)),
+                        ),
+                      ),
+                    ))
+                .toList(),
+            options: CarouselOptions(
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 3),
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                enlargeCenterPage: true,
+                aspectRatio: 2.0,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    _current = index;
+                  });
+                }),
+          );
   }
-
 
   Widget buildMenu(BuildContext context) {
     return Container(
@@ -97,21 +99,24 @@ class _DashboardPageState extends State<DashboardPage> {
         shrinkWrap: true,
         itemCount: itemDashboard.length,
         itemBuilder: (context, index) {
-          return itemDashboard.length<1 ?Container: Center(
-              child: Container(
-                  height: SizeConfig.screenHight / 6,
-                  width: SizeConfig.screenWidth / 2,
-                  child: InkWell(
-                    onTap: () {
-                      if (itemDashboard[index].title ==  "Profile Daerah") {
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (context) => DashboardPage()));
-                      }                    },
-                    child: Card(
-                        color: orangeColor,
-                        elevation: 4,
-                        child: Center(
-                            child: Column(
+          return itemDashboard.length < 1
+              ? Container
+              : Center(
+                  child: Container(
+                      height: SizeConfig.screenHight / 6,
+                      width: SizeConfig.screenWidth / 2,
+                      child: InkWell(
+                        onTap: () {
+                          if (itemDashboard[index].title == "Profile Daerah") {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => ProfileDaerahPage()));
+                          }
+                        },
+                        child: Card(
+                            color: orangeColor,
+                            elevation: 4,
+                            child: Center(
+                                child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
@@ -128,7 +133,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                         fontFamily: "WorkSansSemiBold")),
                               ],
                             ))),
-                  )));
+                      )));
         },
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
