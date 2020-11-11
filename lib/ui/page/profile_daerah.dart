@@ -17,9 +17,19 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      appBar: AppBar(title: Text("Profile Daerah"),),
       body: Container(
         height: SizeConfig.screenHight,
         color: blueColors,
+        child:Column(
+          children: [
+            Row(
+              children: [
+
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

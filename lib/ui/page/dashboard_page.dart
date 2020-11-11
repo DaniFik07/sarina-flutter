@@ -43,10 +43,10 @@ class _DashboardPageState extends State<DashboardPage> {
               ),
               Container(
                   child: Text(
-                'Sarina',
-                style: TextStyle(
-                    fontSize: SizeConfig.blockVertical * 4, color: whiteColor),
-              )),
+                    'Sarina',
+                    style: TextStyle(
+                        fontSize: SizeConfig.blockVertical * 4, color: whiteColor),
+                  )),
               SizedBox(
                 height: 10,
               ),
