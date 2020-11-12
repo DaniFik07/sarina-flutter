@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sarina/ui/page/data_kapasitas_bpdb_page.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
 
@@ -43,6 +44,7 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                         padding: EdgeInsets.all(10.0),
                         child: GestureDetector(
                           onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataKapasitasBPDBPage()));
                           },
                           child: Container(
                             width: 100.0,
