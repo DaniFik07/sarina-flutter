@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sarina/ui/widget/already_have_an_account_acheck.dart';
 import 'package:sarina/ui/widget/rounded_button.dart';
+import 'package:sarina/ui/widget/rounded_button_blue.dart';
 import 'package:sarina/ui/widget/text_field_container.dart';
+import 'package:sarina/ui/widget/text_field_container_white.dart';
 import 'package:sarina/utils/constants.dart';
 
 /**
@@ -29,57 +31,60 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 SizedBox(height: size.height * 0.03),
-                Image.network("https://i.pinimg.com/originals/33/b8/69/33b869f90619e81763dbf1fccc896d8d.jpg",
-                  height: size.height * 0.35,
+                Image.asset('assets/img/logokm.png',
+                  height: size.height * 0.17,
                 ),
                 SizedBox(height: size.height * 0.03),
-                TextFieldContainer(
+                Text('SARANA PRASARANA DAN \n INFORMASI BENCANA',textAlign: TextAlign.center,style: TextStyle(
+                    fontSize: 24,color: Colors.black,fontFamily: "fonts/Montserrat-Regular.ttf",fontWeight: FontWeight.bold),),
+                SizedBox(height: size.height * 0.03),
+                TextFieldContainerWhite(
                   child: TextField(
-                    cursorColor: kPrimaryColor,
+                    cursorColor: Colors.black,
                     decoration: InputDecoration(
                       icon: Icon(
-                        Icons.person,
-                        color: kPrimaryColor,
+                        Icons.person_outline,
+                        color: Colors.black,
                       ),
                       hintText: "Nama",
                       border: InputBorder.none,
                     ),
                   ),
                 ),
-                TextFieldContainer(
+                TextFieldContainerWhite(
                   child: TextField(
-                    cursorColor: kPrimaryColor,
+                    cursorColor: Colors.black,
                     decoration: InputDecoration(
                       icon: Icon(
-                        Icons.call,
-                        color: kPrimaryColor,
+                        Icons.phone_iphone_sharp,
+                        color: Colors.black,
                       ),
                       hintText: "Nomor Telepon",
                       border: InputBorder.none,
                     ),
                   ),
-                ), TextFieldContainer(
+                ), TextFieldContainerWhite(
                   child: TextField(
-                    cursorColor: kPrimaryColor,
+                    cursorColor: Colors.black,
                     decoration: InputDecoration(
                       icon: Icon(
-                        Icons.mail,
-                        color: kPrimaryColor,
+                        Icons.alternate_email_outlined,
+                        color: Colors.black,
                       ),
                       hintText: "Email",
                       border: InputBorder.none,
                     ),
                   ),
                 ),
-                TextFieldContainer(
+                TextFieldContainerWhite(
                   child: TextField(
                     obscureText: obsecure,
-                    cursorColor: kPrimaryColor,
+                    cursorColor: Colors.black,
                     decoration: InputDecoration(
                       hintText: "Password",
                       icon: Icon(
-                        Icons.lock,
-                        color: kPrimaryColor,
+                        Icons.vpn_key,
+                        color: Colors.black,
                       ),
                       suffixIcon: IconButton(onPressed: () {
                         setState(() {
@@ -91,15 +96,15 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-                TextFieldContainer(
+                TextFieldContainerWhite(
                   child: TextField(
                     obscureText: obsecure,
-                    cursorColor: kPrimaryColor,
+                    cursorColor: Colors.black,
                     decoration: InputDecoration(
                       hintText: "Confirm Password",
                       icon: Icon(
-                        Icons.lock,
-                        color: kPrimaryColor,
+                        Icons.vpn_key,
+                        color: Colors.black,
                       ),
                       suffixIcon: IconButton(onPressed: () {
                         setState(() {
@@ -111,8 +116,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-                RoundedButton(
-                  text: "Register",
+                RoundedButtonBlue(
+                  text: "SIGN UP",
                   press: () {
                   },
                 ),

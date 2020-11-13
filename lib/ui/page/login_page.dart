@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sarina/ui/page/home_page.dart';
 import 'package:sarina/ui/page/register_page.dart';
@@ -35,36 +36,39 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 SizedBox(height: size.height * 0.01),
-                Image.network(
-                  "https://i.pinimg.com/originals/33/b8/69/33b869f90619e81763dbf1fccc896d8d.jpg",
+                Image.asset(
+                  'assets/img/logokm.png',
                   height: size.height * 0.2,
                 ),
                 SizedBox(height: size.height * 0.03),
                 Text('SARANA PRASARANA DAN INFORMASI \n BENCANA',textAlign: TextAlign.center,style: TextStyle(
-                    fontSize: SizeConfig.blockVertical * 4.0,color: Colors.white),),
+                    fontSize: 16,color: Colors.white,fontFamily: "fonts/Montserrat-Bold.ttf",fontWeight: FontWeight.bold),),
+                Text('SARINA', textAlign: TextAlign.center,style: TextStyle(
+                    fontSize: 32,color: Colors.white,fontFamily: "fonts/Montserrat-Bold.ttf",fontWeight: FontWeight.bold),),
                 SizedBox(height: size.height * 0.03),
                 TextFieldContainer(
                   child: TextField(
-                    cursorColor: kPrimaryColor,
+                    cursorColor: Colors.black,
                     decoration: InputDecoration(
                       icon: Icon(
-                        Icons.person,
-                        color: darkColors,
+                        Icons.person_outline,
+                        color: Colors.white,
                       ),
                       hintText: "Email",
-                      border: InputBorder.none,
+                      hintStyle: TextStyle(fontFamily: "fonts/Montserrat-Bold.ttf", fontSize: 16, color: Colors.white)
                     ),
                   ),
                 ),
                 TextFieldContainer(
                   child: TextField(
                     obscureText: obsecure,
-                    cursorColor: kPrimaryColor,
+                    cursorColor: Colors.black,
                     decoration: InputDecoration(
                       hintText: "Password",
+                      hintStyle: TextStyle(fontFamily: "fonts/Montserrat-Bold.ttf", fontSize: 16, color: Colors.white),
                       icon: Icon(
-                        Icons.lock,
-                        color: darkColors,
+                        Icons.vpn_key,
+                        color: Colors.white,
                       ),
                       suffixIcon: IconButton(
                         onPressed: () {
@@ -76,12 +80,11 @@ class _LoginPageState extends State<LoginPage> {
                             ? Icon(Icons.visibility)
                             : Icon(Icons.visibility_off),
                       ),
-                      border: InputBorder.none,
                     ),
                   ),
                 ),
                 RoundedButton(
-                  text: "LOGIN",
+                  text: "SIGN IN",
                   press: () {
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => HomePage()));
                   },

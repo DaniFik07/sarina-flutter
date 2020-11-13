@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sarina/utils/constants.dart';
 
-class TextFieldContainer extends StatelessWidget {
+class TextFieldContainerWhite extends StatelessWidget {
   final Widget child;
-  const TextFieldContainer({
+  const TextFieldContainerWhite({
     Key key,
     this.child,
   }) : super(key: key);
@@ -16,6 +16,7 @@ class TextFieldContainer extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       width: size.width * 0.8,
       decoration: BoxDecoration(
+        color: abuMuda,
         borderRadius: BorderRadius.circular(20),
       ),
       child: child,

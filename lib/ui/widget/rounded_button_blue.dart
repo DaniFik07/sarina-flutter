@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:sarina/utils/constants.dart';
 
-class RoundedButton extends StatelessWidget {
+class RoundedButtonBlue extends StatelessWidget {
   final String text;
   final Function press;
   final Color color, textColor;
-  const RoundedButton({
+  const RoundedButtonBlue({
     Key key,
     this.text,
     this.press,
-    this.color = whiteColor,
-    this.textColor = blueAsLogoColor,
+    this.color = blueColors,
+    this.textColor = Colors.white,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class RoundedButton extends StatelessWidget {
           onPressed: press,
           child: Text(
             text,
-            style: TextStyle(color: textColor, fontWeight: FontWeight.w900, fontFamily: "fonts/Montserrat-Regular.ttf", fontSize: 16),
+            style: TextStyle(color: textColor,  fontWeight: FontWeight.w900, fontFamily: "fonts/Montserrat-Regular.ttf", fontSize: 16),
           ),
         ),
       ),

@@ -16,7 +16,7 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          login ? "Tidak Punya Akun  ? " : "Apakah Sudah Punya Akun ? ",
+          login ? "Tidak Punya Akun  ? " : "Sudah Punya Akun ? ",
           style: TextStyle(color: kPrimaryLightColor),
         ),
         GestureDetector(
@@ -24,7 +24,7 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
           child: Text(
             login ? "Sign Up" : "Sign In",
             style: TextStyle(
-              color: blueColors,
+              color: blueAsLogoColor,
               fontWeight: FontWeight.bold,
             ),
           ),
