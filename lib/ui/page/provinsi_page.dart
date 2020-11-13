@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sarina/ui/page/provinsi_page.dart';
+import 'package:sarina/ui/page/input_data_kapasitas_bpdb_page.dart';
 import 'package:sarina/ui/widget/text_field_container.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
@@ -9,18 +9,18 @@ import 'package:sarina/utils/size_config.dart';
  * Copyright (c) 2020 . All rights reserved.
  */
 
-class DataKapasitasBPDBPage extends StatefulWidget {
+class ProvinsiPage extends StatefulWidget {
   @override
-  _DataKapasitasBPDBPageState createState() => _DataKapasitasBPDBPageState();
+  _ProvinsiPageState createState() => _ProvinsiPageState();
 }
 
-class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
+class _ProvinsiPageState extends State<ProvinsiPage> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Data Kapasitas BPDB'),
+        title: Text('Nama Provinsi'),
       ),
       body: Container(
         child: Column(
@@ -53,27 +53,43 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
             ),
             ListTile(
               title: Text(
-                'Aceh',
+                'Kab. Simeulue',
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () { Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ProvinsiPage()));},
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => InputBPDBPage()));
+              },
             ),
             ListTile(
               title: Text(
-                'Depok',
+                'Kab. Aceh Sungkil',
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () { Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ProvinsiPage()));},
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => InputBPDBPage()));
+              },
             ),
             ListTile(
               title: Text(
-                'Jakarta',
+                'Kab. Aceh Selatan',
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () { Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ProvinsiPage()));},
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => InputBPDBPage()));
+              },
+            ),
+            ListTile(
+              title: Text(
+                'Kab. Aceh Selatan 2 ',
+              ),
+              trailing: Icon(Icons.keyboard_arrow_right),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => InputBPDBPage()));
+              },
             ),
           ],
         ),
