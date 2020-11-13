@@ -115,7 +115,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           }
                         },
                         child: Card(
-                            color: orangeColor,
+                            color: kuningColor,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(Radius.circular(70))
                             ),
@@ -137,7 +137,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontFamily: "fonts/Montserrat-Bold.ttf",
-                                        fontSize: 12)),
+                                        fontSize: 12,
+                                        color: Colors.white)),
                               ],
                             ))),
                       )));
