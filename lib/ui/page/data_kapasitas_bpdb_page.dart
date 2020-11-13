@@ -20,7 +20,7 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
     SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Data Kapasitas BPDB'),
+        title: Text('Data Kapasitas BPDB', style: TextStyle(fontFamily: "fonts/Montserrat-Bold.ttf"),),
       ),
       body: Container(
         child: Column(
@@ -36,14 +36,19 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextFieldContainer(
                       child: TextField(
-                        cursorColor: kPrimaryColor,
+                        cursorColor: Colors.black,
                         decoration: InputDecoration(
                           hintText: "Cari",
+                            hintStyle: TextStyle(
+                                fontFamily: "fonts/Montserrat-Bold.ttf",
+                                fontSize: 16,
+                                color: Colors.white),
                           suffixIcon: IconButton(
                             onPressed: () {},
-                            icon: Icon(Icons.search),
+                            icon: Icon(Icons.search_outlined,
+                              color: Colors.white,),
                           ),
-                          border: InputBorder.none,
+                          // border: InputBorder.none,
                         ),
                       ),
                     ),
@@ -54,6 +59,10 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
             ListTile(
               title: Text(
                 'Aceh',
+                style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                    fontFamily: "fonts/Montserrat-Bold.ttf"),
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () { Navigator.of(context).push(MaterialPageRoute(
@@ -62,6 +71,10 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
             ListTile(
               title: Text(
                 'Depok',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontFamily: "fonts/Montserrat-Bold.ttf"),
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () { Navigator.of(context).push(MaterialPageRoute(
@@ -70,6 +83,10 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
             ListTile(
               title: Text(
                 'Jakarta',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontFamily: "fonts/Montserrat-Bold.ttf"),
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () { Navigator.of(context).push(MaterialPageRoute(

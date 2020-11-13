@@ -31,10 +31,13 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
           label: Container(
             width: SizeConfig.screenWidth / 1.3,
             child: Text(
-              "Submit",
+              "SUBMIT",
               textAlign: TextAlign.center,
               style: TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.bold),
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "fonts/Montserrat-Bold.ttf",
+                  fontSize: 16),
             ),
           ),
         ),
@@ -54,43 +57,47 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
                   children: [
                     SizedBox(height: SizeConfig.screenHight / 18),
                     Padding(
-                      padding: const EdgeInsets.only(top: 15.0),
+                      padding: const EdgeInsets.only(top: 8.0),
                       child: Text(
                         'Form Input Data Kapasitas \n BPDB',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: whiteColor,
-                            fontSize: SizeConfig.blockVertical * 4),
+                            fontSize: 30,
+                            fontFamily: "fonts/Montserrat-Bold.ttf",
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 8.0),
+                padding: const EdgeInsets.only(left: 12.0, top: 8.0),
                 child: Text(
                   'Ketua Pelaksana BPDB Prov, Aceh, Kab Aceh Singkil',
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: abuAbu),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 8.0),
+                padding: const EdgeInsets.only(left: 12.0, top: 8.0),
                 child: Text(
                   'Atung Nugroho',
                   style: TextStyle(
                       color: Colors.black,
-                      fontSize: SizeConfig.blockVertical * 4),
+                      fontSize: 24,
+                      fontFamily: "fonts/Montserrat-Regular.ttf",
+                      fontWeight: FontWeight.normal),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 8.0),
+                padding: const EdgeInsets.only(left: 12.0, top: 8.0),
                 child: Text(
                   'Alamat Kantor',
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: abuAbu),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 8.0),
+                padding: const EdgeInsets.only(left: 12.0, top: 8.0),
                 child: Text(
                   'Jl. Putri Tunggal No 98',
                   style: TextStyle(
@@ -120,10 +127,10 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 20.0),
+                padding: const EdgeInsets.only(left: 12.0, top: 20.0),
                 child: Text(
                   'Jumlah Personil',
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: abuAbu),
                 ),
               ),
               Container(
@@ -173,10 +180,10 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 8.0),
+                padding: const EdgeInsets.only(left: 12.0, top: 8.0),
                 child: Text(
                   'Keterangan',
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: abuAbu),
                 ),
               ),
               Padding(

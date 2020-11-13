@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sarina/ui/page/input_data_kapasitas_bpdb_page.dart';
 import 'package:sarina/ui/widget/text_field_container.dart';
@@ -36,14 +37,19 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextFieldContainer(
                       child: TextField(
-                        cursorColor: kPrimaryColor,
+                        cursorColor: Colors.black,
                         decoration: InputDecoration(
                           hintText: "Cari",
+                          hintStyle: TextStyle(
+                              fontFamily: "fonts/Montserrat-Bold.ttf",
+                              fontSize: 16,
+                              color: Colors.white),
                           suffixIcon: IconButton(
                             onPressed: () {},
-                            icon: Icon(Icons.search),
+                            icon: Icon(Icons.search_outlined,
+                              color: Colors.white,),
                           ),
-                          border: InputBorder.none,
+                          // border: InputBorder.none,
                         ),
                       ),
                     ),
@@ -54,6 +60,10 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
             ListTile(
               title: Text(
                 'Kab. Simeulue',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontFamily: "fonts/Montserrat-Bold.ttf"),
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -64,6 +74,10 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
             ListTile(
               title: Text(
                 'Kab. Aceh Sungkil',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontFamily: "fonts/Montserrat-Bold.ttf"),
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -74,6 +88,10 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
             ListTile(
               title: Text(
                 'Kab. Aceh Selatan',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontFamily: "fonts/Montserrat-Bold.ttf"),
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -84,6 +102,10 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
             ListTile(
               title: Text(
                 'Kab. Aceh Selatan 2 ',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontFamily: "fonts/Montserrat-Bold.ttf"),
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sarina/splash.dart';
 import 'package:sarina/ui/page/login_page.dart';
 
 void main() {
@@ -15,7 +16,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LoginPage(),
+      // home: LoginPage(),
+      home: Splash(),
+      routes: <String, WidgetBuilder>{
+        '/home': (BuildContext context) => LoginPage(),
+      }
     );
   }
 }
