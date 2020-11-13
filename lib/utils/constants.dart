@@ -8,3 +8,5 @@ const greenColors = Color(0xFF53bf4d);
 const blueSecondColors = Color(0xFFB7DFF2);
 const darkColors = Color(0xFF6D8591);
 const kPrimaryLightColor = Color(0xFFB5B0C2);
+const blueAsLogoColor=Color(0xFF03386A);
+const abuMuda = Color(0xFFF5F5F5);

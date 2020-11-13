@@ -43,9 +43,9 @@ class _DashboardPageState extends State<DashboardPage> {
               ),
               Container(
                   child: Text(
-                'Sarina',
+                'SARINA',
                 style: TextStyle(
-                    fontSize: SizeConfig.blockVertical * 4, color: whiteColor),
+                    fontSize: 32, color: whiteColor, fontFamily: "fonts/Montserrat-Bold.ttf", fontWeight: FontWeight.bold),
               )),
               SizedBox(
                 height: 10,
@@ -80,7 +80,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 .toList(),
             options: CarouselOptions(
                 autoPlay: true,
-                autoPlayInterval: Duration(seconds: 3),
+                autoPlayInterval: Duration(seconds: 4),
                 autoPlayAnimationDuration: Duration(milliseconds: 800),
                 enlargeCenterPage: true,
                 aspectRatio: 2.0,
@@ -105,6 +105,8 @@ class _DashboardPageState extends State<DashboardPage> {
                   child: Container(
                       height: SizeConfig.screenHight / 6,
                       width: SizeConfig.screenWidth / 2,
+                      margin: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0, bottom: 5.0),
+                      padding: EdgeInsets.all(5),
                       child: InkWell(
                         onTap: () {
                           if (itemDashboard[index].title == "Profile Daerah") {
@@ -114,6 +116,9 @@ class _DashboardPageState extends State<DashboardPage> {
                         },
                         child: Card(
                             color: orangeColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(70))
+                            ),
                             elevation: 4,
                             child: Center(
                                 child: Column(
@@ -128,9 +133,11 @@ class _DashboardPageState extends State<DashboardPage> {
                                   height: 4,
                                 ),
                                 Text(itemDashboard[index].title,
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontFamily: "WorkSansSemiBold")),
+                                        fontFamily: "fonts/Montserrat-Bold.ttf",
+                                        fontSize: 12)),
                               ],
                             ))),
                       )));
@@ -152,23 +159,23 @@ class _DashboardPageState extends State<DashboardPage> {
       itemDashboard.add(new DashboardItems(
           title: "Profile Daerah",
           subtitle: "dsadas",
-          img: "assets/img/document.png"));
+          img: "assets/icons/dossier.png"));
       itemDashboard.add(new DashboardItems(
-          title: "ttestestes",
+          title: "Program & \n Kegiatan",
           subtitle: "dsadas",
-          img: "assets/img/document.png"));
+          img: "assets/icons/schedule.png"));
       itemDashboard.add(new DashboardItems(
-          title: "ttestestes",
+          title: "Info Publik",
           subtitle: "dsadas",
-          img: "assets/img/document.png"));
+          img: "assets/icons/story-board(1).png"));
       itemDashboard.add(new DashboardItems(
-          title: "ttestestes",
+          title: "Berita Terkait",
           subtitle: "dsadas",
-          img: "assets/img/document.png"));
+          img: "assets/icons/newspaper.png"));
       itemDashboard.add(new DashboardItems(
-          title: "ttestestes",
+          title: "Pengaduan",
           subtitle: "dsadas",
-          img: "assets/img/document.png"));
+          img: "assets/icons/satisfaction.png"));
     });
   }
 }

@@ -38,9 +38,9 @@ class _HomePageState extends State<HomePage> {
           index: _page== null?0:_page,
           height: 50.0,
           items: <Widget>[
-            Icon(Icons.home,color: Colors.white, size: 30),
+            Icon(Icons.home_filled,color: Colors.white, size: 30),
             Icon(Icons.person,color: Colors.white, size: 30),
-            Icon(Icons.chat,color: Colors.white, size: 30),
+            Icon(Icons.chat,color: Colors.white, size: 25),
             Icon(Icons.settings,color: Colors.white, size: 30),
           ],
           color: blueColors,

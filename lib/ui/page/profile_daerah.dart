@@ -36,7 +36,7 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
               Container(
                 height: 130,
                 child: Card(
-                  color: blueColors,
+                  color: Colors.blue,
                   elevation: 10,
                   child: Row(
                     children: <Widget>[
@@ -52,7 +52,7 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                             decoration: BoxDecoration(
                                 color: orangeColor,
                                 image: DecorationImage(
-                                    image: AssetImage('assets/img/document.png'),
+                                    image: AssetImage('assets/icons/dossier.png'),
                                     fit: BoxFit.cover
                                 ),
                                 borderRadius:
@@ -88,7 +88,12 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(left: 20.0),
-                          child: Text('dsadasdasdsa'),
+                          child: Text('Data Kapasitas BPBD',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: "fonts/Montserrat-Bold.ttf",
+                                fontWeight: FontWeight.bold),),
                         ),
                       ),
                     ],
@@ -116,7 +121,7 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                                 color: orangeColor,
                                 image: DecorationImage(
                                     image:
-                                        AssetImage('assets/img/document.png'),
+                                        AssetImage('assets/icons/dossier.png'),
                                     fit: BoxFit.cover),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(75.0)),
@@ -151,7 +156,12 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(left: 20.0),
-                          child: Text('dsadasdasdsa'),
+                          child: Text('Data Sarana Prasarana',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontFamily: "fonts/Montserrat-Bold.ttf",
+                              fontWeight: FontWeight.bold),),
                         ),
                       ),
                     ],
@@ -179,7 +189,7 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                                 color: orangeColor,
                                 image: DecorationImage(
                                     image:
-                                        AssetImage('assets/img/document.png'),
+                                        AssetImage('assets/icons/dossier.png'),
                                     fit: BoxFit.cover),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(75.0)),
@@ -214,7 +224,12 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(left: 20.0),
-                          child: Text('dsadasdasdsa'),
+                          child: Text('Informasi Bencana',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontFamily: "fonts/Montserrat-Bold.ttf",
+                              fontWeight: FontWeight.bold),),
                         ),
                       ),
                     ],
