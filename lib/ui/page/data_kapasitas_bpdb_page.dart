@@ -10,6 +10,9 @@ import 'package:sarina/utils/size_config.dart';
  */
 
 class DataKapasitasBPDBPage extends StatefulWidget {
+  String title="";
+  DataKapasitasBPDBPage({this.title});
+
   @override
   _DataKapasitasBPDBPageState createState() => _DataKapasitasBPDBPageState();
 }
@@ -34,7 +37,14 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
                   SizedBox(height: SizeConfig.screenHight / 18),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: TextFieldContainer(
+                    child: Container(
+                      margin: EdgeInsets.symmetric(vertical: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      decoration: BoxDecoration(
+                        color: whiteColor,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                       child: TextField(
                         cursorColor: kPrimaryColor,
                         decoration: InputDecoration(
@@ -56,24 +66,26 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
                 'Aceh',
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () { Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ProvinsiPage()));},
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ProvinsiPage(title:widget.title)));
+                },
             ),
             ListTile(
               title: Text(
                 'Depok',
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () { Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ProvinsiPage()));},
+              onTap: () {Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ProvinsiPage(title:widget.title)));},
             ),
             ListTile(
               title: Text(
                 'Jakarta',
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () { Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ProvinsiPage()));},
+              onTap: () {Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ProvinsiPage(title:widget.title)));},
             ),
           ],
         ),

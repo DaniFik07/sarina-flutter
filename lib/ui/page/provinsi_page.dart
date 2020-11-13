@@ -4,12 +4,18 @@ import 'package:sarina/ui/widget/text_field_container.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
 
+import 'input_sarana_prasarana.dart';
+
 /**
  * Created by Bayu Nugroho
  * Copyright (c) 2020 . All rights reserved.
  */
 
 class ProvinsiPage extends StatefulWidget {
+  String title = "";
+
+  ProvinsiPage({this.title});
+
   @override
   _ProvinsiPageState createState() => _ProvinsiPageState();
 }
@@ -23,75 +29,104 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
         title: Text('Nama Provinsi'),
       ),
       body: Container(
-        child: Column(
-          children: [
-            Container(
-              width: SizeConfig.screenWidth,
-              height: SizeConfig.screenHight / 5,
-              color: blueColors,
-              child: Column(
-                children: [
-                  SizedBox(height: SizeConfig.screenHight / 18),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFieldContainer(
-                      child: TextField(
-                        cursorColor: kPrimaryColor,
-                        decoration: InputDecoration(
-                          hintText: "Cari",
-                          suffixIcon: IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.search),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                width: SizeConfig.screenWidth,
+                height: SizeConfig.screenHight / 5,
+                color: blueColors,
+                child: Column(
+                  children: [
+                    SizedBox(height: SizeConfig.screenHight / 18),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        margin: EdgeInsets.symmetric(vertical: 10),
+                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        decoration: BoxDecoration(
+                          color: whiteColor,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: TextField(
+                          cursorColor: kPrimaryColor,
+                          decoration: InputDecoration(
+                            hintText: "Cari",
+                            suffixIcon: IconButton(
+                              onPressed: () {},
+                              icon: Icon(Icons.search),
+                            ),
+                            border: InputBorder.none,
                           ),
-                          border: InputBorder.none,
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            ListTile(
-              title: Text(
-                'Kab. Simeulue',
+              ListTile(
+                title: Text(
+                  'Kab. Simeulue',
+                ),
+                trailing: Icon(Icons.keyboard_arrow_right),
+                onTap: () {
+                  if (widget.title == "Data Kapasitas BPBD") {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => InputBPDBPage()));
+                  } else if (widget.title == "Data Sarana Prasarana") {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => InputSaranaPrasaranaPage()));
+                  }
+                },
               ),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => InputBPDBPage()));
-              },
-            ),
-            ListTile(
-              title: Text(
-                'Kab. Aceh Sungkil',
+              ListTile(
+                title: Text(
+                  'Kab. Aceh Sungkil',
+                ),
+                trailing: Icon(Icons.keyboard_arrow_right),
+                onTap: () {
+                  if (widget.title == "Data Kapasitas BPBD") {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => InputBPDBPage()));
+                  } else if (widget.title == "Data Sarana Prasarana") {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => InputSaranaPrasaranaPage()));
+                  }
+                },
               ),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => InputBPDBPage()));
-              },
-            ),
-            ListTile(
-              title: Text(
-                'Kab. Aceh Selatan',
+              ListTile(
+                title: Text(
+                  'Kab. Aceh Selatan',
+                ),
+                trailing: Icon(Icons.keyboard_arrow_right),
+                onTap: () {
+                  if (widget.title == "Data Kapasitas BPBD") {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => InputBPDBPage()));
+                  } else if (widget.title == "Data Sarana Prasarana") {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => InputSaranaPrasaranaPage()));
+                  }
+                },
               ),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => InputBPDBPage()));
-              },
-            ),
-            ListTile(
-              title: Text(
-                'Kab. Aceh Selatan 2 ',
+              ListTile(
+                title: Text(
+                  'Kab. Aceh Selatan 2 ',
+                ),
+                trailing: Icon(Icons.keyboard_arrow_right),
+                onTap: () {
+                  if(widget.title =="Data Kapasitas BPBD"){
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => InputBPDBPage()));
+                  }else if(widget.title == "Data Sarana Prasarana"){
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => InputSaranaPrasaranaPage()));
+                  }
+                },
               ),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => InputBPDBPage()));
-              },
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
