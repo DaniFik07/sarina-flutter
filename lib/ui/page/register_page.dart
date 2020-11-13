@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:sarina/ui/widget/already_have_an_account_acheck.dart';
 import 'package:sarina/ui/widget/rounded_button.dart';
@@ -30,7 +31,7 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(height: size.height * 0.03),
+                SizedBox(height: size.height / 20),
                 Image.asset('assets/img/logokm.png',
                   height: size.height * 0.17,
                 ),
@@ -117,6 +118,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 RoundedButtonBlue(
+                  color: greenColors,
                   text: "SIGN UP",
                   press: () {
                   },
@@ -125,6 +127,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 AlreadyHaveAnAccountCheck(
                   login: false,
                   press: () {
+                    Navigator.pop(context);
                   },
                 ),
                 SizedBox(height: size.height * 0.03),
