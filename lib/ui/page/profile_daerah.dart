@@ -44,7 +44,9 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                         padding: EdgeInsets.all(10.0),
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataKapasitasBPDBPage()));
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataKapasitasBPDBPage(
+                              title:"Data Kapasitas BPBD"
+                            )));
                           },
                           child: Container(
                             width: 100.0,
@@ -113,7 +115,11 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                       Padding(
                         padding: EdgeInsets.all(10.0),
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataKapasitasBPDBPage(
+                                title:"Data Sarana Prasarana"
+                            )));
+                          },
                           child: Container(
                             width: 100.0,
                             height: 100.0,
@@ -134,25 +140,6 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          return showDialog<void>(
-                            context: context,
-                            barrierDismissible: false,
-                            builder: (BuildContext conext) {
-                              return AlertDialog(
-                                title: Text('Not in stock'),
-                                content: const Text(
-                                    'This item is no longer available'),
-                                actions: <Widget>[
-                                  FlatButton(
-                                    child: Text('Ok'),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                ],
-                              );
-                            },
-                          );
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(left: 20.0),

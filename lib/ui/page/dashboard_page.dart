@@ -45,7 +45,10 @@ class _DashboardPageState extends State<DashboardPage> {
                   child: Text(
                 'SARINA',
                 style: TextStyle(
-                    fontSize: 32, color: whiteColor, fontFamily: "fonts/Montserrat-Bold.ttf", fontWeight: FontWeight.bold),
+                    fontSize: SizeConfig.blockVertical * 4,
+                    color: whiteColor,
+                    fontFamily: "fonts/Montserrat-Bold.ttf",
+                    fontWeight: FontWeight.bold),
               )),
               SizedBox(
                 height: 10,
@@ -105,42 +108,51 @@ class _DashboardPageState extends State<DashboardPage> {
                   child: Container(
                       height: SizeConfig.screenHight / 6,
                       width: SizeConfig.screenWidth / 2,
-                      margin: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0, bottom: 5.0),
-                      padding: EdgeInsets.all(5),
-                      child: InkWell(
-                        onTap: () {
-                          if (itemDashboard[index].title == "Profile Daerah") {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => ProfileDaerahPage()));
-                          }
-                        },
-                        child: Card(
-                            color: kuningColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(70))
-                            ),
-                            elevation: 4,
-                            child: Center(
-                                child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Image.asset(
-                                  itemDashboard[index].img,
-                                  width: 42,
-                                ),
-                                SizedBox(
-                                  height: 4,
-                                ),
-                                Text(itemDashboard[index].title,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: "fonts/Montserrat-Bold.ttf",
-                                        fontSize: 12,
-                                        color: Colors.white)),
-                              ],
-                            ))),
+                      margin: EdgeInsets.only(
+                          left: 2.0, right: 2.0, top: 2.0, bottom: 2.0),
+                      padding: EdgeInsets.all(8),
+                      child: Column(
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              if (itemDashboard[index].title ==
+                                  "Profile Daerah") {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => ProfileDaerahPage()));
+                              }
+                            },
+                            child: Card(
+                                color: kuningColor,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(80))),
+                                elevation: 4,
+                                child: Center(
+                                    child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Image.asset(
+                                        itemDashboard[index].img,
+                                        width: 42,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 4,
+                                    ),
+                                  ],
+                                ))),
+                          ),
+                          Text(itemDashboard[index].title,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "fonts/Montserrat-Bold.ttf",
+                                  fontSize: 12,
+                                  color: Colors.white)),
+                        ],
                       )));
         },
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
