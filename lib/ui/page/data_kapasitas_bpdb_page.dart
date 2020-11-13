@@ -51,14 +51,12 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
                           hintText: "Cari",
                             hintStyle: TextStyle(
                                 fontFamily: "fonts/Montserrat-Bold.ttf",
-                                fontSize: 16,
-                                color: Colors.white),
+                                fontSize: 16),
                           suffixIcon: IconButton(
                             onPressed: () {},
-                            icon: Icon(Icons.search_outlined,
-                              color: Colors.white,),
+                            icon: Icon(Icons.search_outlined),
                           ),
-                          // border: InputBorder.none,
+                          border: InputBorder.none,
                         ),
                       ),
                     ),

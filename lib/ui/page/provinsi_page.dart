@@ -50,7 +50,7 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: TextField(
-                          cursorColor: kPrimaryColor,
+                          cursorColor: Colors.black,
                           decoration: InputDecoration(
                             hintText: "Cari",
                             suffixIcon: IconButton(
