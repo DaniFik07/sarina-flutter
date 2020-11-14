@@ -52,25 +52,21 @@ class _ProgramDanKegiatanState extends State<ProgramDanKegiatan> {
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.all(10.0),
-                          child: GestureDetector(
-                            onTap: () {
-                            },
-                            child: Container(
-                              width: 100.0,
-                              height: 100.0,
-                              decoration: BoxDecoration(
-                                  color: orangeColor,
-                                  image: DecorationImage(
-                                      image: AssetImage('assets/icons/dossier.png'),
-                                      fit: BoxFit.cover
-                                  ),
-                                  borderRadius:
-                                  BorderRadius.all(Radius.circular(75.0)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        blurRadius: 7.0, color: Colors.black)
-                                  ]),
-                            ),
+                          child: Container(
+                            width: 100.0,
+                            height: 100.0,
+                            decoration: BoxDecoration(
+                                color: orangeColor,
+                                image: DecorationImage(
+                                    image: AssetImage('assets/icons/dossier.png'),
+                                    fit: BoxFit.cover
+                                ),
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(75.0)),
+                                boxShadow: [
+                                  BoxShadow(
+                                      blurRadius: 7.0, color: Colors.black)
+                                ]),
                           ),
                         ),
                         GestureDetector(
@@ -128,18 +124,14 @@ class _ProgramDanKegiatanState extends State<ProgramDanKegiatan> {
                             ),
                           ),
                         ),
-                        GestureDetector(
-                          onTap: () {
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
-                            child: Text('Daerah',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontFamily: "fonts/Montserrat-Bold.ttf",
-                                  fontWeight: FontWeight.bold),),
-                          ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: Text('Daerah',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: "fonts/Montserrat-Bold.ttf",
+                                fontWeight: FontWeight.bold),),
                         ),
                       ],
                     ),
