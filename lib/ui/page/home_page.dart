@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:sarina/ui/page/dashboard_page.dart';
+import 'package:sarina/ui/page/profile_page.dart';
 import 'package:sarina/utils/constants.dart';
 
 /**
@@ -63,7 +64,7 @@ class _HomePageState extends State<HomePage> {
         return DashboardPage();
         break;
       case 1:
-        return Center(child: Text("sau"));
+        return ProfilePage();
         break;
       case 2:
         return Center(child: Text('dsadhjksa'));
