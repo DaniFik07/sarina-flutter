@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:sarina/models/model_home.dart';
 import 'package:sarina/ui/page/berita_terkait_page.dart';
 import 'package:sarina/ui/page/info_public.dart';
+import 'package:sarina/ui/page/pengaduan_page.dart';
 import 'package:sarina/ui/page/profile_daerah.dart';
 import 'package:sarina/ui/page/program_dan_kegiatan.dart';
 import 'package:sarina/ui/widget/menu_circle.dart';
@@ -131,6 +132,9 @@ class _DashboardPageState extends State<DashboardPage> {
                               }else if(itemDashboard[index].title == "Berita Terkait"){
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => BeritaTerkait()));
+                              }else if(itemDashboard[index].title == "Pengaduan"){
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => PengaduanPage()));
                               }
                             },
                             child: Card(

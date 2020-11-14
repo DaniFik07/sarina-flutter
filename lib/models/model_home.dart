@@ -15,6 +15,14 @@ class ModelItemUndangan{
   ModelItemUndangan({this.judul, this.Deskripsi, this.tglPelaksanan, this.WaktuPelaksana});
 }
 
+class ModelPengaduan{
+  String judul;
+  String Deskripsi;
+  String status;
+
+  ModelPengaduan({this.judul, this.Deskripsi, this.status});
+}
+
 class ModelBeritaTerkait{
   String judul;
   String Deskripsi;

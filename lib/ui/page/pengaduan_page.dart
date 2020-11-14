@@ -11,14 +11,14 @@ import 'package:sarina/utils/size_config.dart';
  * Copyright (c) 2020 . All rights reserved.
  */
 
-class BeritaTerkait extends StatefulWidget {
+class PengaduanPage extends StatefulWidget {
   @override
-  _BeritaTerkaitState createState() => _BeritaTerkaitState();
+  _PengaduanPageState createState() => _PengaduanPageState();
 }
 
-class _BeritaTerkaitState extends State<BeritaTerkait> {
+class _PengaduanPageState extends State<PengaduanPage> {
   Color red800 = Colors.red[800];
-  List<ModelBeritaTerkait> listBerita = [];
+  List<ModelPengaduan> listItem = [];
 
   @override
   void initState() {
@@ -30,9 +30,28 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 20),
+        child: FloatingActionButton.extended(
+          elevation: 3,
+          onPressed: () {
+          },
+          backgroundColor: greenColors,
+          label: Container(
+            child: Text(
+              "+ Baru",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "fonts/Montserrat-Bold.ttf",
+                  fontSize: 16),
+            ),
+          ),
+        ),
+      ),
       appBar: AppBar(
-        title: Text('Berita Terkait',
-          style: TextStyle(fontFamily: "fonts/Montserrat-Bold.ttf"),),
+        title: Text('Daftar Pengaduan', style: TextStyle(fontFamily: "fonts/Montserrat-Bold.ttf"),),
       ),
       body: Container(
         child: Column(
@@ -48,12 +67,8 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
                       margin: EdgeInsets.symmetric(vertical: 10),
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 5),
-                      width: MediaQuery
-                          .of(context)
-                          .size
-                          .width * 0.8,
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                      width: MediaQuery.of(context).size.width * 0.8,
                       decoration: BoxDecoration(
                         color: whiteColor,
                         borderRadius: BorderRadius.circular(20),
@@ -78,9 +93,9 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
               ),
             ),
             Container(
-              height: SizeConfig.screenHight / 1.5,
+              height: SizeConfig.screenHight /1.5,
               child: ListView.builder(
-                itemCount: listBerita.length,
+                itemCount: listItem.length,
                 itemBuilder: (BuildContext context, int index) {
                   return AnimationConfiguration.staggeredList(
                     position: index,
@@ -92,54 +107,48 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
                           children: <Widget>[
                             new Padding(
                               padding: const EdgeInsets.only(left: 50.0),
-                              child: Container(
-                                width: SizeConfig.screenWidth,
-                                child: new Card(
-                                  margin: new EdgeInsets.all(20.0),
-                                  child: new Container(
-                                      margin: EdgeInsets.all(8.0),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                          children: [
-                                            Flexible(child: Image.asset(
-                                              listBerita[index].img, width: 50,
-                                              height: 50,)),
-                                            Expanded(
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                                mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                    const EdgeInsets.all(4.0),
-                                                    child: Text(
-                                                      listBerita[index].judul,
-                                                      style: TextStyle(
-                                                          color: Colors
-                                                              .black),),
-                                                  ),
-                                                  Padding(
-                                                      padding:
-                                                      const EdgeInsets.all(4.0),
-                                                      child: Text(
-                                                        listBerita[index].Deskripsi,
-                                                        style: TextStyle(
-                                                            color: abuAbu),),
-                                                  ),
-                                                ],
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      )),
-                                ),
+                              child: new Card(
+                                margin: new EdgeInsets.all(20.0),
+                                child: new Container(
+                                    margin: EdgeInsets.all(8.0),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                            const EdgeInsets.all(4.0),
+                                            child: Text(
+                                                listItem[index].judul),
+                                          ),
+                                          Padding(
+                                            padding:
+                                            const EdgeInsets.all(4.0),
+                                            child: Row(
+                                              children: [
+                                                Text("Status : "),
+                                                Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: Card(color:listItem[index].status == "1"?greenColors:redColors,child:
+                                                  Text("${listItem[index].status == "1"?"Sudah Ditangani":"Belum diTangani"} ",
+                                                    style: TextStyle(color: whiteColor),),),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                            const EdgeInsets.all(4.0),
+                                            child: Text(
+                                                listItem[index].Deskripsi),
+                                          ),
+                                        ],
+                                      ),
+                                    )),
                               ),
                             ),
                             new Positioned(
@@ -153,7 +162,7 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
                               ),
                             ),
                             new Positioned(
-                              top: 90.0,
+                              top: 100.0,
                               left: 27.0,
                               child: new Container(
                                 height: 20.0,
@@ -186,15 +195,18 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
 
   void addData() {
     setState(() {
-      listBerita.add(new ModelBeritaTerkait(
-          judul: "judul ",
+      listItem.add(new ModelPengaduan(
+          judul: "Lorem Ipsum Lorem Ipsum ",
           Deskripsi: "Lorem Ipsum Lorem Ipsum",
-          img: "assets/img/logokm.png"));
-
-      listBerita.add(new ModelBeritaTerkait(
-          judul: "judul2",
-          Deskripsi: "Lorem Ipsum Lorem Ipsum2 Lorem Ipsum Lorem Ipsum2",
-          img: "assets/img/logokm.png"));
+          status: "1"));
+      listItem.add(new ModelPengaduan(
+          judul: "Lorem Ipsum Lorem Ipsum 2",
+          Deskripsi: "Lorem Ipsum Lorem Ipsum2",
+          status: "1"));
+      listItem.add(new ModelPengaduan(
+          judul: "Lorem Ipsum Lorem Ipsum3 ",
+          Deskripsi: "Lorem Ipsum Lorem Ipsum3",
+          status: "2"));
     });
   }
 }

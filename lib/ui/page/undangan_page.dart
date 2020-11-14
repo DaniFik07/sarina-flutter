@@ -180,13 +180,6 @@ class _DafrarUndanganPageState extends State<DafrarUndanganPage> {
                                   margin: new EdgeInsets.all(5.0),
                                   height: 30.0,
                                   width: 30.0,
-                                  decoration: new BoxDecoration(
-                                    image: new DecorationImage(
-                                      image: new ExactAssetImage(
-                                          'assets/img/oke.png'),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
                                 ),
                               ),
                             )
