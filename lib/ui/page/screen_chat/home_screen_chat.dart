@@ -14,17 +14,12 @@ class _HomeScreen extends State<HomeScreen>{
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: blueColors,
       appBar: AppBar(
         brightness: Brightness.dark,
         elevation: 8,
-        // leading: IconButton(
-        //   icon: Icon(Icons.menu),
-        //   color: Colors.white,
-        //   onPressed: () {},
-        // ),
         title: Text(
-          'Inbox',
+          'Chat',
           style: TextStyle(
             color: Colors.white,
           ),
@@ -87,6 +82,7 @@ class _HomeScreen extends State<HomeScreen>{
                     ),
                     child: CircleAvatar(
                       radius: 35,
+                      backgroundColor: whiteColor,
                       backgroundImage: AssetImage(chat.sender.image),
                     ),
                   ),
@@ -107,6 +103,7 @@ class _HomeScreen extends State<HomeScreen>{
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
+                                    color: whiteColor
                                   ),
                                 ),
                                 chat.sender.isOnline
@@ -143,7 +140,7 @@ class _HomeScreen extends State<HomeScreen>{
                             chat.text,
                             style: TextStyle(
                               fontSize: 13,
-                              color: Colors.black54,
+                              color: abuAbu,
                             ),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,

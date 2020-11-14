@@ -223,7 +223,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 hintText: "-",
                                 suffixIcon: IconButton(
                                   onPressed: () {},
-                                  icon: Icon(Icons.mail),
+                                  icon: Icon(Icons.call),
                                 ),
                                 border: InputBorder.none,
                               ),

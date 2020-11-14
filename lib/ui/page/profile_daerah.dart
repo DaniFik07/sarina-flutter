@@ -35,19 +35,17 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
               ),
               Container(
                 height: 130,
-                child: Card(
-                  color: Colors.blue,
-                  elevation: 10,
-                  child: Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataKapasitasBPDBPage(
-                              title:"Data Kapasitas BPBD"
-                            )));
-                          },
+                child: InkWell(
+                  onTap: (){    Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataKapasitasBPDBPage(
+                      title:"Data Kapasitas BPBD"
+                  )));},
+                  child: Card(
+                    color: Colors.blue,
+                    elevation: 10,
+                    child: Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.all(10.0),
                           child: Container(
                             width: 100.0,
                             height: 100.0,
@@ -65,30 +63,7 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                                 ]),
                           ),
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          return showDialog<void>(
-                            context: context,
-                            barrierDismissible: false,
-                            builder: (BuildContext conext) {
-                              return AlertDialog(
-                                title: Text('Not in stock'),
-                                content: const Text(
-                                    'This item is no longer available'),
-                                actions: <Widget>[
-                                  FlatButton(
-                                    child: Text('Ok'),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        },
-                        child: Padding(
+                        Padding(
                           padding: const EdgeInsets.only(left: 20.0),
                           child: Text('Data Kapasitas BPBD',
                             style: TextStyle(
@@ -97,8 +72,8 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                                 fontFamily: "fonts/Montserrat-Bold.ttf",
                                 fontWeight: FontWeight.bold),),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -107,51 +82,49 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
               ),
               Container(
                 height: 130,
-                child: Card(
-                  color: Colors.blue,
-                  elevation: 10,
-                  child: Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: GestureDetector(
+                child: InkWell(
+                  onTap: (){   Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataKapasitasBPDBPage(
+                      title:"Data Sarana Prasarana"
+                  )));},
+                  child: Card(
+                    color: Colors.blue,
+                    elevation: 10,
+                    child: Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Container(
+                            width: 100.0,
+                            height: 100.0,
+                            decoration: BoxDecoration(
+                                color: orangeColor,
+                                image: DecorationImage(
+                                    image:
+                                        AssetImage('assets/icons/dossier.png'),
+                                    fit: BoxFit.cover),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(75.0)),
+                                boxShadow: [
+                                  BoxShadow(
+                                      blurRadius: 7.0, color: Colors.black)
+                                ]),
+                          ),
+                        ),
+                        GestureDetector(
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataKapasitasBPDBPage(
-                                title:"Data Sarana Prasarana"
-                            )));
                           },
-                          child: Container(
-                            width: 100.0,
-                            height: 100.0,
-                            decoration: BoxDecoration(
-                                color: orangeColor,
-                                image: DecorationImage(
-                                    image:
-                                        AssetImage('assets/icons/dossier.png'),
-                                    fit: BoxFit.cover),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(75.0)),
-                                boxShadow: [
-                                  BoxShadow(
-                                      blurRadius: 7.0, color: Colors.black)
-                                ]),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Text('Data Sarana Prasarana',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: "fonts/Montserrat-Bold.ttf",
+                                fontWeight: FontWeight.bold),),
                           ),
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: Text('Data Sarana Prasarana',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontFamily: "fonts/Montserrat-Bold.ttf",
-                              fontWeight: FontWeight.bold),),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -160,15 +133,15 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
               ),
               Container(
                 height: 130,
-                child: Card(
-                  color: Colors.blue,
-                  elevation: 10,
-                  child: Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: GestureDetector(
-                          onTap: () {},
+                child: InkWell(
+                  onTap: (){},
+                  child: Card(
+                    color: Colors.blue,
+                    elevation: 10,
+                    child: Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.all(10.0),
                           child: Container(
                             width: 100.0,
                             height: 100.0,
@@ -186,30 +159,7 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                                 ]),
                           ),
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          return showDialog<void>(
-                            context: context,
-                            barrierDismissible: false,
-                            builder: (BuildContext conext) {
-                              return AlertDialog(
-                                title: Text('Not in stock'),
-                                content: const Text(
-                                    'This item is no longer available'),
-                                actions: <Widget>[
-                                  FlatButton(
-                                    child: Text('Ok'),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        },
-                        child: Padding(
+                        Padding(
                           padding: const EdgeInsets.only(left: 20.0),
                           child: Text('Informasi Bencana',
                             style: TextStyle(
@@ -218,8 +168,8 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                               fontFamily: "fonts/Montserrat-Bold.ttf",
                               fontWeight: FontWeight.bold),),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               )
