@@ -14,3 +14,11 @@ class ModelItemUndangan{
 
   ModelItemUndangan({this.judul, this.Deskripsi, this.tglPelaksanan, this.WaktuPelaksana});
 }
+
+class ModelBeritaTerkait{
+  String judul;
+  String Deskripsi;
+  String img;
+
+  ModelBeritaTerkait({this.judul, this.Deskripsi, this.img});
+}

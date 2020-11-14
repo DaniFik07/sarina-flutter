@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:sarina/models/model_home.dart';
+import 'package:sarina/ui/page/berita_terkait_page.dart';
 import 'package:sarina/ui/page/info_public.dart';
 import 'package:sarina/ui/page/profile_daerah.dart';
 import 'package:sarina/ui/page/program_dan_kegiatan.dart';
@@ -127,6 +128,9 @@ class _DashboardPageState extends State<DashboardPage> {
                               }else if(itemDashboard[index].title == "Info Publik"){
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => InfoPublicPage()));
+                              }else if(itemDashboard[index].title == "Berita Terkait"){
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => BeritaTerkait()));
                               }
                             },
                             child: Card(
