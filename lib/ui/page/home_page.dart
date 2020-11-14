@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:sarina/ui/page/dashboard_page.dart';
+import 'package:sarina/ui/page/screen_chat/home_screen_chat.dart';
 import 'package:sarina/utils/constants.dart';
 
 /**
@@ -66,7 +67,7 @@ class _HomePageState extends State<HomePage> {
         return Center(child: Text("sau"));
         break;
       case 2:
-        return Center(child: Text('dsadhjksa'));
+        return HomeScreen();
         break;
       case 3:
         return Center(child: Text('gfujdshfd'));

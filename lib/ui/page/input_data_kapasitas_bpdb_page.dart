@@ -102,7 +102,9 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
                   'Jl. Putri Tunggal No 98',
                   style: TextStyle(
                       color: Colors.black,
-                      fontSize: SizeConfig.blockVertical * 4),
+                      fontSize: 24,
+                      fontFamily: "fonts/Montserrat-Regular.ttf",
+                      fontWeight: FontWeight.normal),
                 ),
               ),
               Padding(
