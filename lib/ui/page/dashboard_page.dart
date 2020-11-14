@@ -3,7 +3,11 @@ import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:sarina/models/model_home.dart';
+import 'package:sarina/ui/page/berita_terkait_page.dart';
+import 'package:sarina/ui/page/info_public.dart';
+import 'package:sarina/ui/page/pengaduan_page.dart';
 import 'package:sarina/ui/page/profile_daerah.dart';
+import 'package:sarina/ui/page/program_dan_kegiatan.dart';
 import 'package:sarina/ui/widget/menu_circle.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
@@ -119,6 +123,18 @@ class _DashboardPageState extends State<DashboardPage> {
                                   "Profile Daerah") {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => ProfileDaerahPage()));
+                              }else if(itemDashboard[index].title == "Program & \n Kegiatan"){
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => ProgramDanKegiatan()));
+                              }else if(itemDashboard[index].title == "Info Publik"){
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => InfoPublicPage()));
+                              }else if(itemDashboard[index].title == "Berita Terkait"){
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => BeritaTerkait()));
+                              }else if(itemDashboard[index].title == "Pengaduan"){
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => PengaduanPage()));
                               }
                             },
                             child: Card(
