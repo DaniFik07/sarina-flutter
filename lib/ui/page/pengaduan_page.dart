@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:sarina/models/model_home.dart';
+import 'package:sarina/ui/page/input_pengaduan_page.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
 
@@ -35,6 +36,8 @@ class _PengaduanPageState extends State<PengaduanPage> {
         child: FloatingActionButton.extended(
           elevation: 3,
           onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => InputPengaduanPage()));
           },
           backgroundColor: greenColors,
           label: Container(
