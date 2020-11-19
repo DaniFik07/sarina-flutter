@@ -137,9 +137,6 @@ class _DashboardPageState extends State<DashboardPage> {
                       }else if(itemDashboard[index].title == "Pengaduan"){
                       Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => PengaduanPage()));
-                      }else if(itemDashboard[index].title == "Pengaduan"){
-                      Navigator.of(context).push(MaterialPageRoute
-                      (builder: (context) => PengaduanPage()));
                       }else if(itemDashboard[index].title == "Info Covid-19"){
                       Navigator.of(context).push(MaterialPageRoute
                       (builder: (context) => InfoCovidPage()));

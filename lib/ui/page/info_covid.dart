@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sarina/ui/page/covid_page/datasource.dart';
+import 'package:sarina/ui/page/covid_page/pannels/worldwidepannels.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
 
@@ -10,25 +12,35 @@ class InfoCovidPage extends StatefulWidget {
 class _InfoCovidPageState extends State<InfoCovidPage> {
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Info Covid-19"),
+        centerTitle: false,
+        title: Text("COVID-19 TRACKER"),
       ),
-      body: Container(
-        height: SizeConfig.screenHight,
-        color: blueColors,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-              height: 10,
-            )],
+      body: SingleChildScrollView(child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.all(10),
+            height: 100,
+            color: Colors.orange[100],
+            child: Text(DataSource.quote, style: TextStyle(
+              color: Colors.orange[800],
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),),
           ),
-        ),
-      ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical:10.0, horizontal: 10.0),
+            child: Text('Worldwide',style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold
+            ),),
+          ),
+          WorldWidePanel()
+        ],
+      ),),
     );
   }
 }

@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Sarina',
       theme: ThemeData(
+        fontFamily: 'Montserrat',
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
