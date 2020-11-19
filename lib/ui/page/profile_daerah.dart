@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sarina/ui/page/data_kapasitas_bpdb_page.dart';
+import 'package:sarina/ui/page/data_sarana_prasarana_page.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
 
@@ -83,7 +84,7 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
               Container(
                 height: 130,
                 child: InkWell(
-                  onTap: (){   Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataKapasitasBPDBPage(
+                  onTap: (){   Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataSaranaPrasaranaPage(
                       title:"Data Sarana Prasarana"
                   )));},
                   child: Card(
@@ -110,10 +111,7 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                                 ]),
                           ),
                         ),
-                        GestureDetector(
-                          onTap: () {
-                          },
-                          child: Padding(
+                        Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: Text('Data Sarana Prasarana',
                               style: TextStyle(
@@ -122,7 +120,6 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                                 fontFamily: "fonts/Montserrat-Bold.ttf",
                                 fontWeight: FontWeight.bold),),
                           ),
-                        ),
                       ],
                     ),
                   ),

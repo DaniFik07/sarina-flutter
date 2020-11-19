@@ -20,7 +20,8 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      appBar: AppBar(title: Text(''),),
+      appBar: AppBar(title: Text(''),
+        elevation: 0,),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 20),
         child: FloatingActionButton.extended(
