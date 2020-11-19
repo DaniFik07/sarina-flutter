@@ -41,7 +41,6 @@ class _SplashState extends State<Splash>{
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 30,
-                      fontFamily: "fonts/Montserrat-Bold.ttf",
                       color: Colors.white,
                       fontWeight: FontWeight.bold),),
                 SizedBox(height: 30),
@@ -49,14 +48,12 @@ class _SplashState extends State<Splash>{
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 36,
-                      fontFamily: "fonts/Montserrat-Bold.ttf",
                       color: Colors.white,
                       fontWeight: FontWeight.bold),),
                 Text('SARANA PRASARANA DAN INFORMASI \n BENCANA',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize:16,
-                      fontFamily:"fonts/Montserrat-Bold.ttf",
                       color: Colors.white,
                       fontWeight: FontWeight.bold ),),
                 SizedBox(height: 12),
@@ -65,7 +62,6 @@ class _SplashState extends State<Splash>{
                 Text('KEMENTRIAN DALAM NEGERI \n REPUBLIK INDONESIA',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18,
-                      fontFamily:"fonts/Montserrat-Bold.ttf",
                       color: Colors.white,
                       fontWeight: FontWeight.bold ),)
               ],

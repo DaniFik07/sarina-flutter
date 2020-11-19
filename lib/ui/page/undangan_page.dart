@@ -44,14 +44,13 @@ class _DafrarUndanganPageState extends State<DafrarUndanganPage> {
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontFamily: "fonts/Montserrat-Bold.ttf",
                   fontSize: 16),
             ),
           ),
         ),
       ),
       appBar: AppBar(
-        title: Text('Daftar Undangan', style: TextStyle(fontFamily: "fonts/Montserrat-Bold.ttf"),),
+        title: Text('Daftar Undangan', style: TextStyle(),),
       ),
       body: Container(
         child: Column(
@@ -78,7 +77,6 @@ class _DafrarUndanganPageState extends State<DafrarUndanganPage> {
                     decoration: InputDecoration(
                       hintText: "Cari",
                       hintStyle: TextStyle(
-                          fontFamily: "fonts/Montserrat-Bold.ttf",
                           fontSize: 16),
                       suffixIcon: IconButton(
                         onPressed: () {},

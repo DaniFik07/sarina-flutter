@@ -78,7 +78,6 @@ class _ProgramDanKegiatanState extends State<ProgramDanKegiatan> {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 16,
-                                  fontFamily: "fonts/Montserrat-Bold.ttf",
                                   fontWeight: FontWeight.bold),),
                           ),
                         ),
@@ -130,7 +129,6 @@ class _ProgramDanKegiatanState extends State<ProgramDanKegiatan> {
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
-                                fontFamily: "fonts/Montserrat-Bold.ttf",
                                 fontWeight: FontWeight.bold),),
                         ),
                       ],

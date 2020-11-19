@@ -32,7 +32,7 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Berita Terkait',
-          style: TextStyle(fontFamily: "fonts/Montserrat-Bold.ttf"),),
+          style: TextStyle(),),
       ),
       body: Container(
         child: SingleChildScrollView(
@@ -64,7 +64,6 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
                           decoration: InputDecoration(
                             hintText: "Cari",
                             hintStyle: TextStyle(
-                                fontFamily: "fonts/Montserrat-Bold.ttf",
                                 fontSize: 16),
                             suffixIcon: IconButton(
                               onPressed: () {},

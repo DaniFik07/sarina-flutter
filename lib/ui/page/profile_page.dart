@@ -52,7 +52,6 @@ class _ProfilePageState extends State<ProfilePage> {
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontFamily: "fonts/Montserrat-Bold.ttf",
                   fontSize: 16),
             ),
           ),

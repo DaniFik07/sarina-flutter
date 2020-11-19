@@ -47,14 +47,13 @@ class _PengaduanPageState extends State<PengaduanPage> {
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontFamily: "fonts/Montserrat-Bold.ttf",
                   fontSize: 16),
             ),
           ),
         ),
       ),
       appBar: AppBar(
-        title: Text('Daftar Pengaduan', style: TextStyle(fontFamily: "fonts/Montserrat-Bold.ttf"),),
+        title: Text('Daftar Pengaduan', style: TextStyle(),),
       ),
       body: Container(
         child: SingleChildScrollView(
@@ -82,7 +81,6 @@ class _PengaduanPageState extends State<PengaduanPage> {
                           decoration: InputDecoration(
                             hintText: "Cari",
                             hintStyle: TextStyle(
-                                fontFamily: "fonts/Montserrat-Bold.ttf",
                                 fontSize: 16),
                             suffixIcon: IconButton(
                               onPressed: () {},

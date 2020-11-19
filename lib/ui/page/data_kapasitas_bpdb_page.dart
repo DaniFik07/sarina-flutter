@@ -23,7 +23,7 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
     SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Data Kapasitas BPDB', style: TextStyle(fontFamily: "fonts/Montserrat-Bold.ttf"),),
+        title: Text('Data Kapasitas BPDB', style: TextStyle(),),
       ),
       body: Container(
         child: Column(
@@ -50,7 +50,6 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
                         decoration: InputDecoration(
                           hintText: "Cari",
                             hintStyle: TextStyle(
-                                fontFamily: "fonts/Montserrat-Bold.ttf",
                                 fontSize: 16),
                           suffixIcon: IconButton(
                             onPressed: () {},
@@ -69,8 +68,7 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
                 'Aceh',
                 style: TextStyle(
                     fontSize: 16,
-                    color: Colors.black,
-                    fontFamily: "fonts/Montserrat-Bold.ttf"),
+                    color: Colors.black,),
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -83,8 +81,7 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
                 'Depok',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.black,
-                  fontFamily: "fonts/Montserrat-Bold.ttf"),
+                  color: Colors.black,),
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {Navigator.of(context).push(MaterialPageRoute(
@@ -95,8 +92,7 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
                 'Jakarta',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.black,
-                  fontFamily: "fonts/Montserrat-Bold.ttf"),
+                  color: Colors.black,),
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {Navigator.of(context).push(MaterialPageRoute(

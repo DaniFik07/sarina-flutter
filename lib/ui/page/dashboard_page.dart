@@ -52,7 +52,6 @@ class _DashboardPageState extends State<DashboardPage> {
                 style: TextStyle(
                     fontSize: SizeConfig.blockVertical * 4,
                     color: whiteColor,
-                    fontFamily: "fonts/Montserrat-Bold.ttf",
                     fontWeight: FontWeight.bold),
               )),
               SizedBox(
@@ -170,7 +169,6 @@ class _DashboardPageState extends State<DashboardPage> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontFamily: "fonts/Montserrat-Bold.ttf",
                                   fontSize: 12,
                                   color: Colors.white)),
                         ],

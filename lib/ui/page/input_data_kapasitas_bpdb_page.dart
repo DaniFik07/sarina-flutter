@@ -37,7 +37,6 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontFamily: "fonts/Montserrat-Bold.ttf",
                   fontSize: 16),
             ),
           ),
@@ -65,7 +64,6 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
                         style: TextStyle(
                             color: whiteColor,
                             fontSize: 30,
-                            fontFamily: "fonts/Montserrat-Bold.ttf",
                             fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -86,7 +84,6 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 24,
-                      fontFamily: "fonts/Montserrat-Regular.ttf",
                       fontWeight: FontWeight.normal),
                 ),
               ),
@@ -104,7 +101,6 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 24,
-                      fontFamily: "fonts/Montserrat-Regular.ttf",
                       fontWeight: FontWeight.normal),
                 ),
               ),

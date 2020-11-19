@@ -74,7 +74,6 @@ class _InfoPublicPageState extends State<InfoPublicPage> {
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
-                                fontFamily: "fonts/Montserrat-Bold.ttf",
                                 fontWeight: FontWeight.bold),),
                         ),
                       ],
@@ -127,7 +126,6 @@ class _InfoPublicPageState extends State<InfoPublicPage> {
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
-                                fontFamily: "fonts/Montserrat-Bold.ttf",
                                 fontWeight: FontWeight.bold),),
                         ),
                       ],

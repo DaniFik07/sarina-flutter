@@ -37,7 +37,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 SizedBox(height: size.height * 0.03),
                 Text('SARANA PRASARANA DAN \n INFORMASI BENCANA',textAlign: TextAlign.center,style: TextStyle(
-                    fontSize: 24,color: Colors.black,fontFamily: "fonts/Montserrat-Regular.ttf",fontWeight: FontWeight.bold),),
+                    fontSize: 24,color: Colors.black,fontWeight: FontWeight.bold),),
                 SizedBox(height: size.height * 0.03),
                 TextFieldContainerWhite(
                   child: TextField(

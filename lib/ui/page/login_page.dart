@@ -42,9 +42,9 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: size.height * 0.03),
                 Text('SARANA PRASARANA DAN INFORMASI \n BENCANA',textAlign: TextAlign.center,style: TextStyle(
-                    fontSize: 16,color: Colors.white,fontFamily: "fonts/Montserrat-Bold.ttf",fontWeight: FontWeight.bold),),
+                    fontSize: 16,color: Colors.white,fontWeight: FontWeight.bold),),
                 Text('SARINA', textAlign: TextAlign.center,style: TextStyle(
-                    fontSize: 32,color: Colors.white,fontFamily: "fonts/Montserrat-Bold.ttf",fontWeight: FontWeight.bold),),
+                    fontSize: 32,color: Colors.white,fontWeight: FontWeight.bold),),
                 SizedBox(height: size.height * 0.03),
                 TextFieldContainer(
                   child: TextField(
@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                         color: Colors.white,
                       ),
                       hintText: "Email",
-                      hintStyle: TextStyle(fontFamily: "fonts/Montserrat-Bold.ttf", fontSize: 16, color: Colors.white)
+                      hintStyle: TextStyle(fontSize: 16, color: Colors.white)
                     ),
                   ),
                 ),
@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
                       hintText: "Password",
-                      hintStyle: TextStyle(fontFamily: "fonts/Montserrat-Bold.ttf", fontSize: 16, color: Colors.white),
+                      hintStyle: TextStyle( fontSize: 16, color: Colors.white),
                       icon: Icon(
                         Icons.vpn_key,
                         color: Colors.white,

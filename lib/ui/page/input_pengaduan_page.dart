@@ -38,7 +38,7 @@ class _InputPengaduanPageState extends State<InputPengaduanPage> {
       appBar: AppBar(
         title: Text(
           'Form Pengaduan',
-          style: TextStyle(fontFamily: "fonts/Montserrat-Bold.ttf"),
+          style: TextStyle(),
         ),
       ),
       body: Center(
@@ -73,7 +73,6 @@ class _InputPengaduanPageState extends State<InputPengaduanPage> {
                           ),
                           hintText: "Judul",
                           hintStyle: TextStyle(
-                              fontFamily: "fonts/Montserrat-Bold.ttf",
                               fontSize: 16,
                               color: abuAbu)),
                     ),
@@ -91,7 +90,6 @@ class _InputPengaduanPageState extends State<InputPengaduanPage> {
                           ),
                           hintText: "Lokasi Kejadian",
                           hintStyle: TextStyle(
-                              fontFamily: "fonts/Montserrat-Bold.ttf",
                               fontSize: 16,
                               color: abuAbu)),
                     ),

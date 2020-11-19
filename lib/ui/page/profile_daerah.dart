@@ -70,7 +70,6 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
-                                fontFamily: "fonts/Montserrat-Bold.ttf",
                                 fontWeight: FontWeight.bold),),
                         ),
                       ],
@@ -117,7 +116,6 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
-                                fontFamily: "fonts/Montserrat-Bold.ttf",
                                 fontWeight: FontWeight.bold),),
                           ),
                       ],
@@ -162,7 +160,6 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
-                              fontFamily: "fonts/Montserrat-Bold.ttf",
                               fontWeight: FontWeight.bold),),
                         ),
                       ],

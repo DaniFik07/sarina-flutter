@@ -18,7 +18,7 @@ class  _DataSaranaPrasaranaPageState extends State<DataSaranaPrasaranaPage>{
     SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pilih Provinsi', style: TextStyle(fontFamily: "fonts/Montserrat-Bold.ttf"),),
+        title: Text('Pilih Provinsi', style: TextStyle(),),
       ),
       body: Container(
         child: Column(
@@ -45,7 +45,6 @@ class  _DataSaranaPrasaranaPageState extends State<DataSaranaPrasaranaPage>{
                         decoration: InputDecoration(
                           hintText: "Cari",
                           hintStyle: TextStyle(
-                              fontFamily: "fonts/Montserrat-Bold.ttf",
                               fontSize: 16),
                           suffixIcon: IconButton(
                             onPressed: () {},
@@ -64,8 +63,7 @@ class  _DataSaranaPrasaranaPageState extends State<DataSaranaPrasaranaPage>{
                 'Aceh',
                 style: TextStyle(
                     fontSize: 16,
-                    color: Colors.black,
-                    fontFamily: "fonts/Montserrat-Bold.ttf"),
+                    color: Colors.black,),
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -78,8 +76,7 @@ class  _DataSaranaPrasaranaPageState extends State<DataSaranaPrasaranaPage>{
                 'Depok',
                 style: TextStyle(
                     fontSize: 16,
-                    color: Colors.black,
-                    fontFamily: "fonts/Montserrat-Bold.ttf"),
+                    color: Colors.black,),
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {Navigator.of(context).push(MaterialPageRoute(
@@ -90,8 +87,7 @@ class  _DataSaranaPrasaranaPageState extends State<DataSaranaPrasaranaPage>{
                 'Jakarta',
                 style: TextStyle(
                     fontSize: 16,
-                    color: Colors.black,
-                    fontFamily: "fonts/Montserrat-Bold.ttf"),
+                    color: Colors.black,),
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {Navigator.of(context).push(MaterialPageRoute(

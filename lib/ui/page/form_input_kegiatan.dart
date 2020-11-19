@@ -41,7 +41,6 @@ class _FormInputKegiatanState extends State<FormInputKegiatan> {
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontFamily: "fonts/Montserrat-Bold.ttf",
                   fontSize: 16),
             ),
           ),
@@ -71,7 +70,6 @@ class _FormInputKegiatanState extends State<FormInputKegiatan> {
                             style: TextStyle(
                                 color: whiteColor,
                                 fontSize: 30,
-                                fontFamily: "fonts/Montserrat-Bold.ttf",
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -92,7 +90,6 @@ class _FormInputKegiatanState extends State<FormInputKegiatan> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 24,
-                          fontFamily: "fonts/Montserrat-Regular.ttf",
                           fontWeight: FontWeight.normal),
                     ),
                   ),
@@ -111,7 +108,7 @@ class _FormInputKegiatanState extends State<FormInputKegiatan> {
                             color: blueColors,
                           ),
                           hintText: "Nama Kegiatan",
-                          hintStyle: TextStyle(fontFamily: "fonts/Montserrat-Bold.ttf", fontSize: 16, color: abuAbu)
+                          hintStyle: TextStyle(fontSize: 16, color: abuAbu)
                       ),
                     ),
                   ),
@@ -177,7 +174,7 @@ class _FormInputKegiatanState extends State<FormInputKegiatan> {
                             color: blueColors,
                           ),
                           hintText: "Program Kegiatan",
-                          hintStyle: TextStyle(fontFamily: "fonts/Montserrat-Bold.ttf", fontSize: 16, color: abuAbu)
+                          hintStyle: TextStyle( fontSize: 16, color: abuAbu)
                       ),
                     ),
                   ),
