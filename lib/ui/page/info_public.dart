@@ -22,7 +22,6 @@ class _InfoPublicPageState extends State<InfoPublicPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Info Public"),
-        centerTitle: true,
       ),
       body: Container(
         height: SizeConfig.screenHight,
