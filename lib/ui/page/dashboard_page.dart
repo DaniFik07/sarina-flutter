@@ -169,7 +169,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 12,
+                                  fontSize: SizeConfig.blockVertical* 1.5,
                                   color: Colors.white)),
                         ],
                       )));
