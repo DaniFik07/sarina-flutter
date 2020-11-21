@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sarina/ui/page/data_informasi_bencana.dart';
 import 'package:sarina/ui/page/data_kapasitas_bpdb_page.dart';
 import 'package:sarina/ui/page/data_sarana_prasarana_page.dart';
 import 'package:sarina/utils/constants.dart';
@@ -129,7 +130,9 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
               Container(
                 height: 130,
                 child: InkWell(
-                  onTap: (){},
+                  onTap: (){Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataInformasiBencanaPage(
+                      title:"Data Informasi Bencana"
+                  )));},
                   child: Card(
                     color: Colors.blue,
                     elevation: 10,

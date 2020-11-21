@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sarina/ui/page/input_data_kapasitas_bpdb_page.dart';
+import 'package:sarina/ui/page/input_informasi_bencana.dart';
 import 'package:sarina/ui/widget/text_field_container.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
@@ -77,6 +78,9 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
                   } else if (widget.title == "Data Sarana Prasarana") {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => InputSaranaPrasaranaPage()));
+                  }else if (widget.title == "Data Informasi Bencana"){
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => InformasiBencanaPage()));
                   }
                 },
               ),
@@ -92,6 +96,9 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
                   } else if (widget.title == "Data Sarana Prasarana") {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => InputSaranaPrasaranaPage()));
+                  }else if (widget.title == "Data Informasi Bencana"){
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => InformasiBencanaPage()));
                   }
                 },
               ),
@@ -107,6 +114,9 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
                   } else if (widget.title == "Data Sarana Prasarana") {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => InputSaranaPrasaranaPage()));
+                  }else if (widget.title == "Data Informasi Bencana"){
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => InformasiBencanaPage()));
                   }
                 },
               ),
@@ -122,6 +132,9 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
                   }else if(widget.title == "Data Sarana Prasarana"){
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => InputSaranaPrasaranaPage()));
+                  }else if (widget.title == "Data Informasi Bencana"){
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => InformasiBencanaPage()));
                   }
                 },
               ),

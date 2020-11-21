@@ -3,21 +3,23 @@ import 'package:sarina/ui/page/provinsi_page.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
 
-class DataSaranaPrasaranaPage extends StatefulWidget{
+class DataInformasiBencanaPage extends StatefulWidget{
   String title ="";
-  DataSaranaPrasaranaPage({this.title});
+  DataInformasiBencanaPage({this.title});
 
   @override
-  _DataSaranaPrasaranaPageState createState() => _DataSaranaPrasaranaPageState();
+  _DataInformasiBencanaPageState createState() => _DataInformasiBencanaPageState();
+
+
 }
 
-class  _DataSaranaPrasaranaPageState extends State<DataSaranaPrasaranaPage>{
+class _DataInformasiBencanaPageState extends State<DataInformasiBencanaPage> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pilih Provinsi', style: TextStyle(),),
+        title: Text('Data Kapasitas BPDB', style: TextStyle(),),
       ),
       body: Container(
         child: Column(
@@ -61,8 +63,8 @@ class  _DataSaranaPrasaranaPageState extends State<DataSaranaPrasaranaPage>{
               title: Text(
                 'Aceh',
                 style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black,),
+                  fontSize: 16,
+                  color: Colors.black,),
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -74,8 +76,8 @@ class  _DataSaranaPrasaranaPageState extends State<DataSaranaPrasaranaPage>{
               title: Text(
                 'Depok',
                 style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black,),
+                  fontSize: 16,
+                  color: Colors.black,),
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {Navigator.of(context).push(MaterialPageRoute(
@@ -85,8 +87,8 @@ class  _DataSaranaPrasaranaPageState extends State<DataSaranaPrasaranaPage>{
               title: Text(
                 'Jakarta',
                 style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black,),
+                  fontSize: 16,
+                  color: Colors.black,),
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {Navigator.of(context).push(MaterialPageRoute(
@@ -97,5 +99,5 @@ class  _DataSaranaPrasaranaPageState extends State<DataSaranaPrasaranaPage>{
       ),
     );
   }
-}
 
+}

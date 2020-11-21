@@ -20,8 +20,8 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      appBar: AppBar(title: Text(''),
-        elevation: 0,),
+      // appBar: AppBar(title: Text(''),
+      //   elevation: 0,),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 20),
         child: FloatingActionButton.extended(
@@ -54,54 +54,63 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
                 height: SizeConfig.screenHight / 5,
                 color: blueColors,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(height: SizeConfig.screenHight / 18),
                     Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
+                      padding: const EdgeInsets.only(top: 4.0),
                       child: Text(
                         'Form Input Data Kapasitas \n BPDB',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: whiteColor,
-                            fontSize: 30,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0, top: 8.0),
-                child: Text(
-                  'Ketua Pelaksana BPDB Prov, Aceh, Kab Aceh Singkil',
-                  style: TextStyle(color: abuAbu),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0, top: 8.0),
-                child: Text(
-                  'Atung Nugroho',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 24,
-                      fontWeight: FontWeight.normal),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0, top: 8.0),
-                child: Text(
-                  'Alamat Kantor',
-                  style: TextStyle(color: abuAbu),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0, top: 8.0),
-                child: Text(
-                  'Jl. Putri Tunggal No 98',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 24,
-                      fontWeight: FontWeight.normal),
+              Container(
+                color: Colors.grey[200],
+                width: SizeConfig.screenWidth,
+                height: 110,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 12.0, top: 8.0),
+                      child: Text('Ketua Pelaksana BPDB Prov, Aceh, Kab Aceh Singkil',
+                        style: TextStyle(color: abuAbu, fontSize: 12),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 12.0, top: 8.0),
+                      child: Text('Atung Nugroho',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 12.0, top: 8.0),
+                      child: Text('Alamat Kantor',
+                        style: TextStyle(color: abuAbu, fontSize: 12),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 12.0, top: 8.0),
+                      child: Text('Jl. Putri Tunggal No 98',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Padding(
@@ -194,7 +203,7 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
                   decoration: InputDecoration(
                     hintText: 'Write your status here',
                     filled: true,
-                    fillColor: Color(0xFFDBEDFF),
+                    fillColor: Colors.grey[100],
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10.0)),
                       borderSide: BorderSide(color: Colors.grey),
@@ -206,7 +215,7 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 100,)
+              SizedBox(height: 80,)
             ],
           ),
         ),
