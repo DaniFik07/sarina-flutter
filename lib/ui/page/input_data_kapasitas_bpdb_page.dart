@@ -201,7 +201,7 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
                   maxLines: 15,
                   autocorrect: false,
                   decoration: InputDecoration(
-                    hintText: 'Write your status here',
+                    hintText: 'Deskripsikan di sini..',
                     filled: true,
                     fillColor: Colors.grey[100],
                     enabledBorder: OutlineInputBorder(

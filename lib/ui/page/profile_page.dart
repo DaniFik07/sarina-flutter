@@ -76,6 +76,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
+                          Padding(padding: const EdgeInsets.only(top: 10)),
                           Text(
                             "MY PROFILE",
                             style: TextStyle(

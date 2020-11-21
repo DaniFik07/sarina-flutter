@@ -176,7 +176,7 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
                   maxLines: 15,
                   autocorrect: false,
                   decoration: InputDecoration(
-                    hintText: 'Deskripsikan disini..',
+                    hintText: 'Deskripsikan di sini..',
                     filled: true,
                     fillColor: Colors.grey[100],
                     enabledBorder: OutlineInputBorder(
@@ -205,7 +205,7 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
                   maxLines: 15,
                   autocorrect: false,
                   decoration: InputDecoration(
-                    hintText: 'Deskripsikan disini..',
+                    hintText: 'Deskripsikan di sini..',
                     filled: true,
                     fillColor: Colors.grey[100],
                     enabledBorder: OutlineInputBorder(

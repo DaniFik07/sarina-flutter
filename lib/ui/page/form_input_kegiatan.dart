@@ -69,28 +69,39 @@ class _FormInputKegiatanState extends State<FormInputKegiatan> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: whiteColor,
-                                fontSize: 30,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 12.0, top: 8.0),
-                    child: Text(
-                      'Jenis Kegiatan',
-                      style: TextStyle(color: abuAbu),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 12.0, top: 8.0),
-                    child: Text(
-                      '${widget.title}',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 24,
-                          fontWeight: FontWeight.normal),
+                  Container(
+                    color: Colors.grey[200],
+                    width: SizeConfig.screenWidth,
+                    height: 60,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 12.0, top: 8.0),
+                          child: Text(
+                            'Jenis Kegiatan',
+                            style: TextStyle(color: abuAbu),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 12.0, top: 8.0),
+                          child: Text(
+                            '${widget.title}',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   Container(
@@ -105,7 +116,7 @@ class _FormInputKegiatanState extends State<FormInputKegiatan> {
                       decoration: InputDecoration(
                           icon: Icon(
                             Icons.book,
-                            color: blueColors,
+                            color: Colors.black,
                           ),
                           hintText: "Nama Kegiatan",
                           hintStyle: TextStyle(fontSize: 16, color: abuAbu)
@@ -128,7 +139,7 @@ class _FormInputKegiatanState extends State<FormInputKegiatan> {
                       child: DropdownButton(
                         elevation: 5,
                         hint: Text('------'),
-                        dropdownColor: Colors.grey,
+                        dropdownColor: Colors.grey[200],
                         isExpanded: true,
                         items: [
                           DropdownMenuItem<String>(
@@ -170,16 +181,22 @@ class _FormInputKegiatanState extends State<FormInputKegiatan> {
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
                           icon: Icon(
-                            Icons.dashboard,
-                            color: blueColors,
+                            Icons.timelapse,
+                            color: Colors.black,
                           ),
-                          hintText: "Program Kegiatan",
+                          hintText: "Progress Kegiatan",
                           hintStyle: TextStyle( fontSize: 16, color: abuAbu)
                       ),
                     ),
                   ),
                   SizedBox(height: 10,),
-
+                  Padding(
+                    padding: const EdgeInsets.only(left: 12.0, top: 8.0),
+                    child: Text(
+                      'Deskripsi Kegiatan',
+                      style: TextStyle(color: abuAbu),
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: TextField(
@@ -187,9 +204,9 @@ class _FormInputKegiatanState extends State<FormInputKegiatan> {
                       maxLines: 15,
                       autocorrect: false,
                       decoration: InputDecoration(
-                        hintText: 'Write your status here',
+                        hintText: 'Deskripsikan di sini..',
                         filled: true,
-                        fillColor: Color(0xFFDBEDFF),
+                        fillColor: Colors.grey[100],
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10.0)),
                           borderSide: BorderSide(color: Colors.grey),
