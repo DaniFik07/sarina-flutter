@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:sarina/models/dropdown_model.dart';
 import 'package:sarina/ui/widget/text_field_container.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
@@ -21,6 +22,15 @@ class FormInputKegiatan extends StatefulWidget {
 
 class _FormInputKegiatanState extends State<FormInputKegiatan> {
   String jenisAnggaran = "-- Pilih --";
+  List<Example> listExample = [];
+  int clan;
+
+
+  @override
+  void initState() {
+    addDataDropdown();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +101,30 @@ class _FormInputKegiatanState extends State<FormInputKegiatan> {
                             style: TextStyle(color: abuAbu),
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.all(0.0),
+                          child: Container(
+                            child: Padding(
+                                padding: const EdgeInsets.fromLTRB(15, 8, 15, 8),
+                                child: DropdownButton(
+                                  isExpanded: true,
+                                  hint: Text("Marga"),
+                                  value: clan,
+                                  items: listExample.map((item) {
+                                    return DropdownMenuItem(
+                                      child: Text(item.name),
+                                      value: item.id,
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      clan = value;
+                                    });
+                                  },
+                                )),
+                          ),
+                        ),
+
                         Padding(
                           padding: const EdgeInsets.only(left: 12.0, top: 8.0),
                           child: Text(
@@ -170,6 +204,7 @@ class _FormInputKegiatanState extends State<FormInputKegiatan> {
                       ),
                     ),
                   ),
+
                   Container(
                     margin: EdgeInsets.symmetric(vertical: 10),
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -239,5 +274,19 @@ class _FormInputKegiatanState extends State<FormInputKegiatan> {
         ),
       ),
     );
+  }
+
+  void addDataDropdown() {
+    setState(() {
+      listExample.add(new Example(
+        id: 1,
+        name: "tes 1"
+      ));
+
+      listExample.add(new Example(
+        id: 2,
+        name: "tes 2"
+      ));
+    });
   }
 }
