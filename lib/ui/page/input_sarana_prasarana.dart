@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sarina/models/dropdown_model.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
 
@@ -13,125 +14,58 @@ class InputSaranaPrasaranaPage extends StatefulWidget {
 
 }
 
-class Test{
-  final int id;
-  final String name;
-
-  Test(this.id, this.name);
-
-  static List<Test> getTest(){
-    return <Test>[
-      Test(1, 'tes'),
-      Test(2, 'tes1'),
-      Test(3, 'tes2'),
-      Test(4, 'tes3'),
-    ];
-  }
-}
-
-Test _selectedTest;
-
-// class KondisiBangunan{
+// class Test{
 //   final int id;
 //   final String name;
 //
-//   KondisiBangunan(this.id, this.name);
+//   Test(this.id, this.name);
 //
-//   static List<KondisiBangunan> getKondisiBangunan(){
-//     return <KondisiBangunan>[
-//       KondisiBangunan(1, 'Honda'),
-//       KondisiBangunan(2, 'Kawasaki'),
-//       KondisiBangunan(3, 'Yamaha'),
-//       KondisiBangunan(4, 'Suzuki'),
+//   static List<Test> getTest(){
+//     return <Test>[
+//       Test(1, 'tes'),
+//       Test(2, 'tes1'),
+//       Test(3, 'tes2'),
+//       Test(4, 'tes3'),
 //     ];
 //   }
 // }
-//
-// KondisiBangunan _selectedKondisiBangunan;
-//
-// class Sumber1{
-//   final int id;
-//   final String name;
-//
-//   Sumber1(this.id, this.name);
-//
-//   static List<Sumber1> getSumber1(){
-//     return<Sumber1>[
-//       Sumber1(1, 'sumber'),
-//       Sumber1(2, 'sumber')
-//     ];
-//   }
-// }
-//
-// Sumber1 _selectedSumber1;
-//
-// class TahunPerolehan{
-//   final int id;
-//   final String name;
-//
-//   TahunPerolehan(this.id, this.name);
-//
-//   static List<TahunPerolehan> getTahunPerolehan(){
-//     return<TahunPerolehan>[
-//       TahunPerolehan(1, '2020'),
-//       TahunPerolehan(2, '2019')
-//     ];
-//   }
-// }
-//
-// TahunPerolehan _selectedTahunPerolehan;
-//
-// class Kendaraan{
-//   final int id;
-//   final String name;
-//
-//   Kendaraan(this.id, this.name);
-//
-//   static List<Kendaraan> getKendaraan(){
-//     return <Kendaraan>[
-//       Kendaraan(1, 'Honda'),
-//       Kendaraan(2, 'Kawasaki'),
-//       Kendaraan(3, 'Yamaha'),
-//       Kendaraan(4, 'Suzuki'),
-//     ];
-//   }
-// }
-//
-// Kendaraan _selectedKendaraan;
-//
-// class KondisiKendaraan{
-//   final int id;
-//   final String name;
-//
-//   KondisiKendaraan(this.id, this.name);
-//
-//   static List<KondisiKendaraan> getKondisiKendaraan(){
-//     return <KondisiKendaraan>[
-//       KondisiKendaraan(1, 'Rusak'),
-//       KondisiKendaraan(2, 'Tidak Rusak')
-//     ];
-//   }
-// }
-//
-// KondisiKendaraan _selectedKondisiKendaraan;
-//
-// class Sumber{
-//   final int id;
-//   final String name;
-//
-//   Sumber(this.id, this.name);
-//
-//   static List<Sumber> getSumber(){
-//     return<Sumber>[
-//       Sumber(1, 'sumber'),
-//       Sumber(2, 'sumber')
-//     ];
-//   }
-// }
-//
-// Sumber _selectedSumber;
 
 class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
+  List<NamaBangunan> listNamaBangunan = [];
+  int namaBangunan;
+
+  List<KondisiBangunan> listKondisiBangunan = [];
+  int kondisiBangunan;
+
+  List<SumberBangunan> listSumberBangunan = [];
+  int sumberBangunan;
+
+  List<TahunPerolehan> listTahunPerolehan = [];
+  int tahunPerolehan;
+
+  List<NamaKendaraan> listNamaKendaraan = [];
+  int namaKendaraan;
+
+  List<KondisiKendaraan> listKondisiKendaraan = [];
+  int kondisiKendaraan;
+
+  List<SumberKendaraan> listSumberKendaraan = [];
+  int sumberKendaraan;
+
+  List<JenisAlat> listJenisAlat = [];
+  int jenisAlat;
+
+  List<KondisiAlat> listKondisiAlat = [];
+  int kondisiAlat;
+
+  List<SumberAlat> listSumberAlat = [];
+  int sumberAlat;
+
+  @override
+  void initState(){
+    addDropdown();
+    super.initState();
+  }
 
   int _currentStep = 0;
   bool complete = false;
@@ -194,30 +128,29 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text('Test',
+              Text('Nama Bangunan',
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     fontSize: 14,
                     color: Colors.black),),
-              TextField(), //caranya minggirin gimana? kalau ngga da ini pada ditengah tulisannya
               DropdownButton(
                 elevation: 5,
                 underline: SizedBox(),
-                hint: Text('--Pilih--'),
+                hint: Text("Pilih"),
                 dropdownColor: Colors.grey[200],
                 isExpanded: true,
-                items: Test.getTest().map((Test test){
-                  return DropdownMenuItem<Test>(
-                    value: test,
-                    child: Text(test.name),
+                items: listNamaBangunan.map((item){
+                  return DropdownMenuItem(
+                    child:Text(item.name),
+                    value: item.id
                   );
                 }).toList(),
-                onChanged: (Test val){
+                onChanged: (value){
                   setState(() {
-                    _selectedTest = val;
+                    namaBangunan = value;
                   });
                 },
-                // val: _selectedTest
+                value: namaBangunan,
               ),
               SizedBox(height: 10,),
               Text('Kondisi Bangunan',
@@ -225,25 +158,24 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
                 style: TextStyle(
                     fontSize: 14,
                     color: Colors.black),),
-              TextField(), //caranya minggirin gimana? kalau ngga da ini pada ditengah tulisannya
               DropdownButton(
                 elevation: 5,
                 underline: SizedBox(),
-                hint: Text('--Pilih--'),
+                hint: Text("Pilih"),
                 dropdownColor: Colors.grey[200],
                 isExpanded: true,
-                items: Test.getTest().map((Test test){
-                  return DropdownMenuItem<Test>(
-                    value: test,
-                    child: Text(test.name),
+                items: listKondisiBangunan.map((item){
+                  return DropdownMenuItem(
+                      child:Text(item.name),
+                      value: item.id
                   );
                 }).toList(),
-                onChanged: (Test val){
+                onChanged: (value){
                   setState(() {
-                    _selectedTest = val;
+                    kondisiBangunan = value;
                   });
                 },
-                // val: _selectedTest
+                value: kondisiBangunan,
               ),
               SizedBox(height: 10,),
               Text('Sumber',
@@ -251,25 +183,24 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
                 style: TextStyle(
                     fontSize: 14,
                     color: Colors.black),),
-              TextField(), //caranya minggirin gimana? kalau ngga da ini pada ditengah tulisannya
               DropdownButton(
                 elevation: 5,
                 underline: SizedBox(),
-                hint: Text('--Pilih--'),
+                hint: Text("Pilih"),
                 dropdownColor: Colors.grey[200],
                 isExpanded: true,
-                items: Test.getTest().map((Test test){
-                  return DropdownMenuItem<Test>(
-                    value: test,
-                    child: Text(test.name),
+                items: listSumberBangunan.map((item){
+                  return DropdownMenuItem(
+                      child:Text(item.name),
+                      value: item.id
                   );
                 }).toList(),
-                onChanged: (Test val){
+                onChanged: (value){
                   setState(() {
-                    _selectedTest = val;
+                    sumberBangunan = value;
                   });
                 },
-                // val: _selectedTest
+                value: sumberBangunan,
               ),
               SizedBox(height: 10,),
               Text('Tahun Perolehan',
@@ -277,25 +208,24 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
                 style: TextStyle(
                     fontSize: 14,
                     color: Colors.black),),
-              TextField(), //caranya minggirin gimana? kalau ngga da ini pada ditengah tulisannya
               DropdownButton(
                 elevation: 5,
                 underline: SizedBox(),
-                hint: Text('--Pilih--'),
+                hint: Text("Pilih"),
                 dropdownColor: Colors.grey[200],
                 isExpanded: true,
-                items: Test.getTest().map((Test test){
-                  return DropdownMenuItem<Test>(
-                    value: test,
-                    child: Text(test.name),
+                items: listTahunPerolehan.map((item){
+                  return DropdownMenuItem(
+                      child:Text(item.name),
+                      value: item.id
                   );
                 }).toList(),
-                onChanged: (Test val){
+                onChanged: (value){
                   setState(() {
-                    _selectedTest = val;
+                    tahunPerolehan = value;
                   });
                 },
-                // val: _selectedTest
+                value: tahunPerolehan,
               ),
               SizedBox(height: 10,),
               Text('Keterangan',
@@ -340,25 +270,24 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
               style: TextStyle(
                   fontSize: 14,
                   color: Colors.black),),
-            TextField(), //caranya minggirin gimana? kalau ngga da ini pada ditengah tulisannya
             DropdownButton(
               elevation: 5,
               underline: SizedBox(),
-              hint: Text('--Pilih--'),
+              hint: Text("Pilih"),
               dropdownColor: Colors.grey[200],
               isExpanded: true,
-              items: Test.getTest().map((Test test){
-                return DropdownMenuItem<Test>(
-                  value: test,
-                  child: Text(test.name),
+              items: listNamaKendaraan.map((item){
+                return DropdownMenuItem(
+                    child:Text(item.name),
+                    value: item.id
                 );
               }).toList(),
-              onChanged: (Test val){
+              onChanged: (value){
                 setState(() {
-                  _selectedTest = val;
+                  namaKendaraan = value;
                 });
               },
-              // val: _selectedTest
+              value: namaKendaraan,
             ),
             SizedBox(height: 10,),
             Text('Kondisi Kendaraan',
@@ -366,25 +295,24 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
               style: TextStyle(
                   fontSize: 14,
                   color: Colors.black),),
-            TextField(), //caranya minggirin gimana? kalau ngga da ini pada ditengah tulisannya
             DropdownButton(
               elevation: 5,
               underline: SizedBox(),
-              hint: Text('--Pilih--'),
+              hint: Text("Pilih"),
               dropdownColor: Colors.grey[200],
               isExpanded: true,
-              items: Test.getTest().map((Test test){
-                return DropdownMenuItem<Test>(
-                  value: test,
-                  child: Text(test.name),
+              items: listKondisiKendaraan.map((item){
+                return DropdownMenuItem(
+                    child:Text(item.name),
+                    value: item.id
                 );
               }).toList(),
-              onChanged: (Test val){
+              onChanged: (value){
                 setState(() {
-                  _selectedTest = val;
+                  kondisiKendaraan = value;
                 });
               },
-              // val: _selectedTest
+              value: kondisiKendaraan,
             ),
             SizedBox(height: 10,),
             Text('Sumber',
@@ -392,25 +320,24 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
               style: TextStyle(
                   fontSize: 14,
                   color: Colors.black),),
-            TextField(), //caranya minggirin gimana? kalau ngga da ini pada ditengah tulisannya
             DropdownButton(
               elevation: 5,
               underline: SizedBox(),
-              hint: Text('--Pilih--'),
+              hint: Text("Pilih"),
               dropdownColor: Colors.grey[200],
               isExpanded: true,
-              items: Test.getTest().map((Test test){
-                return DropdownMenuItem<Test>(
-                  value: test,
-                  child: Text(test.name),
+              items: listSumberKendaraan.map((item){
+                return DropdownMenuItem(
+                    child:Text(item.name),
+                    value: item.id
                 );
               }).toList(),
-              onChanged: (Test val){
+              onChanged: (value){
                 setState(() {
-                  _selectedTest = val;
+                  sumberKendaraan = value;
                 });
               },
-              // val: _selectedTest
+              value: sumberKendaraan,
             ),
             SizedBox(height: 10,),
             Text('Jumlah',
@@ -468,25 +395,24 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
               style: TextStyle(
                   fontSize: 14,
                   color: Colors.black),),
-            TextField(), //caranya minggirin gimana? kalau ngga da ini pada ditengah tulisannya
             DropdownButton(
               elevation: 5,
               underline: SizedBox(),
-              hint: Text('--Pilih--'),
+              hint: Text("Pilih"),
               dropdownColor: Colors.grey[200],
               isExpanded: true,
-              items: Test.getTest().map((Test test){
-                return DropdownMenuItem<Test>(
-                  value: test,
-                  child: Text(test.name),
+              items: listJenisAlat.map((item){
+                return DropdownMenuItem(
+                    child:Text(item.name),
+                    value: item.id
                 );
               }).toList(),
-              onChanged: (Test val){
+              onChanged: (value){
                 setState(() {
-                  _selectedTest = val;
+                  jenisAlat = value;
                 });
               },
-              // val: _selectedTest
+              value: jenisAlat,
             ),
             SizedBox(height: 10,),
             Text('Kondisi Alat',
@@ -494,25 +420,24 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
               style: TextStyle(
                   fontSize: 14,
                   color: Colors.black),),
-            TextField(), //caranya minggirin gimana? kalau ngga da ini pada ditengah tulisannya
             DropdownButton(
               elevation: 5,
               underline: SizedBox(),
-              hint: Text('--Pilih--'),
+              hint: Text("Pilih"),
               dropdownColor: Colors.grey[200],
               isExpanded: true,
-              items: Test.getTest().map((Test test){
-                return DropdownMenuItem<Test>(
-                  value: test,
-                  child: Text(test.name),
+              items: listKondisiAlat.map((item){
+                return DropdownMenuItem(
+                    child:Text(item.name),
+                    value: item.id
                 );
               }).toList(),
-              onChanged: (Test val){
+              onChanged: (value){
                 setState(() {
-                  _selectedTest = val;
+                  kondisiAlat = value;
                 });
               },
-              // val: _selectedTest
+              value: kondisiAlat,
             ),
             SizedBox(height: 10,),
             Text('Sumber',
@@ -520,25 +445,24 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
               style: TextStyle(
                   fontSize: 14,
                   color: Colors.black),),
-            TextField(), //caranya minggirin gimana? kalau ngga da ini pada ditengah tulisannya
             DropdownButton(
               elevation: 5,
               underline: SizedBox(),
-              hint: Text('--Pilih--'),
+              hint: Text("Pilih"),
               dropdownColor: Colors.grey[200],
               isExpanded: true,
-              items: Test.getTest().map((Test test){
-                return DropdownMenuItem<Test>(
-                  value: test,
-                  child: Text(test.name),
+              items: listSumberAlat.map((item){
+                return DropdownMenuItem(
+                    child:Text(item.name),
+                    value: item.id
                 );
               }).toList(),
-              onChanged: (Test val){
+              onChanged: (value){
                 setState(() {
-                  _selectedTest = val;
+                  sumberAlat = value;
                 });
               },
-              // val: _selectedTest
+              value: sumberAlat,
             ),
             SizedBox(height: 10,),
             Text('Jumlah',
@@ -585,5 +509,100 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
       ),
     ];
     return _steps;
+  }
+
+  void addDropdown() {
+    setState(() {
+      listNamaBangunan.add(new NamaBangunan(
+        id:1, name:"tes 1",
+      ));
+      listNamaBangunan.add(new NamaBangunan(
+        id:2, name:"tes 2",
+      ));
+      listNamaBangunan.add(new NamaBangunan(
+        id:3, name:"tes 3",
+      ));
+      listKondisiBangunan.add(new KondisiBangunan(
+        id:1, name:"tes 1",
+      ));
+      listKondisiBangunan.add(new KondisiBangunan(
+        id:2, name:"tes 2",
+      ));
+      listKondisiBangunan.add(new KondisiBangunan(
+        id:3, name:"tes 3",
+      ));
+      listSumberBangunan.add(new SumberBangunan(
+        id:1, name:"tes 1",
+      ));
+      listSumberBangunan.add(new SumberBangunan(
+        id:2, name:"tes 2",
+      ));
+      listSumberBangunan.add(new SumberBangunan(
+        id:3, name:"tes 3",
+      ));
+      listTahunPerolehan.add(new TahunPerolehan(
+        id:1, name:"tes 1",
+      ));
+      listTahunPerolehan.add(new TahunPerolehan(
+        id:2, name:"tes 2",
+      ));
+      listTahunPerolehan.add(new TahunPerolehan(
+        id:3, name:"tes 3",
+      ));
+      listNamaKendaraan.add(new NamaKendaraan(
+        id:1, name:"tes 1",
+      ));
+      listNamaKendaraan.add(new NamaKendaraan(
+        id:2, name:"tes 2",
+      ));
+      listNamaKendaraan.add(new NamaKendaraan(
+        id:3, name:"tes 3",
+      ));
+      listKondisiKendaraan.add(new KondisiKendaraan(
+        id:1, name:"tes 1",
+      ));
+      listKondisiKendaraan.add(new KondisiKendaraan(
+        id:2, name:"tes 2",
+      ));
+      listKondisiKendaraan.add(new KondisiKendaraan(
+        id:3, name:"tes 3",
+      ));
+      listSumberKendaraan.add(new SumberKendaraan(
+        id:1, name:"tes 1",
+      ));
+      listSumberKendaraan.add(new SumberKendaraan(
+        id:2, name:"tes 2",
+      ));
+      listSumberKendaraan.add(new SumberKendaraan(
+        id:3, name:"tes 3",
+      ));
+      listJenisAlat.add(new JenisAlat(
+        id:1, name:"tes 1",
+      ));
+      listJenisAlat.add(new JenisAlat(
+        id:2, name:"tes 2",
+      ));
+      listJenisAlat.add(new JenisAlat(
+        id:3, name:"tes 3",
+      ));
+      listKondisiAlat.add(new KondisiAlat(
+        id:1, name:"tes 1",
+      ));
+      listKondisiAlat.add(new KondisiAlat(
+        id:2, name:"tes 2",
+      ));
+      listKondisiAlat.add(new KondisiAlat(
+        id:3, name:"tes 3",
+      ));
+      listSumberAlat.add(new SumberAlat(
+        id:1, name:"tes 1",
+      ));
+      listSumberAlat.add(new SumberAlat(
+        id:2, name:"tes 2",
+      ));
+      listSumberAlat.add(new SumberAlat(
+        id:3, name:"tes 3",
+      ));
+    });
   }
 }
