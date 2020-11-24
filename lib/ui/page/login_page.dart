@@ -43,9 +43,10 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: size.height * 0.03),
                 Text('SARANA PRASARANA DAN INFORMASI \n BENCANA',textAlign: TextAlign.center,style: TextStyle(
                     fontSize: 16,color: Colors.white,fontWeight: FontWeight.bold),),
+                SizedBox(height: size.height * 0.01),
                 Text('SARINA', textAlign: TextAlign.center,style: TextStyle(
                     fontSize: 32,color: Colors.white,fontWeight: FontWeight.bold),),
-                SizedBox(height: size.height * 0.03),
+                SizedBox(height: size.height * 0.01),
                 TextFieldContainer(
                   child: TextField(
                     cursorColor: Colors.black,
@@ -83,6 +84,10 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
+                Text('Forgot Password?',
+                  style: TextStyle(
+                    color: Colors.white, fontWeight: FontWeight.normal, fontStyle: FontStyle.italic
+                  ),),
                 RoundedButton(
                   text: "SIGN IN",
                   press: () {

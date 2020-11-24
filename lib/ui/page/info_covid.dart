@@ -120,7 +120,7 @@ class _InfoCovidPageState extends State<InfoCovidPage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Text(
-                    'Most affected Countries',
+                    'Most Affected Countries',
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                 ),

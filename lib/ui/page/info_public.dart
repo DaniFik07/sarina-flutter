@@ -39,10 +39,10 @@ class _InfoPublicPageState extends State<InfoPublicPage> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => DafrarUndanganPage(
                 )));},
                 child: Container(
-                  height: 130,
+                  height: 100,
                   child: Card(
                     color: Colors.blue,
-                    elevation: 10,
+                    elevation: 5,
                     child: Row(
                       children: <Widget>[
                         Padding(
@@ -51,12 +51,12 @@ class _InfoPublicPageState extends State<InfoPublicPage> {
                             onTap: () {
                             },
                             child: Container(
-                              width: 100.0,
-                              height: 100.0,
+                              width: 60.0,
+                              height: 60.0,
                               decoration: BoxDecoration(
                                   color: orangeColor,
                                   image: DecorationImage(
-                                      image: AssetImage('assets/icons/dossier.png'),
+                                      image: AssetImage('assets/icons/information-point.png'),
                                       fit: BoxFit.cover
                                   ),
                                   borderRadius:
@@ -91,10 +91,10 @@ class _InfoPublicPageState extends State<InfoPublicPage> {
                 // )));
                   },
                 child: Container(
-                  height: 130,
+                  height: 100,
                   child: Card(
                     color: Colors.blue,
-                    elevation: 10,
+                    elevation: 5,
                     child: Row(
                       children: <Widget>[
                         Padding(
@@ -103,13 +103,13 @@ class _InfoPublicPageState extends State<InfoPublicPage> {
                             onTap: () {
                             },
                             child: Container(
-                              width: 100.0,
-                              height: 100.0,
+                              width: 60.0,
+                              height: 60.0,
                               decoration: BoxDecoration(
                                   color: orangeColor,
                                   image: DecorationImage(
                                       image:
-                                      AssetImage('assets/icons/dossier.png'),
+                                      AssetImage('assets/icons/information-point.png'),
                                       fit: BoxFit.cover),
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(75.0)),

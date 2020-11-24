@@ -30,8 +30,8 @@ class _SplashState extends State<Splash>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
+      backgroundColor: biruTua,
       body: Container(
-        color: blueColors,
         child: Center(
           child: SingleChildScrollView(
             child: Column(
@@ -50,13 +50,14 @@ class _SplashState extends State<Splash>{
                       fontSize: 36,
                       color: Colors.white,
                       fontWeight: FontWeight.bold),),
+                SizedBox(height: 30),
                 Text('SARANA PRASARANA DAN INFORMASI \n BENCANA',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize:16,
                       color: Colors.white,
                       fontWeight: FontWeight.bold ),),
-                SizedBox(height: 12),
+                SizedBox(height: 15),
                 Image.asset('assets/img/logokm.png', height: 200, width: 155, alignment: Alignment.center,),
                 SizedBox(height: 30,),
                 Text('KEMENTRIAN DALAM NEGERI \n REPUBLIK INDONESIA',

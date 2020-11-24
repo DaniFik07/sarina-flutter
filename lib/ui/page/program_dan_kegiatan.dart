@@ -44,21 +44,21 @@ class _ProgramDanKegiatanState extends State<ProgramDanKegiatan> {
                     title:"Pusat"
                 )));},
                 child: Container(
-                  height: 130,
+                  height: 100,
                   child: Card(
                     color: Colors.blue,
-                    elevation: 10,
+                    elevation: 5,
                     child: Row(
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.all(10.0),
                           child: Container(
-                            width: 100.0,
-                            height: 100.0,
+                            width: 60.0,
+                            height: 60.0,
                             decoration: BoxDecoration(
-                                color: orangeColor,
+                                color: kuningColor,
                                 image: DecorationImage(
-                                    image: AssetImage('assets/icons/dossier.png'),
+                                    image: AssetImage('assets/icons/schedules.png'),
                                     fit: BoxFit.cover
                                 ),
                                 borderRadius:
@@ -66,7 +66,8 @@ class _ProgramDanKegiatanState extends State<ProgramDanKegiatan> {
                                 boxShadow: [
                                   BoxShadow(
                                       blurRadius: 7.0, color: Colors.black)
-                                ]),
+                                ]
+                            ),
                           ),
                         ),
                         GestureDetector(
@@ -94,10 +95,10 @@ class _ProgramDanKegiatanState extends State<ProgramDanKegiatan> {
                     title:"Daerah"
                 )));},
                 child: Container(
-                  height: 130,
+                  height: 100,
                   child: Card(
                     color: Colors.blue,
-                    elevation: 10,
+                    elevation: 5,
                     child: Row(
                       children: <Widget>[
                         Padding(
@@ -106,13 +107,13 @@ class _ProgramDanKegiatanState extends State<ProgramDanKegiatan> {
                             onTap: () {
                             },
                             child: Container(
-                              width: 100.0,
-                              height: 100.0,
+                              width: 60.0,
+                              height: 60.0,
                               decoration: BoxDecoration(
-                                  color: orangeColor,
+                                  color: kuningColor,
                                   image: DecorationImage(
                                       image:
-                                      AssetImage('assets/icons/dossier.png'),
+                                      AssetImage('assets/icons/schedules.png'),
                                       fit: BoxFit.cover),
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(75.0)),

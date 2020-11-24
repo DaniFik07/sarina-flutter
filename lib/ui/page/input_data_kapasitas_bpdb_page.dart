@@ -113,27 +113,37 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
                   ],
                 ),
               ),
+              SizedBox(height: 8,),
               Padding(
                 padding: const EdgeInsets.only(left:20.0,top: 10),
-                child: Row(
-                  children: [
-                    Image.asset("assets/img/type.png",width: 10,height: 10,),
-                    SizedBox(width: 10,),
-                  Text('Type')
-                  ],
+                child: TextField(
+                  cursorColor: Colors.black,
+                  decoration: InputDecoration(
+                      icon: Icon(
+                        Icons.insert_drive_file_outlined,
+                        color: Colors.black,
+                      ),
+                      hintText: "Tipe",
+                      hintStyle: TextStyle(fontSize: 14, color: abuAbu)
+                  ),
                 ),
               ),
               Divider(),
               Padding(
                 padding: const EdgeInsets.only(left:20.0,top: 10),
-                child: Row(
-                  children: [
-                    Image.asset("assets/img/type.png",width: 10,height: 10,),
-                    SizedBox(width: 10,),
-                    Text('Jumlah Penduduk')
-                  ],
+                child: TextField(
+                  cursorColor: Colors.black,
+                  decoration: InputDecoration(
+                      icon: Icon(
+                        Icons.insert_drive_file_outlined,
+                        color: Colors.black,
+                      ),
+                      hintText: "Jumlah Penduduk",
+                      hintStyle: TextStyle(fontSize: 14, color: abuAbu)
+                  ),
                 ),
               ),
+              Divider(),
               Padding(
                 padding: const EdgeInsets.only(left: 12.0, top: 20.0),
                 child: Text(
@@ -142,45 +152,58 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(left: 20,right: 20,top: 10),
+                margin: EdgeInsets.only(left: 20,right: 20,top: 8),
                 child: Column(
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(0.0),
                       child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          backgroundImage: AssetImage('assets/img/user.png'),
-                        ),
                         title:
-                            Text('PNS', style: TextStyle(color: Colors.grey)),
-                        onTap: () {},
+                          TextField(
+                            cursorColor: Colors.black,
+                            decoration: InputDecoration(
+                                icon: Icon(
+                                  Icons.person_outline,
+                                  color: Colors.black,
+                                ),
+                                hintText: "PNS",
+                                hintStyle: TextStyle(fontSize: 16, color: abuAbu)
+                            ),
+                          ),
                       ),
                     ),
                     Divider(),
                     Padding(
                       padding: const EdgeInsets.all(0.0),
                       child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          backgroundImage: AssetImage('assets/img/user.png'),
+                        title: TextField(
+                          cursorColor: Colors.black,
+                          decoration: InputDecoration(
+                              icon: Icon(
+                                Icons.person_outline,
+                                color: Colors.black,
+                              ),
+                              hintText: "Non PNS",
+                              hintStyle: TextStyle(fontSize: 16, color: abuAbu)
+                          ),
                         ),
-                        title: Text('Non PNS',
-                            style: TextStyle(color: Colors.grey)),
-                        onTap: () {},
                       ),
                     ),
                     Divider(),
                     Padding(
                       padding: const EdgeInsets.all(0.0),
                       child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          backgroundImage: AssetImage('assets/img/user.png'),
+                        title: TextField(
+                          cursorColor: Colors.black,
+                          decoration: InputDecoration(
+                              icon: Icon(
+                                Icons.person_outline,
+                                color: Colors.black,
+                              ),
+                              hintText: "Sukarelawan",
+                              hintStyle: TextStyle(fontSize: 16, color: abuAbu)
+                          ),
                         ),
-                        title: Text('Sukarelawan',
-                            style: TextStyle(color: Colors.grey)),
-                        onTap: () {},
                       ),
                     ),
                     Divider(),

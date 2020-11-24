@@ -18,7 +18,7 @@ Widget menuCircle(Function onpress ,IconData icon, double screenWidth, double sc
         child: Icon(icon, size: 20,),
         decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: yellowColor),
+            color: kuningColor),
       ),
       Text(text)
     ],

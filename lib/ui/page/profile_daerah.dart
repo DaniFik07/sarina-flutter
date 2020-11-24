@@ -36,25 +36,25 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                 height: 10,
               ),
               Container(
-                height: 130,
+                height: 100,
                 child: InkWell(
                   onTap: (){    Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataKapasitasBPDBPage(
                       title:"Data Kapasitas BPBD"
                   )));},
                   child: Card(
                     color: Colors.blue,
-                    elevation: 10,
+                    elevation: 5,
                     child: Row(
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.all(10.0),
                           child: Container(
-                            width: 100.0,
-                            height: 100.0,
+                            width: 60.0,
+                            height: 60.0,
                             decoration: BoxDecoration(
-                                color: orangeColor,
+                                color: kuningColor,
                                 image: DecorationImage(
-                                    image: AssetImage('assets/icons/dossier.png'),
+                                    image: AssetImage('assets/icons/copy.png'),
                                     fit: BoxFit.cover
                                 ),
                                 borderRadius:
@@ -82,26 +82,26 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                 height: 10,
               ),
               Container(
-                height: 130,
+                height: 100,
                 child: InkWell(
                   onTap: (){   Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataSaranaPrasaranaPage(
                       title:"Data Sarana Prasarana"
                   )));},
                   child: Card(
                     color: Colors.blue,
-                    elevation: 10,
+                    elevation: 5,
                     child: Row(
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.all(10.0),
                           child: Container(
-                            width: 100.0,
-                            height: 100.0,
+                            width: 60.0,
+                            height: 60.0,
                             decoration: BoxDecoration(
-                                color: orangeColor,
+                                color: kuningColor,
                                 image: DecorationImage(
                                     image:
-                                        AssetImage('assets/icons/dossier.png'),
+                                        AssetImage('assets/icons/copy.png'),
                                     fit: BoxFit.cover),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(75.0)),
@@ -128,26 +128,26 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                 height: 10,
               ),
               Container(
-                height: 130,
+                height: 100,
                 child: InkWell(
                   onTap: (){Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataInformasiBencanaPage(
                       title:"Data Informasi Bencana"
                   )));},
                   child: Card(
                     color: Colors.blue,
-                    elevation: 10,
+                    elevation: 5,
                     child: Row(
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.all(10.0),
                           child: Container(
-                            width: 100.0,
-                            height: 100.0,
+                            width: 60.0,
+                            height: 60.0,
                             decoration: BoxDecoration(
-                                color: orangeColor,
+                                color: kuningColor,
                                 image: DecorationImage(
                                     image:
-                                        AssetImage('assets/icons/dossier.png'),
+                                        AssetImage('assets/icons/copy.png'),
                                     fit: BoxFit.cover),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(75.0)),

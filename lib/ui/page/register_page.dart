@@ -35,10 +35,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 Image.asset('assets/img/logokm.png',
                   height: size.height * 0.17,
                 ),
-                SizedBox(height: size.height * 0.03),
+                SizedBox(height: size.height * 0.02),
                 Text('SARANA PRASARANA DAN \n INFORMASI BENCANA',textAlign: TextAlign.center,style: TextStyle(
                     fontSize: 24,color: Colors.black,fontWeight: FontWeight.bold),),
-                SizedBox(height: size.height * 0.03),
+                SizedBox(height: size.height * 0.01),
                 TextFieldContainerWhite(
                   child: TextField(
                     cursorColor: Colors.black,

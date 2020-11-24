@@ -191,27 +191,27 @@ class _DashboardPageState extends State<DashboardPage> {
       itemDashboard.add(new DashboardItems(
           title: "Profile Daerah",
           subtitle: "dsadas",
-          img: "assets/icons/dossier.png"));
+          img: "assets/icons/copy.png"));
       itemDashboard.add(new DashboardItems(
           title: "Program & \n Kegiatan",
           subtitle: "dsadas",
-          img: "assets/icons/schedule.png"));
+          img: "assets/icons/schedules.png"));
       itemDashboard.add(new DashboardItems(
           title: "Info Publik",
           subtitle: "dsadas",
-          img: "assets/icons/story-board(1).png"));
+          img: "assets/icons/information-point.png"));
       itemDashboard.add(new DashboardItems(
           title: "Berita Terkait",
           subtitle: "dsadas",
-          img: "assets/icons/newspaper.png"));
+          img: "assets/icons/news.png"));
       itemDashboard.add(new DashboardItems(
           title: "Pengaduan",
           subtitle: "dsadas",
-          img: "assets/icons/satisfaction.png"));
+          img: "assets/icons/feedback.png"));
       itemDashboard.add(new DashboardItems(
           title: "Info Covid-19",
           subtitle: "dsadas",
-          img: "assets/icons/info.png"));
+          img: "assets/icons/coronavirus.png"));
     });
   }
 }

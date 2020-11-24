@@ -52,7 +52,7 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
                     Padding(
                       padding: const EdgeInsets.only(top: 4.0),
                       child: Text(
-                        'Form Input Data Bencana',
+                        'Form Input Informasi Bencana',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,
@@ -106,7 +106,7 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 20, top: 8),
+                padding: const EdgeInsets.only(left: 20, top: 8, right: 20),
                 child: TextField(
                   cursorColor: Colors.black,
                   decoration: InputDecoration(
@@ -120,7 +120,7 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 20, top: 8),
+                padding: const EdgeInsets.only(left: 20, top: 8, right: 20),
                 child: TextField(
                   cursorColor: Colors.black,
                   decoration: InputDecoration(
@@ -134,7 +134,7 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 20, top: 8),
+                padding: const EdgeInsets.only(left: 20, top: 8, right: 20),
                 child: TextField(
                   cursorColor: Colors.black,
                   decoration: InputDecoration(
@@ -148,7 +148,7 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 20, top: 8),
+                padding: const EdgeInsets.only(left: 20, top: 8, right: 20),
                 child: TextField(
                   cursorColor: Colors.black,
                   decoration: InputDecoration(
