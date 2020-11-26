@@ -59,7 +59,7 @@ class _InfoCovidPageState extends State<InfoCovidPage> {
 
         centerTitle: false,
         title: Text(
-          'COVID-19 TRACKER',
+          'COVID',
         ),
       ),
       body: RefreshIndicator(
