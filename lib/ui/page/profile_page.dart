@@ -43,7 +43,7 @@ class _ProfilePageState extends State<ProfilePage> {
           elevation: 3,
           onPressed: () {
           },
-          backgroundColor: redColors,
+          backgroundColor: Colors.red,
           label: Container(
             width: SizeConfig.screenWidth / 1.3,
             child: Text(
@@ -69,8 +69,10 @@ class _ProfilePageState extends State<ProfilePage> {
                           end: Alignment.bottomCenter,
                           colors: [whiteColor, whiteColor])),
                   child: Container(
+                    color: Colors.white,
                     width: double.infinity,
-                    height: SizeConfig.screenHight / 3,
+                    // width: SizeConfig.screenWidth,
+                    height: SizeConfig.screenHight / 3.2,
                     child: Center(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -80,38 +82,36 @@ class _ProfilePageState extends State<ProfilePage> {
                           Text(
                             "MY PROFILE",
                             style: TextStyle(
-                              fontSize: SizeConfig.blockVertical * 4,
+                              fontSize: 24,
                               color: Colors.black,
                             ),
                           ),
                           SizedBox(
-                            height: 20.0,
+                            height: 10.0,
                           ),
                           CircleAvatar(
-                            backgroundColor: whiteColor,
+                            backgroundColor: blueColors,
                             backgroundImage: AssetImage(
                               "assets/img/user.png",
                             ),
                             radius: 40.0,
                           ),
                           SizedBox(
-                            height: 20.0,
+                            height: 10.0,
                           ),
                           Text(
                             "Atung Nugroho",
                             style: TextStyle(
-                              fontSize: SizeConfig.blockVertical * 3,
-                              color: abuAbu,
+                              fontSize: 16,
+                              color: Colors.black,
                             ),
-                          ),
-                          SizedBox(
-                            height: 10.0,
                           ),
                         ],
                       ),
                     ),
                   )),
               Container(
+                color: Colors.grey[200],
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 30.0, horizontal: 16.0),

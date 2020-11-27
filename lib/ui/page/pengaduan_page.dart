@@ -53,7 +53,8 @@ class _PengaduanPageState extends State<PengaduanPage> {
         ),
       ),
       appBar: AppBar(
-        title: Text('Daftar Pengaduan', style: TextStyle(),),
+        title: Text('Daftar Pengaduan'),
+        centerTitle: true,
       ),
       body: Container(
         child: SingleChildScrollView(

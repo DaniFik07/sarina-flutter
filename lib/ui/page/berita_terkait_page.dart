@@ -33,6 +33,7 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
       appBar: AppBar(
         title: Text('Berita Terkait',
           style: TextStyle(),),
+        centerTitle: true,
       ),
       body: Container(
         child: SingleChildScrollView(

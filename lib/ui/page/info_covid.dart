@@ -57,7 +57,7 @@ class _InfoCovidPageState extends State<InfoCovidPage> {
         //   })
         // ],
 
-        centerTitle: false,
+        centerTitle: true,
         title: Text(
           'COVID',
         ),
