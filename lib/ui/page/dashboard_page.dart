@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sarina/models/model_home.dart';
 import 'package:sarina/ui/page/berita_terkait_page.dart';
 import 'package:sarina/ui/page/info_covid.dart';
@@ -24,12 +25,16 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   List<String> imgList = [];
+  String role = "";
+  final storage = new FlutterSecureStorage();
+
   int _current = 0;
   List<DashboardItems> itemDashboard = [];
 
   @override
   void initState() {
     initMenu();
+    chekRole();
     super.initState();
   }
 
@@ -46,6 +51,13 @@ class _DashboardPageState extends State<DashboardPage> {
               SizedBox(
                 height: SizeConfig.screenHight / 11,
               ),
+
+              Visibility(
+                visible: role == "1"?true:false,
+                  child: Text(
+                      role == "1"?"admn":"bkn admn"
+              )),
+
               Container(
                   child: Text(
                 'SARINA',
@@ -213,5 +225,10 @@ class _DashboardPageState extends State<DashboardPage> {
           subtitle: "dsadas",
           img: "assets/icons/coronavirus.png"));
     });
+  }
+
+  void chekRole() async{
+    role = await storage.read(key: ISADMIN);
+    setState(() {});
   }
 }

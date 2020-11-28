@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sarina/ui/page/home_page.dart';
 import 'package:sarina/ui/page/register_page.dart';
 import 'package:sarina/ui/widget/already_have_an_account_acheck.dart';
@@ -22,6 +23,10 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool obsecure = true;
+
+  final storage = new FlutterSecureStorage();
+  TextEditingController emailController = new TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: size.height * 0.01),
                 TextFieldContainer(
                   child: TextField(
+                    controller: emailController,
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
                       icon: Icon(
@@ -91,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                 RoundedButton(
                   text: "SIGN IN",
                   press: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+                    saveLocal();
                   },
                 ),
                 SizedBox(height: size.height * 0.03),
@@ -106,5 +112,12 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  void saveLocal() async{
+    if(emailController.text.toString().length > 3){
+      await storage.write(key: ISADMIN,value: emailController.text);
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+    }
   }
 }
