@@ -113,7 +113,7 @@ class _HomeScreen extends State<HomeScreen>{
                                   height: 7,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: Theme.of(context).primaryColor,
+                                    color: Colors.white,
                                   ),
                                 )
                                     : Container(

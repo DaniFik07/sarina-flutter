@@ -57,9 +57,9 @@ class _InfoCovidPageState extends State<InfoCovidPage> {
         //   })
         // ],
 
-        centerTitle: false,
+        centerTitle: true,
         title: Text(
-          'COVID-19 TRACKER',
+          'COVID',
         ),
       ),
       body: RefreshIndicator(
