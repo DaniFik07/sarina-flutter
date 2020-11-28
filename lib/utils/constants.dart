@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-const String ISADMIN = "1";
-const String ISUSER = "2";
-const String STATSU_USER = "STATSU_USER";
+const String IS_ADMIN = "1";
+const String IS_STAFF = "2";
+const String IS_USER = "3";
+const String STATUS_LOGIN = "STATUS_LOGIN";
 
 const kPrimaryColor = Color(0xFFDFC2EA);
 const orangeColor = Color(0xFFff8017);

@@ -27,7 +27,6 @@ class _LoginPageState extends State<LoginPage> {
   final storage = new FlutterSecureStorage();
   TextEditingController emailController = new TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -46,24 +45,36 @@ class _LoginPageState extends State<LoginPage> {
                   height: size.height * 0.2,
                 ),
                 SizedBox(height: size.height * 0.03),
-                Text('SARANA PRASARANA DAN INFORMASI \n BENCANA',textAlign: TextAlign.center,style: TextStyle(
-                    fontSize: 16,color: Colors.white,fontWeight: FontWeight.bold),),
+                Text(
+                  'SARANA PRASARANA DAN INFORMASI \n BENCANA',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
                 SizedBox(height: size.height * 0.01),
-                Text('SARINA', textAlign: TextAlign.center,style: TextStyle(
-                    fontSize: 32,color: Colors.white,fontWeight: FontWeight.bold),),
+                Text(
+                  'SARINA',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 32,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
                 SizedBox(height: size.height * 0.01),
                 TextFieldContainer(
                   child: TextField(
                     controller: emailController,
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.person_outline,
-                        color: Colors.white,
-                      ),
-                      hintText: "Email",
-                      hintStyle: TextStyle(fontSize: 16, color: Colors.white)
-                    ),
+                        icon: Icon(
+                          Icons.person_outline,
+                          color: Colors.white,
+                        ),
+                        hintText: "Email",
+                        hintStyle:
+                            TextStyle(fontSize: 16, color: Colors.white)),
                   ),
                 ),
                 TextFieldContainer(
@@ -72,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
                       hintText: "Password",
-                      hintStyle: TextStyle( fontSize: 16, color: Colors.white),
+                      hintStyle: TextStyle(fontSize: 16, color: Colors.white),
                       icon: Icon(
                         Icons.vpn_key,
                         color: Colors.white,
@@ -90,10 +101,13 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                Text('Forgot Password?',
+                Text(
+                  'Forgot Password?',
                   style: TextStyle(
-                    color: Colors.white, fontWeight: FontWeight.normal, fontStyle: FontStyle.italic
-                  ),),
+                      color: Colors.white,
+                      fontWeight: FontWeight.normal,
+                      fontStyle: FontStyle.italic),
+                ),
                 RoundedButton(
                   text: "SIGN IN",
                   press: () {
@@ -103,7 +117,8 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: size.height * 0.03),
                 AlreadyHaveAnAccountCheck(
                   press: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => RegisterPage()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => RegisterPage()));
                   },
                 ),
               ],
@@ -114,10 +129,21 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void saveLocal() async{
-    if(emailController.text.toString().length > 3){
-      await storage.write(key: ISADMIN,value: emailController.text);
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+  void saveLocal() async {
+    if (emailController.text.toString().length > 3) {
+      if (emailController.text == IS_ADMIN) {
+        //storage.write untk simpan ke local
+        await storage.write(key: STATUS_LOGIN, value: emailController.text);
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+      } else if (emailController.text == IS_STAFF) {
+        await storage.write(key: STATUS_LOGIN, value: emailController.text);
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+      } else {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+      }
     }
   }
 }
