@@ -25,7 +25,7 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   List<String> imgList = [];
-  String role = "";
+  String status_login = "";
   final storage = new FlutterSecureStorage();
 
   int _current = 0;
@@ -34,6 +34,7 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   void initState() {
     initMenu();
+    //cek role sebelm widget dibangun / pertama kali page ini di jalankan
     chekRole();
     super.initState();
   }
@@ -52,11 +53,17 @@ class _DashboardPageState extends State<DashboardPage> {
                 height: SizeConfig.screenHight / 11,
               ),
 
-              Visibility(
-                visible: role == "1"?true:false,
-                  child: Text(
-                      role == "1"?"admn":"bkn admn"
-              )),
+
+              //ternary operator
+              // : itu adalah else atau lainnya
+              // setelah (tanda tnya) atau ?  untk eksekusi jika masuk kedalam kondisi
+              Text(status_login == IS_ADMIN ?"ADMIN":status_login == IS_STAFF?"STAFF" :"USER"),
+
+              // Visibility(
+              //   visible: status_login == "1"?true:false,
+              //     child: Text(
+              //         status_login == "1"?"admn":"bkn admn"
+              // )),
 
               Container(
                   child: Text(
@@ -228,7 +235,8 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   void chekRole() async{
-    role = await storage.read(key: ISADMIN);
+    //baca vale dari kunci STATuS_LOGIN
+    status_login = await storage.read(key: STATUS_LOGIN);
     setState(() {});
   }
 }
