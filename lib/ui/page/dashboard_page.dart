@@ -14,6 +14,8 @@ import 'package:sarina/ui/widget/menu_circle.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
 
+import 'covid_page.dart';
+
 /**
  * Created by Bayu Nugroho
  * Copyright (c) 2020 . All rights reserved.
@@ -33,9 +35,9 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   void initState() {
+    chekRole();
     initMenu();
     //cek role sebelm widget dibangun / pertama kali page ini di jalankan
-    chekRole();
     super.initState();
   }
 
@@ -157,7 +159,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       builder: (context) => PengaduanPage()));
                       }else if(itemDashboard[index].title == "Info Covid-19"){
                       Navigator.of(context).push(MaterialPageRoute
-                      (builder: (context) => InfoCovidPage()));
+                      (builder: (context) => CovidPage()));
                       }
                       },
                             child: Card(
@@ -188,7 +190,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: SizeConfig.blockVertical* 1.5,
+                                  fontSize: SizeConfig.blockHorizontal* 2 ,
                                   color: Colors.white)),
                         ],
                       )));

@@ -4,6 +4,7 @@ const String IS_ADMIN = "1";
 const String IS_STAFF = "2";
 const String IS_USER = "3";
 const String STATUS_LOGIN = "STATUS_LOGIN";
+const String BASE_URL_COVID = "https://data.covid19.go.id/public/api/";
 
 const kPrimaryColor = Color(0xFFDFC2EA);
 const orangeColor = Color(0xFFff8017);

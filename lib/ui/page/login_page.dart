@@ -10,6 +10,7 @@ import 'package:sarina/ui/widget/rounded_button.dart';
 import 'package:sarina/ui/widget/text_field_container.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
+import 'package:sarina/utils/util_widget.dart';
 
 /**
  * Created by Bayu Nugroho
@@ -144,6 +145,8 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (BuildContext context) => HomePage()));
       }
+    }else{
+      showToast(context, "Data tidak boleh kurang dari 3 karakter");
     }
   }
 }
