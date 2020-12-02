@@ -11,12 +11,12 @@ import 'package:sarina/utils/size_config.dart';
  * Copyright (c) 2020 . All rights reserved.
  */
 
-class DafrarUndanganPage extends StatefulWidget {
+class DaftarUndanganPage extends StatefulWidget {
   @override
-  _DafrarUndanganPageState createState() => _DafrarUndanganPageState();
+  _DaftarUndanganPageState createState() => _DaftarUndanganPageState();
 }
 
-class _DafrarUndanganPageState extends State<DafrarUndanganPage> {
+class _DaftarUndanganPageState extends State<DaftarUndanganPage> {
   Color red800 = Colors.red[800];
   List<ModelItemUndangan> modelItemUndanganList = [];
 

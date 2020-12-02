@@ -41,7 +41,6 @@ class _HomePageState extends State<HomePage> {
           items: <Widget>[
             Icon(Icons.home_filled,color: blueColors, size: 30),
             Icon(Icons.person,color: blueColors, size: 30),
-            Icon(Icons.chat,color: blueColors, size: 25),
             Icon(Icons.settings,color: blueColors, size: 30),
           ],
           color: whiteColor,
@@ -68,9 +67,6 @@ class _HomePageState extends State<HomePage> {
         break;
       case 2:
         return Center(child: Text('lalalala'),);
-        break;
-      case 3:
-        return Center(child: Text('gfujdshfd'));
         break;
     }
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/dwika/Documents/GitHub/sarina/lib/ui/page/menu_program_dan_kegiatan/form_input_kegiatan.dart';
-import 'file:///C:/Users/dwika/Documents/GitHub/sarina/lib/ui/page/menu_info_publik/undangan_page.dart';
+import 'package:sarina/ui/page/menu_info_publik/undangan_page.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
 
@@ -36,7 +35,7 @@ class _InfoPublicPageState extends State<InfoPublicPage> {
               ),
               InkWell(
                 onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => DafrarUndanganPage(
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => DaftarUndanganPage(
                 )));},
                 child: Container(
                   height: 100,
