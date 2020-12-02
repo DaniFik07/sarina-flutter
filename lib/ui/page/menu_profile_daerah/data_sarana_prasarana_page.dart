@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:sarina/ui/page/provinsi_page.dart';
+import 'package:sarina/ui/page/menu_profile_daerah/provinsi_page.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
 
-class DataInformasiBencanaPage extends StatefulWidget{
+class DataSaranaPrasaranaPage extends StatefulWidget{
   String title ="";
-  DataInformasiBencanaPage({this.title});
+  DataSaranaPrasaranaPage({this.title});
 
   @override
-  _DataInformasiBencanaPageState createState() => _DataInformasiBencanaPageState();
-
-
+  _DataSaranaPrasaranaPageState createState() => _DataSaranaPrasaranaPageState();
 }
 
-class _DataInformasiBencanaPageState extends State<DataInformasiBencanaPage> {
+class  _DataSaranaPrasaranaPageState extends State<DataSaranaPrasaranaPage>{
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Data Kapasitas BPDB', style: TextStyle(),),
+        title: Text('Data Sarana Prasarana', style: TextStyle(),),
       ),
       body: Container(
         child: Column(
@@ -63,8 +61,8 @@ class _DataInformasiBencanaPageState extends State<DataInformasiBencanaPage> {
               title: Text(
                 'Aceh',
                 style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,),
+                    fontSize: 16,
+                    color: Colors.black,),
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -76,8 +74,8 @@ class _DataInformasiBencanaPageState extends State<DataInformasiBencanaPage> {
               title: Text(
                 'Depok',
                 style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,),
+                    fontSize: 16,
+                    color: Colors.black,),
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {Navigator.of(context).push(MaterialPageRoute(
@@ -87,8 +85,8 @@ class _DataInformasiBencanaPageState extends State<DataInformasiBencanaPage> {
               title: Text(
                 'Jakarta',
                 style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,),
+                    fontSize: 16,
+                    color: Colors.black,),
               ),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {Navigator.of(context).push(MaterialPageRoute(
@@ -99,5 +97,5 @@ class _DataInformasiBencanaPageState extends State<DataInformasiBencanaPage> {
       ),
     );
   }
-
 }
+
