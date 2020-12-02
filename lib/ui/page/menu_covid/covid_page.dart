@@ -3,6 +3,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:sarina/data/network/responses/response_covid_provinsi.dart';
 import 'package:sarina/data/network/servis_api_config.dart';
 import 'package:sarina/ui/page/menu_covid/detail_covid_provinsi.dart';
+import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
 import 'package:sarina/utils/util_widget.dart';
 
@@ -31,6 +32,7 @@ class _CovidPageState extends State<CovidPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Covid Page'),
+        centerTitle: true,
       ),
       body: Container(
         child: list_all_prov.length > 0
@@ -46,7 +48,11 @@ class _CovidPageState extends State<CovidPage> {
                       verticalOffset: 50.0,
                       child: FadeInAnimation(
                         child: ListTile(
-                          title: Text(list_all_prov[index].key),
+                          title: Text(list_all_prov[index].key,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black),),
                           onTap: () {
                             Navigator.push(
                                 context, MaterialPageRoute(builder: (context) => DetailCovidProvinsi(prov: list_all_prov[index].key,)));
@@ -56,11 +62,12 @@ class _CovidPageState extends State<CovidPage> {
                             Icons.arrow_forward_ios,
                           ),
                           leading: CircleAvatar(
-                            backgroundColor: Colors.blue,
+                            backgroundColor: blueColors,
                             child: Text(list_all_prov[index].key[0],
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 20.0,
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold
                                 )),
                           ),
                         ),

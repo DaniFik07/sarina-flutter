@@ -33,6 +33,7 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
     return Scaffold(
       appBar: AppBar(
         title: Text('${widget.prov}'),
+        centerTitle: true,
       ),
       body: Column(
         children: [
@@ -41,13 +42,22 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
             width: SizeConfig.screenWidth,
             height: SizeConfig.screenHight / 4,
             child: Card(
-              child: Column(
-                children: [
-                  Text('last date : ${last_date}'),
-                  Text('kasus total ${kasus_total}'),
-                  Text('meninggal $meninggal'),
-                  Text('sembuh $sembuh'),
-                ],
+              color: Colors.orange[200],
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('last date : ${last_date}', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
+                    SizedBox(height: 4,),
+                    Text('kasus total : ${kasus_total}', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
+                    SizedBox(height: 4,),
+                    Text('meninggal : ${meninggal}', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
+                    SizedBox(height: 4,),
+                    Text('sembuh : ${sembuh}', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
+                  ],
+                ),
               ),
             ),
           ),
@@ -66,34 +76,45 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                     verticalOffset: 50.0,
                     child: FadeInAnimation(
                       child: Card(
-                        margin: EdgeInsets.all(8.0),
+                        margin: EdgeInsets.all(10.0),
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(10),
                             child: Column(
                               children: [
                                 Row(
                                   children: [
-                                    Text('Tanggal : ${list_prov[index].tanggal}'),
+                                    Text('Tanggal : ${list_prov[index].tanggal}',
+                                      style: TextStyle(
+                                        fontSize: 14,),),
                                   ],
                                 ),
+                                SizedBox(height: 4,),
                                 Row(
                                   children: [
-                                    Text('Kasus : ${list_prov[index].kasus.toString()}'),
+                                    Text('Kasus : ${list_prov[index].kasus.toString()}',
+                                      style: TextStyle(
+                                          fontSize: 14,),),
                                   ],
                                 ),
+                                SizedBox(height: 4,),
                                 Row(
                                   children: [
-                                    Text('Kasus : ${list_prov[index].kasus.toString()}'),
+                                    Text('Kasus : ${list_prov[index].kasus.toString()}',
+                                      style: TextStyle(fontSize: 14,),),
                                   ],
                                 ),
+                                SizedBox(height: 4,),
                                 Row(
                                   children: [
-                                    Text('Meninggal : ${list_prov[index].meninggal.toString()}'),
+                                    Text('Meninggal : ${list_prov[index].meninggal.toString()}',
+                                      style: TextStyle(fontSize: 14,),),
                                   ],
                                 ),
+                                SizedBox(height: 4,),
                                 Row(
                                   children: [
-                                    Text('Sembuh : ${list_prov[index].sembuh.toString()}'),
+                                    Text('Sembuh : ${list_prov[index].sembuh.toString()}',
+                                      style: TextStyle(fontSize: 14, ),),
                                   ],
                                 ),
                               ],
