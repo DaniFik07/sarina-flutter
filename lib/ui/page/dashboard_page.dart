@@ -9,7 +9,7 @@ import 'package:sarina/ui/widget/menu_circle.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
 
-import 'covid_page.dart';
+import 'menu_covid/covid_page.dart';
 import 'menu_berita_terkait/berita_terkait_page.dart';
 import 'menu_info_publik/info_public.dart';
 import 'menu_pengaduan/pengaduan_page.dart';
