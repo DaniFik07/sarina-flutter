@@ -4,17 +4,17 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sarina/models/model_home.dart';
-import 'file:///C:/Users/dwika/Documents/GitHub/sarina/lib/ui/page/menu_berita_terkait/berita_terkait_page.dart';
 import 'package:sarina/ui/page/info_covid.dart';
-import 'file:///C:/Users/dwika/Documents/GitHub/sarina/lib/ui/page/menu_info_publik/info_public.dart';
-import 'file:///C:/Users/dwika/Documents/GitHub/sarina/lib/ui/page/menu_pengaduan/pengaduan_page.dart';
-import 'file:///C:/Users/dwika/Documents/GitHub/sarina/lib/ui/page/menu_profile_daerah/profile_daerah.dart';
-import 'file:///C:/Users/dwika/Documents/GitHub/sarina/lib/ui/page/menu_program_dan_kegiatan/program_dan_kegiatan.dart';
 import 'package:sarina/ui/widget/menu_circle.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
 
 import 'covid_page.dart';
+import 'menu_berita_terkait/berita_terkait_page.dart';
+import 'menu_info_publik/info_public.dart';
+import 'menu_pengaduan/pengaduan_page.dart';
+import 'menu_profile_daerah/profile_daerah.dart';
+import 'menu_program_dan_kegiatan/program_dan_kegiatan.dart';
 
 /**
  * Created by Bayu Nugroho

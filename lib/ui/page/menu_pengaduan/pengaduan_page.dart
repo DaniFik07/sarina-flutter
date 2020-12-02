@@ -3,9 +3,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:sarina/models/model_home.dart';
-import 'file:///C:/Users/dwika/Documents/GitHub/sarina/lib/ui/page/menu_pengaduan/input_pengaduan_page.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
+
+import 'input_pengaduan_page.dart';
 
 /**
  * Created by Bayu Nugroho

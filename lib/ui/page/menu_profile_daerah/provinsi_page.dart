@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/dwika/Documents/GitHub/sarina/lib/ui/page/menu_profile_daerah/input_data_kapasitas_bpdb_page.dart';
-import 'file:///C:/Users/dwika/Documents/GitHub/sarina/lib/ui/page/menu_profile_daerah/input_informasi_bencana.dart';
 import 'package:sarina/ui/widget/text_field_container.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
 
+import 'input_data_kapasitas_bpdb_page.dart';
+import 'input_informasi_bencana.dart';
 import 'input_sarana_prasarana.dart';
 
 /**

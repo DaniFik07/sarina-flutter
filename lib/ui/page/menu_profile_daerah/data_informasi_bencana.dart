@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/dwika/Documents/GitHub/sarina/lib/ui/page/menu_profile_daerah/provinsi_page.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
+
+import 'provinsi_page.dart';
 
 class DataInformasiBencanaPage extends StatefulWidget{
   String title ="";
