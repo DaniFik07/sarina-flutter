@@ -4,12 +4,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sarina/models/model_home.dart';
-import 'package:sarina/ui/page/berita_terkait_page.dart';
+import 'file:///C:/Users/dwika/Documents/GitHub/sarina/lib/ui/page/menu_berita_terkait/berita_terkait_page.dart';
 import 'package:sarina/ui/page/info_covid.dart';
-import 'package:sarina/ui/page/info_public.dart';
-import 'package:sarina/ui/page/pengaduan_page.dart';
-import 'package:sarina/ui/page/profile_daerah.dart';
-import 'package:sarina/ui/page/program_dan_kegiatan.dart';
+import 'file:///C:/Users/dwika/Documents/GitHub/sarina/lib/ui/page/menu_info_publik/info_public.dart';
+import 'file:///C:/Users/dwika/Documents/GitHub/sarina/lib/ui/page/menu_pengaduan/pengaduan_page.dart';
+import 'file:///C:/Users/dwika/Documents/GitHub/sarina/lib/ui/page/menu_profile_daerah/profile_daerah.dart';
+import 'file:///C:/Users/dwika/Documents/GitHub/sarina/lib/ui/page/menu_program_dan_kegiatan/program_dan_kegiatan.dart';
 import 'package:sarina/ui/widget/menu_circle.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
@@ -54,7 +54,6 @@ class _DashboardPageState extends State<DashboardPage> {
               SizedBox(
                 height: SizeConfig.screenHight / 11,
               ),
-
 
               //ternary operator
               // : itu adalah else atau lainnya
@@ -206,34 +205,91 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   void initMenu() async {
-    setState(() {
-      imgList.add("assets/img/flutter.png");
-      imgList.add("assets/img/flutter.png");
-      itemDashboard.add(new DashboardItems(
-          title: "Profile Daerah",
-          subtitle: "dsadas",
-          img: "assets/icons/copy.png"));
-      itemDashboard.add(new DashboardItems(
-          title: "Program & \n Kegiatan",
-          subtitle: "dsadas",
-          img: "assets/icons/schedules.png"));
-      itemDashboard.add(new DashboardItems(
-          title: "Info Publik",
-          subtitle: "dsadas",
-          img: "assets/icons/information-point.png"));
-      itemDashboard.add(new DashboardItems(
-          title: "Berita Terkait",
-          subtitle: "dsadas",
-          img: "assets/icons/news.png"));
-      itemDashboard.add(new DashboardItems(
-          title: "Pengaduan",
-          subtitle: "dsadas",
-          img: "assets/icons/feedback.png"));
-      itemDashboard.add(new DashboardItems(
-          title: "Info Covid-19",
-          subtitle: "dsadas",
-          img: "assets/icons/coronavirus.png"));
-    });
+
+    if (status_login == IS_ADMIN){
+      setState(() {
+        imgList.add("assets/img/flutter.png");
+        imgList.add("assets/img/flutter.png");
+        itemDashboard.add(new DashboardItems(
+            title: "Profile Daerah",
+            subtitle: "dsadas",
+            img: "assets/icons/copy.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Program & \n Kegiatan",
+            subtitle: "dsadas",
+            img: "assets/icons/schedules.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Info Publik",
+            subtitle: "dsadas",
+            img: "assets/icons/information-point.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Berita Terkait",
+            subtitle: "dsadas",
+            img: "assets/icons/news.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Pengaduan",
+            subtitle: "dsadas",
+            img: "assets/icons/feedback.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Info Covid-19",
+            subtitle: "dsadas",
+            img: "assets/icons/coronavirus.png"));
+      });
+    }else if(status_login == IS_STAFF){
+      setState(() {
+        imgList.add("assets/img/flutter.png");
+        imgList.add("assets/img/flutter.png");
+        itemDashboard.add(new DashboardItems(
+            title: "Profile Daerah",
+            subtitle: "dsadas",
+            img: "assets/icons/copy.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Program & \n Kegiatan",
+            subtitle: "dsadas",
+            img: "assets/icons/schedules.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Info Publik",
+            subtitle: "dsadas",
+            img: "assets/icons/information-point.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Berita Terkait",
+            subtitle: "dsadas",
+            img: "assets/icons/news.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Pengaduan",
+            subtitle: "dsadas",
+            img: "assets/icons/feedback.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Info Covid-19",
+            subtitle: "dsadas",
+            img: "assets/icons/coronavirus.png"));
+      });
+    }else{
+      setState(() {
+        imgList.add("assets/img/flutter.png");
+        imgList.add("assets/img/flutter.png");
+        itemDashboard.add(new DashboardItems(
+            title: "Profile Daerah",
+            subtitle: "dsadas",
+            img: "assets/icons/copy.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Info Publik",
+            subtitle: "dsadas",
+            img: "assets/icons/information-point.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Berita Terkait",
+            subtitle: "dsadas",
+            img: "assets/icons/news.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Pengaduan",
+            subtitle: "dsadas",
+            img: "assets/icons/feedback.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Info Covid-19",
+            subtitle: "dsadas",
+            img: "assets/icons/coronavirus.png"));
+      });
+    }
   }
 
   void chekRole() async{
