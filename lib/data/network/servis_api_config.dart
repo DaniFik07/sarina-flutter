@@ -1,8 +1,9 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' show Client, Response;
-import 'package:sarina/data/network/responses/response_covid_provinsi.dart';
 import 'package:sarina/utils/constants.dart';
+
+import 'responses/response_covid_provinsi.dart';
 
 /**
  * Created by Bayu Nugroho
@@ -20,9 +21,10 @@ class ServiceApiConfig {
     response = await client.get("$base_url_covid/prov.json");
     print(response.body.toString());
     if (response.statusCode == 200) {
+      print('200 ok');
       return ResponseCovidProvinsi.fromJson(json.decode(response.body));
     } else {
-      throw Exception('${response.body}');
+      throw Exception('gagal');
     }
   }
 

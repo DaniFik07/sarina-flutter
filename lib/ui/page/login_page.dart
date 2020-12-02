@@ -29,6 +29,12 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = new TextEditingController();
 
   @override
+  void initState() {
+    checkUser();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     Size size = MediaQuery.of(context).size;
@@ -148,5 +154,13 @@ class _LoginPageState extends State<LoginPage> {
     }else{
       showToast(context, "Data tidak boleh kurang dari 3 karakter");
     }
+  }
+
+  void checkUser() async{
+     String status_login = await  storage.read(key: STATUS_LOGIN);
+     if(status_login != "STATUS_LOGIN" || status_login != null){
+       Navigator.pushReplacement(context,
+           MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+     }
   }
 }

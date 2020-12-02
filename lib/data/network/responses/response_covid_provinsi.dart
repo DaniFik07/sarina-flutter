@@ -1,7 +1,7 @@
-/**
- * Created by Bayu Nugroho
- * Copyright (c) 2020 . All rights reserved.
- */
+// To parse this JSON data, do
+//
+//     final responseCovidProvinsi = responseCovidProvinsiFromJson(jsonString);
+
 import 'dart:convert';
 
 ResponseCovidProvinsi responseCovidProvinsiFromJson(String str) => ResponseCovidProvinsi.fromJson(json.decode(str));
@@ -18,8 +18,8 @@ class ResponseCovidProvinsi {
   });
 
   DateTime lastDate;
-  int currentData;
-  int missingData;
+  double currentData;
+  double missingData;
   int tanpaProvinsi;
   List<ListDatum> listData;
 
@@ -99,7 +99,7 @@ class JenisKelamin {
   });
 
   JenisKelaminKey key;
-  int docCount;
+  var docCount;
 
   factory JenisKelamin.fromJson(Map<String, dynamic> json) => JenisKelamin(
     key: json["key"] == null ? null : jenisKelaminKeyValues.map[json["key"]],
@@ -127,7 +127,7 @@ class KelompokUmur {
   });
 
   KelompokUmurKey key;
-  int docCount;
+  var docCount;
   Usia usia;
 
   factory KelompokUmur.fromJson(Map<String, dynamic> json) => KelompokUmur(
@@ -159,7 +159,7 @@ class Usia {
     this.value,
   });
 
-  int value;
+  double value;
 
   factory Usia.fromJson(Map<String, dynamic> json) => Usia(
     value: json["value"] == null ? null : json["value"],
