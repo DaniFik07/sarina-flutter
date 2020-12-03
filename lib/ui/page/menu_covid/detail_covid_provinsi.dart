@@ -4,8 +4,6 @@ import 'package:sarina/data/network/responses/response_detail_prov.dart';
 import 'package:sarina/data/network/servis_api_config.dart';
 import 'package:sarina/utils/size_config.dart';
 
-import 'package:intl/intl.dart';
-
 /**
  * Created by Bayu Nugroho
  * Copyright (c) 2020 . All rights reserved.
@@ -13,26 +11,25 @@ import 'package:intl/intl.dart';
 
 class DetailCovidProvinsi extends StatefulWidget {
   final String prov;
+
   DetailCovidProvinsi({this.prov});
+
   @override
   _DetailCovidProvinsiState createState() => _DetailCovidProvinsiState();
 }
 
-
 class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
-
-  // DateFormat dateFormat = DateFormat("yyyy-MM-dd");
-  // String string = dateFormat.format(DateTime.now());
-
   List<ListPerkembangan> list_prov = [];
   String last_date;
-  int  kasus_total;
-  double sembuh ,meninggal;
-@override
+  int kasus_total;
+  int sembuh, meninggal;
+
+  @override
   void initState() {
     getDataDetailProv(widget.prov);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -42,35 +39,97 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
         centerTitle: true,
       ),
       body: Column(
-        children: <Widget>[
+        children: [
           Container(
-            child: GridView(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, childAspectRatio: 2),
-              children: <Widget>[
-                StatusPanel(
-                  title: 'Tanggal: \n ${last_date}',
-                  panelColor: Colors.red[100],
-                  textColor: Colors.red,
+            padding: EdgeInsets.all(8.0),
+            width: SizeConfig.screenWidth,
+            height: SizeConfig.screenHight / 4,
+            child: Card(
+              color: Colors.grey[300],
+              child: Padding(
+                padding: const EdgeInsets.only(left: 0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: SizeConfig.screenWidth / 3.5,
+                          child: Card(
+                            color: Colors.grey[100],
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  Text('$kasus_total'),
+                                  SizedBox(height: 10,),
+                                  Text('Kasus')],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: SizeConfig.screenWidth / 3.5,
+                          child: Card(
+                            color: Colors.green[100],
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  Text('$sembuh'),
+                                  SizedBox(height: 10,),
+                                  Text('Sembuh')],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: SizeConfig.screenWidth / 3.5,
+                          child: Card(
+                            color: Colors.red[100],
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  Text('$meninggal'),
+                                  SizedBox(height: 10,),
+                                  Text('Meninggal')],
+                              ),
+                            ),
+                          ),
+                        ),
+
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: SizeConfig.screenWidth / 1.2,
+                          child: Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text('${widget.prov}'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+
+                      ],
+                    ),
+                  ],
                 ),
-                StatusPanel(
-                  title: 'Kasus Total: \n ${kasus_total}',
-                  panelColor: Colors.blue[100],
-                  textColor: Colors.blue[900],
-                ),
-                StatusPanel(
-                  title: 'Sembuh: : \n ${sembuh}',
-                  panelColor: Colors.green[100],
-                  textColor: Colors.green,
-                ),
-                StatusPanel(
-                  title: 'Meninggal: \n ${meninggal}',
-                  panelColor: Colors.grey[400],
-                  textColor: Colors.grey[900],
-                ),
-              ],
+              ),
             ),
           ),
           Container(
@@ -88,45 +147,72 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                     verticalOffset: 50.0,
                     child: FadeInAnimation(
                       child: Card(
-                        margin: EdgeInsets.all(10.0),
+                          margin: EdgeInsets.all(10.0),
                           child: Padding(
                             padding: const EdgeInsets.all(10),
                             child: Column(
                               children: [
+
                                 Row(
                                   children: [
-                                    Text('Tanggal : ${list_prov[index].tanggal}',
+                                    Text(
+                                      'Tanggal : ${list_prov[index].tanggal}',
                                       style: TextStyle(
-                                        fontSize: 14,),),
+                                        fontSize: 14,
+                                      ),
+                                    ),
                                   ],
-                                ),
-                                SizedBox(height: 4,),
-                                Row(
+                                ),     SizedBox(
+                                  height: 4,
+                                ),  Row(
                                   children: [
-                                    Text('Kasus : ${list_prov[index].kasus.toString()}',
+                                    Text(
+                                      'Kasus : ${list_prov[index].kasus.toString()}',
                                       style: TextStyle(
-                                          fontSize: 14,),),
+                                        fontSize: 14,
+                                      ),
+                                    ),
                                   ],
                                 ),
-                                SizedBox(height: 4,),
+
+                                SizedBox(
+                                  height: 4,
+                                ),
                                 Row(
                                   children: [
-                                    Text('Kasus : ${list_prov[index].kasus.toString()}',
-                                      style: TextStyle(fontSize: 14,),),
+                                    Text(
+                                      'Sembuh : ${list_prov[index].sembuh.toString()}',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                      ),
+                                    ),
                                   ],
                                 ),
-                                SizedBox(height: 4,),
+                                SizedBox(
+                                  height: 4,
+                                ),
                                 Row(
                                   children: [
-                                    Text('Meninggal : ${list_prov[index].meninggal.toString()}',
-                                      style: TextStyle(fontSize: 14,),),
+                                    Text(
+                                      'Meninggal : ${list_prov[index].meninggal.toString()}',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                      ),
+                                    ),
                                   ],
                                 ),
-                                SizedBox(height: 4,),
+
+                                SizedBox(
+                                  height: 4,
+                                ),
                                 Row(
                                   children: [
-                                    Text('Sembuh : ${list_prov[index].sembuh.toString()}',
-                                      style: TextStyle(fontSize: 14, ),),
+                                    Text(
+                                      'Dirawat / Isolasi : ${list_prov[index].dirawatOrIsolasi.toString()}',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ],
@@ -145,12 +231,14 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
   }
 
   void getDataDetailProv(String prov) {
-  print(prov.replaceAll(" ", "_") + "data prov");
-    ServiceApiConfig().getCovidDetailProv(prov.replaceAll(" ", "_")).then((val) {
+    print(prov.replaceAll(" ", "_") + "data prov");
+    ServiceApiConfig()
+        .getCovidDetailProv(prov.replaceAll(" ", "_"))
+        .then((val) {
       setState(() {
         list_prov = val.listPerkembangan;
-        sembuh= val.sembuhPersen;
-        meninggal = val.meninggalPersen;
+        sembuh = val.sembuhDenganTgl + val.sembuhTanpaTgl;
+        meninggal = val.meninggalTanpaTgl + val.meninggalDenganTgl;
         kasus_total = val.kasusTotal;
         last_date = val.lastDate.toString();
       });
@@ -158,38 +246,4 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
       print("$onError");
     });
   }
-}
-
-class StatusPanel extends StatelessWidget {
-  final Color panelColor;
-  final Color textColor;
-  final String title;
-  final String count;
-
-  const StatusPanel(
-      {Key key, this.panelColor, this.textColor, this.title, this.count})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-
-    return Container(
-      margin: EdgeInsets.all(10),
-      height: 80,
-      width: width / 2,
-      color: panelColor,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            title,
-            style: TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 16, color: textColor),
-          ),
-        ],
-      ),
-    );
-  }
-
 }
