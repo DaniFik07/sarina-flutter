@@ -61,16 +61,11 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                               builder: (context) =>
                                   DataKapasitasBPDBPage(
                                       title: "Data Kapasitas BPBD")));
-                    } else if (status_login == IS_STAFF) {
+                    } else {
                       Navigator.of(context).push(
                           MaterialPageRoute(
                               builder: (context) =>
-                                  DataKapasitasBPDBPage(
-                                      title: "Data Kapasitas BPBD")));
-                    }else{
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) =>
-                              InputBPDBPage()));
+                                  InputBPDBPage(title: "nama ketua prov",)));
                     }
                   },
                   child: Card(
@@ -123,16 +118,12 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                               builder: (context) =>
                                   DataSaranaPrasaranaPage(
                                       title: "Data Sarana Prasarana")));
-                    } else if (status_login == IS_STAFF) {
+                    } else {
                       Navigator.of(context).push(
                           MaterialPageRoute(
                               builder: (context) =>
-                                  DataSaranaPrasaranaPage(
+                                  InputSaranaPrasaranaPage(
                                       title: "Data Sarana Prasarana")));
-                    }else{
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) =>
-                              InputSaranaPrasaranaPage()));
                     }
                   },
                   child: Card(
@@ -185,16 +176,12 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                               builder: (context) =>
                                   DataInformasiBencanaPage(
                                       title: "Data Informasi Bencana")));
-                    } else if (status_login == IS_STAFF) {
+                    } else {
                       Navigator.of(context).push(
                           MaterialPageRoute(
                               builder: (context) =>
-                                  DataInformasiBencanaPage(
+                                  InformasiBencanaPage(
                                       title: "Data Informasi Bencana")));
-                    }else{
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) =>
-                              InformasiBencanaPage()));
                     }
                     },
                   child: Card(

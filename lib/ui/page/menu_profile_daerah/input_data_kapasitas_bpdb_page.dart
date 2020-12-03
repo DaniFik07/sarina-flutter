@@ -11,6 +11,8 @@ import 'package:sarina/utils/size_config.dart';
  */
 
 class InputBPDBPage extends StatefulWidget {
+  String title;
+  InputBPDBPage({this.title});
   @override
   _InputBPDBPageState createState() => _InputBPDBPageState();
 }
@@ -87,7 +89,7 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0, top: 8.0),
-                      child: Text('Atung Nugroho',
+                      child: Text('${widget.title}',
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 16,

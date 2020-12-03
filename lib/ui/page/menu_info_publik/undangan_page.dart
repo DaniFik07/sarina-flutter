@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:sarina/models/model_home.dart';
 import 'package:sarina/utils/constants.dart';
@@ -20,9 +21,13 @@ class _DaftarUndanganPageState extends State<DaftarUndanganPage> {
   Color red800 = Colors.red[800];
   List<ModelItemUndangan> modelItemUndanganList = [];
 
+  String status_login = "";
+  final storage = new FlutterSecureStorage();
   @override
   void initState() {
     addData();
+    checkRole();
+
     super.initState();
   }
 
@@ -32,19 +37,22 @@ class _DaftarUndanganPageState extends State<DaftarUndanganPage> {
     return Scaffold(
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 20),
-        child: FloatingActionButton.extended(
-          elevation: 3,
-          onPressed: () {
-          },
-          backgroundColor: greenColors,
-          label: Container(
-            child: Text(
-              "+ Baru",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16),
+        child: Visibility(
+          visible: status_login ==IS_ADMIN || status_login ==IS_STAFF?true:false,
+          child: FloatingActionButton.extended(
+            elevation: 3,
+            onPressed: () {
+            },
+            backgroundColor: greenColors,
+            label: Container(
+              child: Text(
+                "+ Baru",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
             ),
           ),
         ),
@@ -215,5 +223,9 @@ class _DaftarUndanganPageState extends State<DaftarUndanganPage> {
           tglPelaksanan: "03-02-2020",
           WaktuPelaksana: "18:00:00"));
     });
+  }
+  void checkRole() async{
+    status_login = await storage.read(key: STATUS_LOGIN);
+    setState(() {});
   }
 }
