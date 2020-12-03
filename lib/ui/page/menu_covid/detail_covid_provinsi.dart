@@ -152,6 +152,7 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                                   padding: const EdgeInsets.all(10),
                                   child: Column(
                                     children: [
+
                                       Row(
                                         children: [
                                           Text(
@@ -161,11 +162,9 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                                             ),
                                           ),
                                         ],
-                                      ),
-                                      SizedBox(
+                                      ),     SizedBox(
                                         height: 4,
-                                      ),
-                                      Row(
+                                      ),  Row(
                                         children: [
                                           Text(
                                             'Kasus : ${list_prov[index].kasus.toString()}',
@@ -175,13 +174,14 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                                           ),
                                         ],
                                       ),
+
                                       SizedBox(
                                         height: 4,
                                       ),
                                       Row(
                                         children: [
                                           Text(
-                                            'Kasus : ${list_prov[index].kasus.toString()}',
+                                            'Sembuh : ${list_prov[index].sembuh.toString()}',
                                             style: TextStyle(
                                               fontSize: 14,
                                             ),
@@ -201,13 +201,14 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                                           ),
                                         ],
                                       ),
+
                                       SizedBox(
                                         height: 4,
                                       ),
                                       Row(
                                         children: [
                                           Text(
-                                            'Sembuh : ${list_prov[index].sembuh.toString()}',
+                                            'Dirawat / Isolasi : ${list_prov[index].dirawatOrIsolasi.toString()}',
                                             style: TextStyle(
                                               fontSize: 14,
                                             ),
