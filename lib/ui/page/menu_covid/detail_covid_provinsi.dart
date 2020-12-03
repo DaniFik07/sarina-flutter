@@ -65,8 +65,11 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                               child: Column(
                                 children: [
                                   Text('$kasus_total'),
-                                  SizedBox(height: 10,),
-                                  Text('Kasus')],
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text('Kasus')
+                                ],
                               ),
                             ),
                           ),
@@ -80,8 +83,11 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                               child: Column(
                                 children: [
                                   Text('$sembuh'),
-                                  SizedBox(height: 10,),
-                                  Text('Sembuh')],
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text('Sembuh')
+                                ],
                               ),
                             ),
                           ),
@@ -95,13 +101,15 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                               child: Column(
                                 children: [
                                   Text('$meninggal'),
-                                  SizedBox(height: 10,),
-                                  Text('Meninggal')],
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text('Meninggal')
+                                ],
                               ),
                             ),
                           ),
                         ),
-
                       ],
                     ),
                     Row(
@@ -124,7 +132,6 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                             ),
                           ),
                         ),
-
                       ],
                     ),
                   ],
@@ -152,7 +159,6 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                                   padding: const EdgeInsets.all(10),
                                   child: Column(
                                     children: [
-
                                       Row(
                                         children: [
                                           Text(
@@ -162,9 +168,11 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                                             ),
                                           ),
                                         ],
-                                      ),     SizedBox(
+                                      ),
+                                      SizedBox(
                                         height: 4,
-                                      ),  Row(
+                                      ),
+                                      Row(
                                         children: [
                                           Text(
                                             'Kasus : ${list_prov[index].kasus.toString()}',
@@ -174,7 +182,6 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                                           ),
                                         ],
                                       ),
-
                                       SizedBox(
                                         height: 4,
                                       ),
@@ -201,7 +208,6 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                                           ),
                                         ],
                                       ),
-
                                       SizedBox(
                                         height: 4,
                                       ),

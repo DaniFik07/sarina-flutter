@@ -33,6 +33,9 @@ class _CovidPageState extends State<CovidPage> {
       appBar: AppBar(
         title: Text('Covid Page'),
         centerTitle: true,
+        actions: [
+          IconButton(onPressed: (){}, icon: Icon(Icons.search),)
+        ],
       ),
       body: Container(
         child: list_all_prov.length > 0
