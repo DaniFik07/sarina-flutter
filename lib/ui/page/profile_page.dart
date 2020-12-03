@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:sarina/ui/page/login_page.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
 
@@ -42,6 +43,7 @@ class _ProfilePageState extends State<ProfilePage> {
         child: FloatingActionButton.extended(
           elevation: 3,
           onPressed: () {
+            logout();
           },
           backgroundColor: Colors.red,
           label: Container(
@@ -260,6 +262,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         ),
                       ),
+                      SizedBox(height: 40,)
                     ],
                   )
                 ],
@@ -269,5 +272,13 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
     );
+  }
+
+  void logout() async{
+    await storage.write(key: STATUS_LOGIN,value: "STATUS_LOGIN");
+    await storage.delete(key: IS_ADMIN);
+    await storage.delete(key: IS_STAFF);
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (BuildContext context) => LoginPage()));
   }
 }

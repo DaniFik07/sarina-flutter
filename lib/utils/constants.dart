@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-const String IS_ADMIN = "1";
-const String IS_STAFF = "2";
-const String IS_USER = "3";
+const String IS_ADMIN = "admin";
+const String IS_STAFF = "staff";
+const String IS_USER = "user";
 const String STATUS_LOGIN = "STATUS_LOGIN";
 const String BASE_URL_COVID = "https://data.covid19.go.id/public/api/";
 

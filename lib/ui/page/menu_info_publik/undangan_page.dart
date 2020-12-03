@@ -130,9 +130,13 @@ class _DaftarUndanganPageState extends State<DaftarUndanganPage> {
                                               child: Row(
                                                 children: [
                                                   Text("Tanggal Pelaksanaan : "),
-                                                  Padding(
-                                                    padding: const EdgeInsets.all(4.0),
-                                                    child: Card(color:greenColors,child: Text("${modelItemUndanganList[index].tglPelaksanan} ",style: TextStyle(color: whiteColor),),),
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.all(4.0),
+                                                      child: Card(color:greenColors,
+                                                        child: Text("${modelItemUndanganList[index].tglPelaksanan} "
+                                                            "",style: TextStyle(color: whiteColor),),),
+                                                    ),
                                                   )
                                                 ],
                                               ),

@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
         return ProfilePage();
         break;
       case 2:
-        return Center(child: Text('lalalala'),);
+        return Center(child: Text('setting'),);
         break;
     }
   }

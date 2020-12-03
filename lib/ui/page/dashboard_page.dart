@@ -54,18 +54,6 @@ class _DashboardPageState extends State<DashboardPage> {
               SizedBox(
                 height: SizeConfig.screenHight / 11,
               ),
-
-              //ternary operator
-              // : itu adalah else atau lainnya
-              // setelah (tanda tnya) atau ?  untk eksekusi jika masuk kedalam kondisi
-              Text(status_login == IS_ADMIN ?"ADMIN":status_login == IS_STAFF?"STAFF" :"USER"),
-
-              // Visibility(
-              //   visible: status_login == "1"?true:false,
-              //     child: Text(
-              //         status_login == "1"?"admn":"bkn admn"
-              // )),
-
               Container(
                   child: Text(
                 'SARINA',
@@ -205,7 +193,7 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   void initMenu() async {
-
+    status_login = await storage.read(key: STATUS_LOGIN);
     if (status_login == IS_ADMIN){
       setState(() {
         imgList.add("assets/img/flutter.png");
