@@ -143,13 +143,13 @@ class _LoginPageState extends State<LoginPage> {
         await storage.write(key: STATUS_LOGIN, value: emailController.text);
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (BuildContext context) => HomePage()));
-      } else if (emailController.text == IS_USER) {
-        await storage.write(key: STATUS_LOGIN, value: emailController.text);
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => HomePage()));
-      } else {
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+      // } else if (emailController.text == IS_USER) {
+      //   await storage.write(key: STATUS_LOGIN, value: emailController.text);
+      //   Navigator.pushReplacement(context,
+      //       MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+      // } else {
+      //   Navigator.pushReplacement(context,
+      //       MaterialPageRoute(builder: (BuildContext context) => HomePage()));
       }
     }else{
       showToast(context, "Data tidak boleh kurang dari 3 karakter");

@@ -4,6 +4,8 @@ import 'package:sarina/data/network/responses/response_detail_prov.dart';
 import 'package:sarina/data/network/servis_api_config.dart';
 import 'package:sarina/utils/size_config.dart';
 
+import 'package:intl/intl.dart';
+
 /**
  * Created by Bayu Nugroho
  * Copyright (c) 2020 . All rights reserved.
@@ -18,6 +20,10 @@ class DetailCovidProvinsi extends StatefulWidget {
 
 
 class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
+
+  // DateFormat dateFormat = DateFormat("yyyy-MM-dd");
+  // String string = dateFormat.format(DateTime.now());
+
   List<ListPerkembangan> list_prov = [];
   String last_date;
   int  kasus_total;
@@ -36,29 +42,35 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
         centerTitle: true,
       ),
       body: Column(
-        children: [
+        children: <Widget>[
           Container(
-            padding: EdgeInsets.all(8.0),
-            width: SizeConfig.screenWidth,
-            height: SizeConfig.screenHight / 4,
-            child: Card(
-              color: Colors.orange[200],
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('last date : ${last_date}', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
-                    SizedBox(height: 4,),
-                    Text('kasus total : ${kasus_total}', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
-                    SizedBox(height: 4,),
-                    Text('meninggal : ${meninggal}', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
-                    SizedBox(height: 4,),
-                    Text('sembuh : ${sembuh}', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
-                  ],
+            child: GridView(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2, childAspectRatio: 2),
+              children: <Widget>[
+                StatusPanel(
+                  title: 'Tanggal: \n ${last_date}',
+                  panelColor: Colors.red[100],
+                  textColor: Colors.red,
                 ),
-              ),
+                StatusPanel(
+                  title: 'Kasus Total: \n ${kasus_total}',
+                  panelColor: Colors.blue[100],
+                  textColor: Colors.blue[900],
+                ),
+                StatusPanel(
+                  title: 'Sembuh: : \n ${sembuh}',
+                  panelColor: Colors.green[100],
+                  textColor: Colors.green,
+                ),
+                StatusPanel(
+                  title: 'Meninggal: \n ${meninggal}',
+                  panelColor: Colors.grey[400],
+                  textColor: Colors.grey[900],
+                ),
+              ],
             ),
           ),
           Container(
@@ -146,4 +158,38 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
       print("$onError");
     });
   }
+}
+
+class StatusPanel extends StatelessWidget {
+  final Color panelColor;
+  final Color textColor;
+  final String title;
+  final String count;
+
+  const StatusPanel(
+      {Key key, this.panelColor, this.textColor, this.title, this.count})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
+    return Container(
+      margin: EdgeInsets.all(10),
+      height: 80,
+      width: width / 2,
+      color: panelColor,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            title,
+            style: TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 16, color: textColor),
+          ),
+        ],
+      ),
+    );
+  }
+
 }

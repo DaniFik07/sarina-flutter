@@ -25,6 +25,7 @@ dependencies:
     sdk: flutter
   splashscreen:
   url_launcher:
+  intl: ^0.16.1
 #  shared_preference:
 
 
