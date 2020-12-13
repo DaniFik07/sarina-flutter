@@ -1,7 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:sarina/data/network/responses/response_detail_prov.dart';
 import 'package:sarina/data/network/servis_api_config.dart';
+import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
 
 /**
@@ -45,7 +47,7 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
             width: SizeConfig.screenWidth,
             height: SizeConfig.screenHight / 4,
             child: Card(
-              color: Colors.grey[300],
+              color:Colors.blue[100],
               child: Padding(
                 padding: const EdgeInsets.only(left: 0),
                 child: Column(
@@ -59,14 +61,14 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                         Container(
                           width: SizeConfig.screenWidth / 3.5,
                           child: Card(
-                            color: Colors.grey[100],
+                            color: Colors.red[100],
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: [
-                                  Text('$kasus_total'),
+                                  Text('Kasus',  style: TextStyle(color: Colors.red, fontWeight: FontWeight.w500),),
                                   SizedBox(height: 10,),
-                                  Text('Kasus')],
+                                  Text('$kasus_total', style: TextStyle(color: Colors.red, fontWeight: FontWeight.w500),),],
                               ),
                             ),
                           ),
@@ -79,9 +81,9 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: [
-                                  Text('$sembuh'),
+                                  Text('Sembuh', style: TextStyle(color: Colors.green, fontWeight: FontWeight.w500),),
                                   SizedBox(height: 10,),
-                                  Text('Sembuh')],
+                                  Text('$sembuh', style: TextStyle(color: Colors.green, fontWeight: FontWeight.w500),),],
                               ),
                             ),
                           ),
@@ -89,14 +91,14 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                         Container(
                           width: SizeConfig.screenWidth / 3.5,
                           child: Card(
-                            color: Colors.red[100],
+                            color: Colors.grey[100],
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: [
-                                  Text('$meninggal'),
+                                  Text('Meninggal', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),),
                                   SizedBox(height: 10,),
-                                  Text('Meninggal')],
+                                  Text('$meninggal', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),),],
                               ),
                             ),
                           ),
@@ -111,13 +113,14 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                         Container(
                           width: SizeConfig.screenWidth / 1.2,
                           child: Card(
+                            color: Colors.blue,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Text('${widget.prov}'),
+                                    child: Text('${widget.prov}', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),),
                                   ),
                                 ],
                               ),

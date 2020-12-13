@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:sarina/ui/page/chat_page/screens/chat_home_screen.dart';
 import 'package:sarina/ui/page/dashboard_page.dart';
 import 'package:sarina/ui/page/profile_page.dart';
 import 'package:sarina/utils/constants.dart';
@@ -40,6 +41,7 @@ class _HomePageState extends State<HomePage> {
           height: 50.0,
           items: <Widget>[
             Icon(Icons.home_filled,color: blueColors, size: 30),
+            Icon(Icons.chat, color: blueColors, size: 30,),
             Icon(Icons.person,color: blueColors, size: 30),
             Icon(Icons.settings,color: blueColors, size: 30),
           ],
@@ -63,10 +65,13 @@ class _HomePageState extends State<HomePage> {
         return DashboardPage();
         break;
       case 1:
-        return ProfilePage();
+        return ChatHomeScreen();
         break;
       case 2:
-        return Center(child: Text('lalalala'),);
+        return ProfilePage();
+        break;
+      case 3:
+        return Center(child: Text('this is settings page'),);
         break;
     }
   }
