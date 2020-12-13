@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:sarina/models/model_home.dart';
 import 'package:sarina/utils/constants.dart';
@@ -21,9 +22,12 @@ class PengaduanPage extends StatefulWidget {
 class _PengaduanPageState extends State<PengaduanPage> {
   Color red800 = Colors.red[800];
   List<ModelPengaduan> listItem = [];
+  String status_login = "";
+  final storage = new FlutterSecureStorage();
 
   @override
   void initState() {
+    checkRole();
     addData();
     super.initState();
   }
@@ -34,21 +38,24 @@ class _PengaduanPageState extends State<PengaduanPage> {
     return Scaffold(
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 20),
-        child: FloatingActionButton.extended(
-          elevation: 3,
-          onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => InputPengaduanPage()));
-          },
-          backgroundColor: greenColors,
-          label: Container(
-            child: Text(
-              "+ Baru",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16),
+        child: Visibility(
+          visible: status_login ==IS_ADMIN || status_login ==IS_USER?false:true,
+          child: FloatingActionButton.extended(
+            elevation: 3,
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => InputPengaduanPage()));
+            },
+            backgroundColor: greenColors,
+            label: Container(
+              child: Text(
+                "+ Baru",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
             ),
           ),
         ),
@@ -213,5 +220,10 @@ class _PengaduanPageState extends State<PengaduanPage> {
           Deskripsi: "Lorem Ipsum Lorem Ipsum3",
           status: "2"));
     });
+  }
+
+  void checkRole() async{
+    status_login = await storage.read(key: STATUS_LOGIN);
+    setState(() {});
   }
 }

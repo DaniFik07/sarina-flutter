@@ -138,18 +138,18 @@ class _LoginPageState extends State<LoginPage> {
 
   void saveLocal() async {
     if (emailController.text.toString().length > 3) {
-      if (emailController.text == IS_ADMIN) {
-        //storage.write untk simpan ke local
-        await storage.write(key: STATUS_LOGIN, value: emailController.text);
+      if (emailController.text == "admin") {
+        await storage.write(key: STATUS_LOGIN, value: IS_ADMIN);
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (BuildContext context) => HomePage()));
-      // } else if (emailController.text == IS_USER) {
-      //   await storage.write(key: STATUS_LOGIN, value: emailController.text);
-      //   Navigator.pushReplacement(context,
-      //       MaterialPageRoute(builder: (BuildContext context) => HomePage()));
-      // } else {
-      //   Navigator.pushReplacement(context,
-      //       MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+      } else if (emailController.text == "staff") {
+        await storage.write(key: STATUS_LOGIN, value: IS_STAFF);
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+      } else {
+        await storage.write(key: STATUS_LOGIN, value: "user");
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (BuildContext context) => HomePage()));
       }
     }else{
       showToast(context, "Data tidak boleh kurang dari 3 karakter");
@@ -158,7 +158,8 @@ class _LoginPageState extends State<LoginPage> {
 
   void checkUser() async{
      String status_login = await  storage.read(key: STATUS_LOGIN);
-     if(status_login != "STATUS_LOGIN" || status_login != null){
+     print(status_login + " sss");
+     if(status_login != "STATUS_LOGIN"){
        Navigator.pushReplacement(context,
            MaterialPageRoute(builder: (BuildContext context) => HomePage()));
      }

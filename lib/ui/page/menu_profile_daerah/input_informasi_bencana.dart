@@ -3,6 +3,8 @@ import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
 
 class InformasiBencanaPage extends StatefulWidget{
+  String title;
+  InformasiBencanaPage({this.title});
   @override
   _InformasiBencanaPageState createState() => _InformasiBencanaPageState();
 

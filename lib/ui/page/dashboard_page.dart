@@ -54,18 +54,6 @@ class _DashboardPageState extends State<DashboardPage> {
               SizedBox(
                 height: SizeConfig.screenHight / 11,
               ),
-
-              //ternary operator
-              // : itu adalah else atau lainnya
-              // setelah (tanda tnya) atau ?  untk eksekusi jika masuk kedalam kondisi
-              Text(status_login == IS_ADMIN ?"ADMIN":status_login == IS_STAFF?"STAFF" :"USER"),
-
-              // Visibility(
-              //   visible: status_login == "1"?true:false,
-              //     child: Text(
-              //         status_login == "1"?"admn":"bkn admn"
-              // )),
-
               Container(
                   child: Text(
                 'SARINA',
@@ -138,29 +126,34 @@ class _DashboardPageState extends State<DashboardPage> {
                       child: Column(
                         children: [
                           InkWell(
-                            onTap: ()
-                      {
-                      if (itemDashboard[index].title ==
-                      "Profile Daerah") {
-                      Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ProfileDaerahPage()));
-                      }else if(itemDashboard[index].title == "Program & \n Kegiatan"){
-                      Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ProgramDanKegiatan()));
-                      }else if(itemDashboard[index].title == "Info Publik"){
-                      Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => InfoPublicPage()));
-                      }else if(itemDashboard[index].title == "Berita Terkait"){
-                      Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => BeritaTerkait()));
-                      }else if(itemDashboard[index].title == "Pengaduan"){
-                      Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => PengaduanPage()));
-                      }else if(itemDashboard[index].title == "Info Covid-19"){
-                      Navigator.of(context).push(MaterialPageRoute
-                      (builder: (context) => CovidPage()));
-                      }
-                      },
+                            onTap: () {
+                              if (itemDashboard[index].title ==
+                                  "Profile Daerah") {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => ProfileDaerahPage()));
+                              } else if (itemDashboard[index].title ==
+                                  "Program & \n Kegiatan") {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        ProgramDanKegiatan()));
+                              } else if (itemDashboard[index].title ==
+                                  "Info Publik") {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => InfoPublicPage()));
+                              } else if (itemDashboard[index].title ==
+                                  "Berita Terkait") {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => BeritaTerkait()));
+                              } else if (itemDashboard[index].title ==
+                                  "Pengaduan") {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => PengaduanPage()));
+                              } else if (itemDashboard[index].title ==
+                                  "Info Covid-19") {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => CovidPage()));
+                              }
+                            },
                             child: Card(
                                 color: kuningColor,
                                 shape: RoundedRectangleBorder(
@@ -189,7 +182,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: SizeConfig.blockHorizontal* 2 ,
+                                  fontSize: SizeConfig.blockHorizontal * 2,
                                   color: Colors.white)),
                         ],
                       )));
@@ -205,23 +198,70 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   void initMenu() async {
+    status_login = await storage.read(key: STATUS_LOGIN);
+    if (status_login == IS_ADMIN) {
+      setState(() {
+        imgList.add("assets/img/flutter.png");
+        imgList.add("assets/img/flutter.png");
+        itemDashboard.add(new DashboardItems(
+            title: "Profile Daerah",
+            subtitle: "dsadas",
+            img: "assets/icons/copy.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Program & \n Kegiatan",
+            subtitle: "dsadas",
+            img: "assets/icons/schedules.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Info Publik",
+            subtitle: "dsadas",
+            img: "assets/icons/information-point.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Berita Terkait",
+            subtitle: "dsadas",
+            img: "assets/icons/news.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Pengaduan",
+            subtitle: "dsadas",
+            img: "assets/icons/feedback.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Info Covid-19",
+            subtitle: "dsadas",
+            img: "assets/icons/coronavirus.png"));
+      });
+    } else if (status_login == IS_STAFF) {
+      setState(() {
+        imgList.add("assets/img/flutter.png");
+        imgList.add("assets/img/flutter.png");
+        itemDashboard.add(new DashboardItems(
+            title: "Profile Daerah",
+            subtitle: "dsadas",
+            img: "assets/icons/copy.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Program & \n Kegiatan",
+            subtitle: "dsadas",
+            img: "assets/icons/schedules.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Info Publik",
+            subtitle: "dsadas",
+            img: "assets/icons/information-point.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Berita Terkait",
+            subtitle: "dsadas",
+            img: "assets/icons/news.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Pengaduan",
+            subtitle: "dsadas",
+            img: "assets/icons/feedback.png"));
+        itemDashboard.add(new DashboardItems(
+            title: "Info Covid-19",
+            subtitle: "dsadas",
+            img: "assets/icons/coronavirus.png"));
+      });
+    } else {
+      setState(() {
+        imgList.add("assets/img/flutter.png");
+        imgList.add("assets/img/flutter.png");
 
-    if (status_login == IS_ADMIN){
-      setState(() {
-        imgList.add("assets/img/flutter.png");
-        imgList.add("assets/img/flutter.png");
-        itemDashboard.add(new DashboardItems(
-            title: "Profile Daerah",
-            subtitle: "dsadas",
-            img: "assets/icons/copy.png"));
-        itemDashboard.add(new DashboardItems(
-            title: "Program & \n Kegiatan",
-            subtitle: "dsadas",
-            img: "assets/icons/schedules.png"));
-        itemDashboard.add(new DashboardItems(
-            title: "Info Publik",
-            subtitle: "dsadas",
-            img: "assets/icons/information-point.png"));
         itemDashboard.add(new DashboardItems(
             title: "Berita Terkait",
             subtitle: "dsadas",
@@ -231,59 +271,9 @@ class _DashboardPageState extends State<DashboardPage> {
             subtitle: "dsadas",
             img: "assets/icons/feedback.png"));
         itemDashboard.add(new DashboardItems(
-            title: "Info Covid-19",
-            subtitle: "dsadas",
-            img: "assets/icons/coronavirus.png"));
-      });
-    }else if(status_login == IS_STAFF){
-      setState(() {
-        imgList.add("assets/img/flutter.png");
-        imgList.add("assets/img/flutter.png");
-        itemDashboard.add(new DashboardItems(
-            title: "Profile Daerah",
-            subtitle: "dsadas",
-            img: "assets/icons/copy.png"));
-        itemDashboard.add(new DashboardItems(
-            title: "Program & \n Kegiatan",
-            subtitle: "dsadas",
-            img: "assets/icons/schedules.png"));
-        itemDashboard.add(new DashboardItems(
             title: "Info Publik",
             subtitle: "dsadas",
             img: "assets/icons/information-point.png"));
-        itemDashboard.add(new DashboardItems(
-            title: "Berita Terkait",
-            subtitle: "dsadas",
-            img: "assets/icons/news.png"));
-        itemDashboard.add(new DashboardItems(
-            title: "Pengaduan",
-            subtitle: "dsadas",
-            img: "assets/icons/feedback.png"));
-        itemDashboard.add(new DashboardItems(
-            title: "Info Covid-19",
-            subtitle: "dsadas",
-            img: "assets/icons/coronavirus.png"));
-      });
-    }else{
-      setState(() {
-        imgList.add("assets/img/flutter.png");
-        imgList.add("assets/img/flutter.png");
-        itemDashboard.add(new DashboardItems(
-            title: "Profile Daerah",
-            subtitle: "dsadas",
-            img: "assets/icons/copy.png"));
-        itemDashboard.add(new DashboardItems(
-            title: "Info Publik",
-            subtitle: "dsadas",
-            img: "assets/icons/information-point.png"));
-        itemDashboard.add(new DashboardItems(
-            title: "Berita Terkait",
-            subtitle: "dsadas",
-            img: "assets/icons/news.png"));
-        itemDashboard.add(new DashboardItems(
-            title: "Pengaduan",
-            subtitle: "dsadas",
-            img: "assets/icons/feedback.png"));
         itemDashboard.add(new DashboardItems(
             title: "Info Covid-19",
             subtitle: "dsadas",
@@ -292,7 +282,7 @@ class _DashboardPageState extends State<DashboardPage> {
     }
   }
 
-  void chekRole() async{
+  void chekRole() async {
     //baca vale dari kunci STATuS_LOGIN
     status_login = await storage.read(key: STATUS_LOGIN);
     setState(() {});

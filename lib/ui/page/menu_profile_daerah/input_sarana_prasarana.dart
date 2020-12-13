@@ -9,26 +9,13 @@ import 'package:sarina/utils/size_config.dart';
  */
 
 class InputSaranaPrasaranaPage extends StatefulWidget {
+  String title="";
+  InputSaranaPrasaranaPage({this.title});
+
   @override
   _InputSaranaPrasaranaPageState createState() => _InputSaranaPrasaranaPageState();
 
 }
-
-// class Test{
-//   final int id;
-//   final String name;
-//
-//   Test(this.id, this.name);
-//
-//   static List<Test> getTest(){
-//     return <Test>[
-//       Test(1, 'tes'),
-//       Test(2, 'tes1'),
-//       Test(3, 'tes2'),
-//       Test(4, 'tes3'),
-//     ];
-//   }
-// }
 
 class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
   List<NamaBangunan> listNamaBangunan = [];

@@ -1,9 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:sarina/data/network/responses/response_detail_prov.dart';
 import 'package:sarina/data/network/servis_api_config.dart';
-import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
 
 /**
@@ -47,7 +45,7 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
             width: SizeConfig.screenWidth,
             height: SizeConfig.screenHight / 4,
             child: Card(
-              color:Colors.blue[100],
+              color: Colors.grey[300],
               child: Padding(
                 padding: const EdgeInsets.only(left: 0),
                 child: Column(
@@ -61,14 +59,17 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                         Container(
                           width: SizeConfig.screenWidth / 3.5,
                           child: Card(
-                            color: Colors.red[100],
+                            color: Colors.grey[100],
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: [
-                                  Text('Kasus',  style: TextStyle(color: Colors.red, fontWeight: FontWeight.w500),),
-                                  SizedBox(height: 10,),
-                                  Text('$kasus_total', style: TextStyle(color: Colors.red, fontWeight: FontWeight.w500),),],
+                                  Text('$kasus_total'),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text('Kasus')
+                                ],
                               ),
                             ),
                           ),
@@ -81,9 +82,12 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: [
-                                  Text('Sembuh', style: TextStyle(color: Colors.green, fontWeight: FontWeight.w500),),
-                                  SizedBox(height: 10,),
-                                  Text('$sembuh', style: TextStyle(color: Colors.green, fontWeight: FontWeight.w500),),],
+                                  Text('$sembuh'),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text('Sembuh')
+                                ],
                               ),
                             ),
                           ),
@@ -91,19 +95,21 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                         Container(
                           width: SizeConfig.screenWidth / 3.5,
                           child: Card(
-                            color: Colors.grey[100],
+                            color: Colors.red[100],
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: [
-                                  Text('Meninggal', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),),
-                                  SizedBox(height: 10,),
-                                  Text('$meninggal', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),),],
+                                  Text('$meninggal'),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text('Meninggal')
+                                ],
                               ),
                             ),
                           ),
                         ),
-
                       ],
                     ),
                     Row(
@@ -113,21 +119,19 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
                         Container(
                           width: SizeConfig.screenWidth / 1.2,
                           child: Card(
-                            color: Colors.blue,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Text('${widget.prov}', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),),
+                                    child: Text('${widget.prov}'),
                                   ),
                                 ],
                               ),
                             ),
                           ),
                         ),
-
                       ],
                     ),
                   ],
@@ -139,93 +143,92 @@ class _DetailCovidProvinsiState extends State<DetailCovidProvinsi> {
             height: SizeConfig.screenHight / 1.6,
             child: list_prov.length > 0
                 ? ListView.builder(
-              itemCount: list_prov.length,
-              scrollDirection: Axis.vertical,
-              physics: ClampingScrollPhysics(),
-              itemBuilder: (BuildContext context, int index) {
-                return AnimationConfiguration.staggeredList(
-                  position: index,
-                  duration: const Duration(milliseconds: 200),
-                  child: SlideAnimation(
-                    verticalOffset: 50.0,
-                    child: FadeInAnimation(
-                      child: Card(
-                          margin: EdgeInsets.all(10.0),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Column(
-                              children: [
-
-                                Row(
-                                  children: [
-                                    Text(
-                                      'Tanggal : ${list_prov[index].tanggal}',
-                                      style: TextStyle(
-                                        fontSize: 14,
+                    itemCount: list_prov.length,
+                    scrollDirection: Axis.vertical,
+                    physics: ClampingScrollPhysics(),
+                    itemBuilder: (BuildContext context, int index) {
+                      return AnimationConfiguration.staggeredList(
+                        position: index,
+                        duration: const Duration(milliseconds: 200),
+                        child: SlideAnimation(
+                          verticalOffset: 50.0,
+                          child: FadeInAnimation(
+                            child: Card(
+                                margin: EdgeInsets.all(10.0),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                            'Tanggal : ${list_prov[index].tanggal}',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                  ],
-                                ),     SizedBox(
-                                  height: 4,
-                                ),  Row(
-                                  children: [
-                                    Text(
-                                      'Kasus : ${list_prov[index].kasus.toString()}',
-                                      style: TextStyle(
-                                        fontSize: 14,
+                                      SizedBox(
+                                        height: 4,
                                       ),
-                                    ),
-                                  ],
-                                ),
-
-                                SizedBox(
-                                  height: 4,
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      'Sembuh : ${list_prov[index].sembuh.toString()}',
-                                      style: TextStyle(
-                                        fontSize: 14,
+                                      Row(
+                                        children: [
+                                          Text(
+                                            'Kasus : ${list_prov[index].kasus.toString()}',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 4,
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      'Meninggal : ${list_prov[index].meninggal.toString()}',
-                                      style: TextStyle(
-                                        fontSize: 14,
+                                      SizedBox(
+                                        height: 4,
                                       ),
-                                    ),
-                                  ],
-                                ),
-
-                                SizedBox(
-                                  height: 4,
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      'Dirawat / Isolasi : ${list_prov[index].dirawatOrIsolasi.toString()}',
-                                      style: TextStyle(
-                                        fontSize: 14,
+                                      Row(
+                                        children: [
+                                          Text(
+                                            'Sembuh : ${list_prov[index].sembuh.toString()}',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          )),
-                    ),
-                  ),
-                );
-              },
-            )
+                                      SizedBox(
+                                        height: 4,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            'Meninggal : ${list_prov[index].meninggal.toString()}',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 4,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            'Dirawat / Isolasi : ${list_prov[index].dirawatOrIsolasi.toString()}',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                )),
+                          ),
+                        ),
+                      );
+                    },
+                  )
                 : Container(),
           ),
         ],
