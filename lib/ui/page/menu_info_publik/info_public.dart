@@ -55,7 +55,7 @@ class _InfoPublicPageState extends State<InfoPublicPage> {
                               decoration: BoxDecoration(
                                   color: orangeColor,
                                   image: DecorationImage(
-                                      image: AssetImage('assets/icons/information-point.png'),
+                                      image: AssetImage('assets/icons/Artboard – 11.png'),
                                       fit: BoxFit.cover
                                   ),
                                   borderRadius:
@@ -108,7 +108,7 @@ class _InfoPublicPageState extends State<InfoPublicPage> {
                                   color: orangeColor,
                                   image: DecorationImage(
                                       image:
-                                      AssetImage('assets/icons/information-point.png'),
+                                      AssetImage('assets/icons/Artboard – 11.png'),
                                       fit: BoxFit.cover),
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(75.0)),

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sarina/models/model_home.dart';
 import 'package:sarina/ui/page/info_covid.dart';
@@ -154,35 +155,36 @@ class _DashboardPageState extends State<DashboardPage> {
                                     builder: (context) => CovidPage()));
                               }
                             },
-                            child: Card(
-                                color: kuningColor,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(80))),
-                                elevation: 4,
-                                child: Center(
-                                    child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Image.asset(
-                                        itemDashboard[index].img,
-                                        width: 42,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 4,
-                                    ),
-                                  ],
-                                ))),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: <Widget>[
+                                  Padding(padding: const EdgeInsets.all(4.0),
+                                  child: Row(
+                                    children: <Widget>[
+                                      Expanded(
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          height: 70,
+                                          width: 70,
+                                          decoration: BoxDecoration(
+                                            color: kuningColor,
+                                            shape: BoxShape.circle
+                                          ),
+                                          child: Image.asset(itemDashboard[index].img),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  )
+                                ],
+                              ),
+                            )
                           ),
                           Text(itemDashboard[index].title,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: SizeConfig.blockHorizontal * 2,
+                                  fontSize: 10,
                                   color: Colors.white)),
                         ],
                       )));
@@ -206,27 +208,27 @@ class _DashboardPageState extends State<DashboardPage> {
         itemDashboard.add(new DashboardItems(
             title: "Profile Daerah",
             subtitle: "dsadas",
-            img: "assets/icons/copy.png"));
+            img: "assets/icons/Artboard – 12.png"));
         itemDashboard.add(new DashboardItems(
             title: "Program & \n Kegiatan",
             subtitle: "dsadas",
-            img: "assets/icons/schedules.png"));
+            img: "assets/icons/Artboard – 10.png"));
         itemDashboard.add(new DashboardItems(
             title: "Info Publik",
             subtitle: "dsadas",
-            img: "assets/icons/information-point.png"));
+            img: "assets/icons/Artboard – 11.png"));
         itemDashboard.add(new DashboardItems(
             title: "Berita Terkait",
             subtitle: "dsadas",
-            img: "assets/icons/news.png"));
+            img: "assets/icons/Artboard – 13.png"));
         itemDashboard.add(new DashboardItems(
             title: "Pengaduan",
             subtitle: "dsadas",
-            img: "assets/icons/feedback.png"));
+            img: "assets/icons/Artboard – 14.png"));
         itemDashboard.add(new DashboardItems(
             title: "Info Covid-19",
             subtitle: "dsadas",
-            img: "assets/icons/coronavirus.png"));
+            img: "assets/icons/Artboard – 15.png"));
       });
     } else if (status_login == IS_STAFF) {
       setState(() {
@@ -235,27 +237,27 @@ class _DashboardPageState extends State<DashboardPage> {
         itemDashboard.add(new DashboardItems(
             title: "Profile Daerah",
             subtitle: "dsadas",
-            img: "assets/icons/copy.png"));
+            img: "assets/icons/Artboard – 12.png"));
         itemDashboard.add(new DashboardItems(
             title: "Program & \n Kegiatan",
             subtitle: "dsadas",
-            img: "assets/icons/schedules.png"));
+            img: "assets/icons/Artboard – 10.png"));
         itemDashboard.add(new DashboardItems(
             title: "Info Publik",
             subtitle: "dsadas",
-            img: "assets/icons/information-point.png"));
+            img: "assets/icons/Artboard – 11.png"));
         itemDashboard.add(new DashboardItems(
             title: "Berita Terkait",
             subtitle: "dsadas",
-            img: "assets/icons/news.png"));
+            img: "assets/icons/Artboard – 13.png"));
         itemDashboard.add(new DashboardItems(
             title: "Pengaduan",
             subtitle: "dsadas",
-            img: "assets/icons/feedback.png"));
+            img: "assets/icons/Artboard – 14.png"));
         itemDashboard.add(new DashboardItems(
             title: "Info Covid-19",
             subtitle: "dsadas",
-            img: "assets/icons/coronavirus.png"));
+            img: "assets/icons/Artboard – 15.png"));
       });
     } else {
       setState(() {
@@ -265,19 +267,19 @@ class _DashboardPageState extends State<DashboardPage> {
         itemDashboard.add(new DashboardItems(
             title: "Berita Terkait",
             subtitle: "dsadas",
-            img: "assets/icons/news.png"));
+            img: "assets/icons/Artboard – 13.png"));
         itemDashboard.add(new DashboardItems(
             title: "Pengaduan",
             subtitle: "dsadas",
-            img: "assets/icons/feedback.png"));
+            img: "assets/icons/Artboard – 14.png"));
         itemDashboard.add(new DashboardItems(
             title: "Info Publik",
             subtitle: "dsadas",
-            img: "assets/icons/information-point.png"));
+            img: "assets/icons/Artboard – 11.png"));
         itemDashboard.add(new DashboardItems(
             title: "Info Covid-19",
             subtitle: "dsadas",
-            img: "assets/icons/coronavirus.png"));
+            img: "assets/icons/Artboard – 15.png"));
       });
     }
   }

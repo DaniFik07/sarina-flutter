@@ -81,7 +81,7 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                             decoration: BoxDecoration(
                                 color: kuningColor,
                                 image: DecorationImage(
-                                    image: AssetImage('assets/icons/copy.png'),
+                                    image: AssetImage('assets/icons/Artboard – 12.png'),
                                     fit: BoxFit.cover
                                 ),
                                 borderRadius:
@@ -140,7 +140,7 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                                 color: kuningColor,
                                 image: DecorationImage(
                                     image:
-                                        AssetImage('assets/icons/copy.png'),
+                                        AssetImage('assets/icons/Artboard – 12.png'),
                                     fit: BoxFit.cover),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(75.0)),
@@ -198,7 +198,7 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                                 color: kuningColor,
                                 image: DecorationImage(
                                     image:
-                                        AssetImage('assets/icons/copy.png'),
+                                        AssetImage('assets/icons/Artboard – 12.png'),
                                     fit: BoxFit.cover),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(75.0)),
