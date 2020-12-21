@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:sarina/data/network/responses/response_login.dart';
+import 'package:sarina/data/network/servis_api_config.dart';
 import 'package:sarina/ui/page/home_page.dart';
 import 'package:sarina/ui/page/register_page.dart';
 import 'package:sarina/ui/widget/already_have_an_account_acheck.dart';
@@ -27,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
 
   final storage = new FlutterSecureStorage();
   TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
 
   @override
   void initState() {
@@ -86,6 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 TextFieldContainer(
                   child: TextField(
+                    controller: passwordController,
                     obscureText: obsecure,
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
@@ -118,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                 RoundedButton(
                   text: "SIGN IN",
                   press: () {
-                    saveLocal();
+                    saveLocal(emailController.text, passwordController.text);
                   },
                 ),
                 SizedBox(height: size.height * 0.03),
@@ -136,32 +140,41 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void saveLocal() async {
-    if (emailController.text.toString().length > 3) {
-      if (emailController.text == "admin") {
-        await storage.write(key: STATUS_LOGIN, value: IS_ADMIN);
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => HomePage()));
-      } else if (emailController.text == "staff") {
-        await storage.write(key: STATUS_LOGIN, value: IS_STAFF);
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => HomePage()));
-      } else {
-        await storage.write(key: STATUS_LOGIN, value: "user");
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => HomePage()));
-      }
-    }else{
-      showToast(context, "Data tidak boleh kurang dari 3 karakter");
+  void saveLocal(String email, String password) async {
+    if (email.isEmpty || password.isEmpty) {
+      showToast(context, "data tidak boleh kosong");
+    } else {
+      ServiceApiConfig().postLogin(email, password).then((val) {
+        if (val.msg == "Berhasil Login") {
+          saveLocals(val);
+        } else {
+          showToast(context, "${val.msg}");
+        }
+      }).catchError((onError) {
+        showToast(context, "$onError");
+      });
     }
   }
 
-  void checkUser() async{
-     String status_login = await  storage.read(key: STATUS_LOGIN);
-     print(status_login + " sss");
-     if(status_login != "STATUS_LOGIN"){
-       Navigator.pushReplacement(context,
-           MaterialPageRoute(builder: (BuildContext context) => HomePage()));
-     }
+  void checkUser() async {
+    String status_login = await storage.read(key: STATUS_LOGIN);
+    print(status_login + " sss");
+    if (status_login != "STATUS_LOGIN") {
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+    }
+  }
+
+  void saveLocals(ResponseLogin val) async {
+    await storage.write(key: TOKEN_LOGIN, value: val.token);
+    if (val.userData.idRole == 1) {
+      await storage.write(key: STATUS_LOGIN, value: IS_ADMIN);
+    } else if (val.userData.idRole == 2) {
+      await storage.write(key: STATUS_LOGIN, value: IS_STAFF);
+    } else {
+      await storage.write(key: STATUS_LOGIN, value: "user");
+    }
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (BuildContext context) => HomePage()));
   }
 }

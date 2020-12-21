@@ -1,5 +1,4 @@
 
-import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:sarina/data/network/servis_api_config.dart';

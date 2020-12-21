@@ -4,8 +4,9 @@ const String IS_ADMIN = "admin";
 const String IS_STAFF = "staff";
 const String IS_USER = "user";
 const String STATUS_LOGIN = "STATUS_LOGIN";
+const String TOKEN_LOGIN = "TOKEN_LOGIN";
 const String BASE_URL_COVID = "https://data.covid19.go.id/public/api/";
-const String BASE_URL = "http://192.168.56.1:55555/v1";
+const String BASE_URL = "http://192.168.43.225:55555/api/v1";
 
 const kPrimaryColor = Color(0xFFDFC2EA);
 const orangeColor = Color(0xFFff8017);

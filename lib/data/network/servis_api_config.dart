@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' show Client, Response;
+import 'package:sarina/data/network/responses/response_login.dart';
 import 'package:sarina/data/network/responses/response_register.dart';
 import 'package:sarina/utils/constants.dart';
 
@@ -16,8 +17,8 @@ class ServiceApiConfig {
   Client client = Client();
   String base_url_covid = BASE_URL_COVID;
   String base_url = BASE_URL;
-  // String base_url = BASE_URL;
 
+  // String base_url = BASE_URL;
 
   Future<ResponseCovidProvinsi> getCovidProv() async {
     Response response;
@@ -31,9 +32,7 @@ class ServiceApiConfig {
     }
   }
 
-  Future<ResponseDetailProvinsi> getCovidDetailProv(
-      String prov
-      ) async {
+  Future<ResponseDetailProvinsi> getCovidDetailProv(String prov) async {
     Response response;
     response = await client.get("$base_url_covid/prov_detail_$prov.json");
     print(response.body.toString());
@@ -44,22 +43,16 @@ class ServiceApiConfig {
       throw Exception('gagal');
     }
   }
-  Future<ResponseRegister> postRegister(
-      String username,
-      String password,
-      String email,
-      String no_telp
-      ) async {
-    Response response;
-    response = await client.post("$base_url/register"
-    ,body: {
-      "USERNAME":username,
-      "PASSWORD":password,
-      "EMAIL":email,
-      "NO_TELPON":no_telp,
 
-        }
-    );
+  Future<ResponseRegister> postRegister(
+      String username, String password, String email, String no_telp) async {
+    Response response;
+    response = await client.post("$base_url/register", body: {
+      "USERNAME": username,
+      "PASSWORD": password,
+      "EMAIL": email,
+      "NO_TELPON": no_telp,
+    });
     print(response.body.toString());
     if (response.statusCode == 200) {
       print('200 ok');
@@ -69,4 +62,18 @@ class ServiceApiConfig {
     }
   }
 
+  Future<ResponseLogin> postLogin(String email, String password) async {
+    Response response;
+    response = await client.post("$base_url/register", body: {
+      "PASSWORD": password,
+      "EMAIL": email
+    });
+    print(response.body.toString());
+    if (response.statusCode == 200) {
+      print('200 ok');
+      return ResponseLogin.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
 }
