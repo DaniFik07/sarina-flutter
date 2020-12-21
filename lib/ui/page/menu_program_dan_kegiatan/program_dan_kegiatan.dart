@@ -78,7 +78,7 @@ class _ProgramDanKegiatanState extends State<ProgramDanKegiatan> {
                             decoration: BoxDecoration(
                                 color: kuningColor,
                                 image: DecorationImage(
-                                    image: AssetImage('assets/icons/schedules.png'),
+                                    image: AssetImage('assets/icons/Artboard – 10.png'),
                                     fit: BoxFit.cover
                                 ),
                                 borderRadius:
@@ -141,7 +141,7 @@ class _ProgramDanKegiatanState extends State<ProgramDanKegiatan> {
                                   color: kuningColor,
                                   image: DecorationImage(
                                       image:
-                                      AssetImage('assets/icons/schedules.png'),
+                                      AssetImage('assets/icons/Artboard – 10.png'),
                                       fit: BoxFit.cover),
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(75.0)),
