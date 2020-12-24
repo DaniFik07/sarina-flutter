@@ -104,18 +104,20 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
                 physics: ClampingScrollPhysics(),
                 itemBuilder: (context, i) {
                   return Center(
-                      child: InkWell(
-                        onTap: () {},
-                        child:  ListTile(
-                          title: Text(
-                            '${list_province[i].provincesName}',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,),
+                      child: Center(
+                        child: InkWell(
+                          onTap: () {},
+                          child:  ListTile(
+                            title: Text(
+                              '${list_province[i].provincesName}',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.black,),
+                            ),
+                            trailing: Icon(Icons.keyboard_arrow_right),
+                            onTap: () {Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => ProvinsiPage(title:widget.title,id_prov : list_province[i].id.toString(),name:list_province[i].provincesName)));},
                           ),
-                          trailing: Icon(Icons.keyboard_arrow_right),
-                          onTap: () {Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ProvinsiPage(title:widget.title)));},
                         ),
                       ));
                 });

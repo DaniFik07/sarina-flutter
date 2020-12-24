@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sarina/data/network/responses/response_kabupaten.dart';
+import 'package:sarina/data/network/servis_api_config.dart';
 import 'package:sarina/ui/widget/text_field_container.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
@@ -14,20 +16,30 @@ import 'input_sarana_prasarana.dart';
 
 class ProvinsiPage extends StatefulWidget {
   String title = "";
+  String id_prov = "";
+  String name = "";
 
-  ProvinsiPage({this.title});
+  ProvinsiPage({this.title, this.id_prov,this.name});
 
   @override
   _ProvinsiPageState createState() => _ProvinsiPageState();
 }
 
 class _ProvinsiPageState extends State<ProvinsiPage> {
+  List<Datum> list_city = [];
+
+  @override
+  void initState() {
+    getCity();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Nama Provinsi'),
+        title: Text('${widget.name}'),
       ),
       body: Container(
         child: SingleChildScrollView(
@@ -44,7 +56,8 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
-                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                         width: MediaQuery.of(context).size.width * 0.8,
                         decoration: BoxDecoration(
                           color: whiteColor,
@@ -66,82 +79,76 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
                   ],
                 ),
               ),
-              ListTile(
-                title: Text(
-                  'Kab. Simeulue',
-                ),
-                trailing: Icon(Icons.keyboard_arrow_right),
-                onTap: () {
-                  if (widget.title == "Data Kapasitas BPBD") {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => InputBPDBPage()));
-                  } else if (widget.title == "Data Sarana Prasarana") {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => InputSaranaPrasaranaPage()));
-                  }else if (widget.title == "Data Informasi Bencana"){
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => InformasiBencanaPage()));
-                  }
-                },
-              ),
-              ListTile(
-                title: Text(
-                  'Kab. Aceh Sungkil',
-                ),
-                trailing: Icon(Icons.keyboard_arrow_right),
-                onTap: () {
-                  if (widget.title == "Data Kapasitas BPBD") {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => InputBPDBPage()));
-                  } else if (widget.title == "Data Sarana Prasarana") {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => InputSaranaPrasaranaPage()));
-                  }else if (widget.title == "Data Informasi Bencana"){
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => InformasiBencanaPage()));
-                  }
-                },
-              ),
-              ListTile(
-                title: Text(
-                  'Kab. Aceh Selatan',
-                ),
-                trailing: Icon(Icons.keyboard_arrow_right),
-                onTap: () {
-                  if (widget.title == "Data Kapasitas BPBD") {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => InputBPDBPage()));
-                  } else if (widget.title == "Data Sarana Prasarana") {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => InputSaranaPrasaranaPage()));
-                  }else if (widget.title == "Data Informasi Bencana"){
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => InformasiBencanaPage()));
-                  }
-                },
-              ),
-              ListTile(
-                title: Text(
-                  'Kab. Aceh Selatan 2 ',
-                ),
-                trailing: Icon(Icons.keyboard_arrow_right),
-                onTap: () {
-                  if(widget.title =="Data Kapasitas BPBD"){
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => InputBPDBPage()));
-                  }else if(widget.title == "Data Sarana Prasarana"){
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => InputSaranaPrasaranaPage()));
-                  }else if (widget.title == "Data Informasi Bencana"){
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => InformasiBencanaPage()));
-                  }
-                },
-              ),
+              buildListCity(),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget buildListCity() {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height / 1.5,
+      child: FutureBuilder(
+        future: get_city(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+                itemCount: snapshot.data.length,
+                physics: ClampingScrollPhysics(),
+                itemBuilder: (context, i) {
+                  return Center(
+                      child: Center(
+                    child: InkWell(
+                      onTap: () {},
+                      child: ListTile(
+                        title: Text(
+                          '${list_city[i].regenciesName}',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                        trailing: Icon(Icons.keyboard_arrow_right),
+                        onTap: () {
+                          if (widget.title == "Data Kapasitas BPBD") {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => InputBPDBPage(kab_id: list_city[i].id.toString(),kab: list_city[i].regenciesName,
+                                    prov:widget.name)));
+                          } else if (widget.title == "Data Sarana Prasarana") {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    InputSaranaPrasaranaPage()));
+                          } else if (widget.title == "Data Informasi Bencana") {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => InformasiBencanaPage(kab_id: list_city[i].id.toString(),kab: list_city[i].regenciesName,
+                                    prov:widget.name)));
+                          }
+                        },
+                      ),
+                    ),
+                  ));
+                });
+          } else {
+            return Container(child: Center(child: CircularProgressIndicator()));
+          }
+        },
+      ),
+    );
+  }
+
+  Future<List<Datum>> get_city() async {
+    return new Future.delayed(new Duration(seconds: 3), () {
+      return list_city;
+    });
+  }
+
+  void getCity() {
+    ServiceApiConfig().getCity(widget.id_prov).then((val) {
+      setState(() {
+        list_city = val.data;
+      });
+    }).catchError((_) {});
   }
 }

@@ -1,22 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:sarina/data/network/servis_api_config.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
 
-class InformasiBencanaPage extends StatefulWidget{
+class InformasiBencanaPage extends StatefulWidget {
   String title;
-  InformasiBencanaPage({this.title});
+  String kab_id;
+  String kab = "";
+  String prov = "";
+
+  InformasiBencanaPage({this.title, this.kab_id,this.kab,this.prov});
+
   @override
   _InformasiBencanaPageState createState() => _InformasiBencanaPageState();
-
 }
 
 class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
+  String name = "";
+  String address = "";
+  final storage = new FlutterSecureStorage();
+
+  @override
+  void initState() {
+    getPic();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      floatingActionButton:
-      Padding(
+      floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 20),
         child: FloatingActionButton.extended(
           onPressed: () {},
@@ -30,10 +45,10 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 16
-              ),
+                  fontSize: 16),
             ),
-        ),),
+          ),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Container(
@@ -50,17 +65,18 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: SizeConfig.screenHight / 18,),
+                    SizedBox(
+                      height: SizeConfig.screenHight / 18,
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 4.0),
                       child: Text(
                         'Form Input Informasi Bencana',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold
-                        ),
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
                       ),
                     )
                   ],
@@ -76,32 +92,34 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0, top: 8.0),
-                      child: Text('Ketua Pelaksana BPDB Prov, Aceh, Kab Aceh Singkil',
+                      child: Text('Ketua Pelaksana BPDB Prov, ${widget.prov}, Kab ${widget.kab}',
                         style: TextStyle(color: abuAbu, fontSize: 12),),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0, top: 8.0),
-                      child: Text('Atung Nugroho',
+                      child: Text(
+                        '$name',
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 16,
-                            fontWeight: FontWeight.bold
-                        ),
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0, top: 8.0),
-                      child: Text('Alamat Kantor',
-                        style: TextStyle(color: abuAbu, fontSize: 12),),
+                      child: Text(
+                        'Alamat Kantor',
+                        style: TextStyle(color: abuAbu, fontSize: 12),
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0, top: 8.0),
-                      child: Text('Jl. Putri Tunggal No 98',
+                      child: Text(
+                        '$address',
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 16,
-                            fontWeight: FontWeight.bold
-                        ),
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
@@ -117,8 +135,7 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
                         color: Colors.black,
                       ),
                       hintText: "Angin Topan",
-                      hintStyle: TextStyle(fontSize: 16, color: abuAbu)
-                  ),
+                      hintStyle: TextStyle(fontSize: 16, color: abuAbu)),
                 ),
               ),
               Padding(
@@ -131,8 +148,7 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
                         color: Colors.black,
                       ),
                       hintText: "Kekeringan",
-                      hintStyle: TextStyle(fontSize: 16, color: abuAbu)
-                  ),
+                      hintStyle: TextStyle(fontSize: 16, color: abuAbu)),
                 ),
               ),
               Padding(
@@ -145,8 +161,7 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
                         color: Colors.black,
                       ),
                       hintText: "KARHUTLA",
-                      hintStyle: TextStyle(fontSize: 16, color: abuAbu)
-                  ),
+                      hintStyle: TextStyle(fontSize: 16, color: abuAbu)),
                 ),
               ),
               Padding(
@@ -159,11 +174,12 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
                         color: Colors.black,
                       ),
                       hintText: "Lainnya",
-                      hintStyle: TextStyle(fontSize: 16, color: abuAbu)
-                  ),
+                      hintStyle: TextStyle(fontSize: 16, color: abuAbu)),
                 ),
               ),
-              SizedBox(height: 8,),
+              SizedBox(
+                height: 8,
+              ),
               Padding(
                 padding: const EdgeInsets.only(left: 12.0, top: 8.0),
                 child: Text(
@@ -192,7 +208,9 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               Padding(
                 padding: const EdgeInsets.only(left: 12.0, top: 8.0),
                 child: Text(
@@ -221,7 +239,9 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 80,)
+              SizedBox(
+                height: 80,
+              )
             ],
           ),
         ),
@@ -229,4 +249,15 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
     );
   }
 
+  void getPic() async {
+    String token = await storage.read(key: TOKEN_LOGIN);
+    ServiceApiConfig().getPic(widget.kab_id, token).then((val) {
+      if (val.data.length > 0) {
+        setState(() {
+          name = val.data[0].fullname;
+          address = val.data[0].alamat;
+        });
+      }
+    }).catchError((_) {});
+  }
 }

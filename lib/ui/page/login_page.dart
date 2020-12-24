@@ -167,6 +167,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void saveLocals(ResponseLogin val) async {
     await storage.write(key: TOKEN_LOGIN, value: val.token);
+    await storage.write(key: ID_USER, value: val.userData.idUser.toString());
     if (val.userData.idRole == 1) {
       await storage.write(key: STATUS_LOGIN, value: IS_ADMIN);
     } else if (val.userData.idRole == 2) {

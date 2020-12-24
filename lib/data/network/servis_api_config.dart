@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' show Client, Response;
+import 'package:sarina/data/network/responses/reponse_pic.dart';
 import 'package:sarina/data/network/responses/response_kabupaten.dart';
 import 'package:sarina/data/network/responses/response_login.dart';
+import 'package:sarina/data/network/responses/response_pic_by_id.dart';
 import 'package:sarina/data/network/responses/response_province.dart';
 import 'package:sarina/data/network/responses/response_register.dart';
 import 'package:sarina/utils/constants.dart';
@@ -63,6 +65,29 @@ class ServiceApiConfig {
     print(response.body);
     if (response.statusCode == 200) {
       return ResponseKabupaten.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+
+  Future<ResponsePic> getPic(String id,String token) async {
+    Response response;
+    response = await client.post("$base_url/pic",body: {"KABUPATEN_ID" :id},headers: {"Authorization" : "Bearer $token"});
+    print("saadsad "+ response.body);
+    if (response.statusCode == 200) {
+      return ResponsePic.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+  Future<ResponsePicbyId> getPicById(String id,String token) async {
+    Response response;
+    response = await client.post("$base_url/picbyid",body: {"USERS_ID" :id},headers: {"Authorization" : "Bearer $token"});
+    print(response.body);
+    if (response.statusCode == 200) {
+      return ResponsePicbyId.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
     }

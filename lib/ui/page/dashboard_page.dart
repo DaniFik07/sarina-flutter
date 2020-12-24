@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:sarina/data/network/servis_api_config.dart';
 import 'package:sarina/models/model_home.dart';
 import 'package:sarina/ui/page/info_covid.dart';
 import 'package:sarina/ui/widget/menu_circle.dart';
@@ -29,6 +30,7 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   List<String> imgList = [];
   String status_login = "";
+  String kab_id = "";
   final storage = new FlutterSecureStorage();
 
   int _current = 0;
@@ -293,7 +295,6 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   void chekRole() async {
-    //baca vale dari kunci STATuS_LOGIN
     status_login = await storage.read(key: STATUS_LOGIN);
     setState(() {});
   }

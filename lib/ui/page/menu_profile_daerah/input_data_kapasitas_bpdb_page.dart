@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:sarina/data/network/servis_api_config.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
 
@@ -12,12 +14,26 @@ import 'package:sarina/utils/size_config.dart';
 
 class InputBPDBPage extends StatefulWidget {
   String title;
-  InputBPDBPage({this.title});
+  String kab_id;
+  String kab = "";
+  String prov = "";
+
+  InputBPDBPage({this.title,this.kab_id,this.kab,this.prov});
   @override
   _InputBPDBPageState createState() => _InputBPDBPageState();
 }
 
 class _InputBPDBPageState extends State<InputBPDBPage> {
+  final storage = new FlutterSecureStorage();
+
+  String name = "";
+  String address = "";
+
+  @override
+  void initState() {
+    getPic();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -84,12 +100,12 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0, top: 8.0),
-                      child: Text('Ketua Pelaksana BPDB Prov, Aceh, Kab Aceh Singkil',
+                      child: Text('Ketua Pelaksana BPDB Prov, ${widget.prov}, Kab ${widget.kab}',
                         style: TextStyle(color: abuAbu, fontSize: 12),),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0, top: 8.0),
-                      child: Text('${widget.title}',
+                      child: Text('$name',
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 16,
@@ -104,7 +120,7 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0, top: 8.0),
-                      child: Text('Jl. Putri Tunggal No 98',
+                      child: Text('$address',
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 16,
@@ -246,5 +262,17 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
         ),
       ),
     );
+  }
+
+  void getPic() async {
+    String token = await storage.read(key: TOKEN_LOGIN);
+    ServiceApiConfig().getPic(widget.kab_id, token).then((val) {
+      if (val.data.length > 0) {
+        setState(() {
+          name = val.data[0].fullname;
+          address = val.data[0].alamat;
+        });
+      }
+    }).catchError((_) {});
   }
 }
