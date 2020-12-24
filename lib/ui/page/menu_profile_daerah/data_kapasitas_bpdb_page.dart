@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sarina/data/network/responses/response_province.dart';
+import 'package:sarina/data/network/servis_api_config.dart';
 import 'package:sarina/ui/widget/text_field_container.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
@@ -19,6 +21,15 @@ class DataKapasitasBPDBPage extends StatefulWidget {
 }
 
 class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
+  List<Datum> list_province = [];
+
+
+  @override
+  void initState() {
+    getProvince();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -64,44 +75,63 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
                 ],
               ),
             ),
-            ListTile(
-              title: Text(
-                'Aceh',
-                style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black,),
-              ),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ProvinsiPage(title:widget.title)));
-                },
-            ),
-            ListTile(
-              title: Text(
-                'Depok',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,),
-              ),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ProvinsiPage(title:widget.title)));},
-            ),
-            ListTile(
-              title: Text(
-                'Jakarta',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,),
-              ),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ProvinsiPage(title:widget.title)));},
-            ),
+            buildListProvince(),
+
           ],
         ),
       ),
     );
   }
+
+  void getProvince() {
+    ServiceApiConfig().getProvince().then((val){
+      setState(() {
+        list_province = val.data;
+      });
+    }).catchError((_){
+    });
+  }
+
+  Widget buildListProvince() {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height / 1.5,
+      child: FutureBuilder(
+        future: get_province(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+                itemCount: snapshot.data.length,
+                physics: ClampingScrollPhysics(),
+                itemBuilder: (context, i) {
+                  return Center(
+                      child: InkWell(
+                        onTap: () {},
+                        child:  ListTile(
+                          title: Text(
+                            '${list_province[i].provincesName}',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,),
+                          ),
+                          trailing: Icon(Icons.keyboard_arrow_right),
+                          onTap: () {Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ProvinsiPage(title:widget.title)));},
+                        ),
+                      ));
+                });
+          } else {
+            return Container(child: Center(child: CircularProgressIndicator()));
+          }
+        },
+      ),
+    );
+
+  }
+
+  Future<List<Datum>> get_province() async {
+    return new Future.delayed(new Duration(seconds: 3), () {
+      return list_province;
+    });
+  }
+
 }

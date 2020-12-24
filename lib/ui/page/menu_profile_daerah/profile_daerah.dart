@@ -65,7 +65,12 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                       Navigator.of(context).push(
                           MaterialPageRoute(
                               builder: (context) =>
-                                  InputBPDBPage(title: "nama ketua prov",)));
+                                  DataKapasitasBPDBPage(
+                                      title: "Data Kapasitas BPBD")));
+                      // Navigator.of(context).push(
+                      //     MaterialPageRoute(
+                      //         builder: (context) =>
+                      //             InputBPDBPage(title: "nama ketua prov",)));
                     }
                   },
                   child: Card(
