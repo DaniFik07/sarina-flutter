@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' show Client, Response;
+import 'package:sarina/data/network/responses/response_kabupaten.dart';
 import 'package:sarina/data/network/responses/response_login.dart';
+import 'package:sarina/data/network/responses/response_province.dart';
 import 'package:sarina/data/network/responses/response_register.dart';
 import 'package:sarina/utils/constants.dart';
 
@@ -44,14 +46,37 @@ class ServiceApiConfig {
     }
   }
 
+  Future<ResponseProvince> getProvince() async {
+    Response response;
+    response = await client.get("$base_url/provinsi"
+    );
+    print(response.body.toString());
+    if (response.statusCode == 200) {
+      return ResponseProvince.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+  Future<ResponseKabupaten> getCity(String id) async {
+    Response response;
+    response = await client.post("$base_url/kabupatenbyid",body: {"provinces_id" :id});
+    print(response.body);
+    if (response.statusCode == 200) {
+      return ResponseKabupaten.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
   Future<ResponseRegister> postRegister(
-      String username, String password, String email, String no_telp) async {
+      String fullname,String username, String password, String email, String no_telp) async {
     Response response;
     response = await client.post("$base_url/register", body: {
       "USERNAME": username,
       "PASSWORD": password,
       "EMAIL": email,
       "NO_TELPON": no_telp,
+      "FULLNAME": fullname,
     });
     print(response.body.toString());
     if (response.statusCode == 200) {
@@ -64,7 +89,7 @@ class ServiceApiConfig {
 
   Future<ResponseLogin> postLogin(String email, String password) async {
     Response response;
-    response = await client.post("$base_url/register", body: {
+    response = await client.post("$base_url/auth", body: {
       "PASSWORD": password,
       "EMAIL": email
     });

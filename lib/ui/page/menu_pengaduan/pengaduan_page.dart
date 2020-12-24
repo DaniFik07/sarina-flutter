@@ -39,7 +39,8 @@ class _PengaduanPageState extends State<PengaduanPage> {
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 20),
         child: Visibility(
-          visible: status_login ==IS_ADMIN || status_login ==IS_USER?false:true,
+          // visible: status_login ==IS_ADMIN || status_login ==IS_USER?false:true,
+          visible: true,
           child: FloatingActionButton.extended(
             elevation: 3,
             onPressed: () {

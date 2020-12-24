@@ -124,69 +124,71 @@ class _DashboardPageState extends State<DashboardPage> {
                       margin: EdgeInsets.only(
                           left: 2.0, right: 2.0, top: 2.0, bottom: 2.0),
                       padding: EdgeInsets.all(8),
-                      child: Column(
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              if (itemDashboard[index].title ==
-                                  "Profile Daerah") {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => ProfileDaerahPage()));
-                              } else if (itemDashboard[index].title ==
-                                  "Program & \n Kegiatan") {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                        ProgramDanKegiatan()));
-                              } else if (itemDashboard[index].title ==
-                                  "Info Publik") {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => InfoPublicPage()));
-                              } else if (itemDashboard[index].title ==
-                                  "Berita Terkait") {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => BeritaTerkait()));
-                              } else if (itemDashboard[index].title ==
-                                  "Pengaduan") {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => PengaduanPage()));
-                              } else if (itemDashboard[index].title ==
-                                  "Info Covid-19") {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => CovidPage()));
-                              }
-                            },
-                            child: SingleChildScrollView(
-                              child: Column(
-                                children: <Widget>[
-                                  Padding(padding: const EdgeInsets.all(4.0),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Expanded(
-                                        child: Container(
-                                          alignment: Alignment.center,
-                                          height: 72,
-                                          width: 72,
-                                          decoration: BoxDecoration(
-                                            color: kuningColor,
-                                            shape: BoxShape.circle
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                if (itemDashboard[index].title ==
+                                    "Profile Daerah") {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => ProfileDaerahPage()));
+                                } else if (itemDashboard[index].title ==
+                                    "Program & \n Kegiatan") {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          ProgramDanKegiatan()));
+                                } else if (itemDashboard[index].title ==
+                                    "Info Publik") {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => InfoPublicPage()));
+                                } else if (itemDashboard[index].title ==
+                                    "Berita Terkait") {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => BeritaTerkait()));
+                                } else if (itemDashboard[index].title ==
+                                    "Pengaduan") {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => PengaduanPage()));
+                                } else if (itemDashboard[index].title ==
+                                    "Info Covid-19") {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => CovidPage()));
+                                }
+                              },
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: <Widget>[
+                                    Padding(padding: const EdgeInsets.all(4.0),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Expanded(
+                                          child: Container(
+                                            alignment: Alignment.center,
+                                            height: 72,
+                                            width: 72,
+                                            decoration: BoxDecoration(
+                                              color: kuningColor,
+                                              shape: BoxShape.circle
+                                            ),
+                                            child: Image.asset(itemDashboard[index].img),
                                           ),
-                                          child: Image.asset(itemDashboard[index].img),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  )
-                                ],
-                              ),
-                            )
-                          ),
-                          Text(itemDashboard[index].title,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 10,
-                                  color: Colors.white)),
-                        ],
+                                        )
+                                      ],
+                                    ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ),
+                            Text(itemDashboard[index].title,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: SizeConfig.blockHorizontal *3,
+                                    color: Colors.white)),
+                          ],
+                        ),
                       )));
         },
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -260,26 +262,32 @@ class _DashboardPageState extends State<DashboardPage> {
             img: "assets/icons/Artboard – 19.png"));
       });
     } else {
-      setState(() {
-        imgList.add("assets/img/flutter.png");
-        imgList.add("assets/img/flutter.png");
-
-        itemDashboard.add(new DashboardItems(
-            title: "Berita Terkait",
-            subtitle: "dsadas",
-            img: "assets/icons/Artboard – 21.png"));
-        itemDashboard.add(new DashboardItems(
-            title: "Pengaduan",
-            subtitle: "dsadas",
-            img: "assets/icons/Artboard – 20.png"));
-        itemDashboard.add(new DashboardItems(
-            title: "Info Publik",
-            subtitle: "dsadas",
-            img: "assets/icons/Artboard – 17.png"));
-        itemDashboard.add(new DashboardItems(
-            title: "Info Covid-19",
-            subtitle: "dsadas",
-            img: "assets/icons/Artboard – 19.png"));
+      setState(() {    imgList.add("assets/img/flutter.png");
+      imgList.add("assets/img/flutter.png");
+      itemDashboard.add(new DashboardItems(
+          title: "Profile Daerah",
+          subtitle: "dsadas",
+          img: "assets/icons/Artboard – 18.png"));
+      itemDashboard.add(new DashboardItems(
+          title: "Program & \n Kegiatan",
+          subtitle: "dsadas",
+          img: "assets/icons/Artboard – 16.png"));
+      itemDashboard.add(new DashboardItems(
+          title: "Info Publik",
+          subtitle: "dsadas",
+          img: "assets/icons/Artboard – 17.png"));
+      itemDashboard.add(new DashboardItems(
+          title: "Berita Terkait",
+          subtitle: "dsadas",
+          img: "assets/icons/Artboard – 21.png"));
+      itemDashboard.add(new DashboardItems(
+          title: "Pengaduan",
+          subtitle: "dsadas",
+          img: "assets/icons/Artboard – 20.png"));
+      itemDashboard.add(new DashboardItems(
+          title: "Info Covid-19",
+          subtitle: "dsadas",
+          img: "assets/icons/Artboard – 19.png"));
       });
     }
   }

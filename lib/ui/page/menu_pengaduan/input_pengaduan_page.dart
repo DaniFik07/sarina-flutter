@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:sarina/ui/widget/text_field_container.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
+import 'package:sarina/utils/util_widget.dart';
 
 /**
  * Created by Bayu Nugroho
@@ -22,6 +23,8 @@ class InputPengaduanPage extends StatefulWidget {
 
 class _InputPengaduanPageState extends State<InputPengaduanPage> {
   String _date = "Tgl/Bln/Thn";
+  String jenis_bencana = "-- Pilih --";
+
 
   bool visible_upload = false;
   String errMessage = 'Error Uploading Image';
@@ -60,6 +63,41 @@ class _InputPengaduanPageState extends State<InputPengaduanPage> {
                       color: Colors.black,
                       fontSize: SizeConfig.blockVertical * 4,
                       fontWeight: FontWeight.bold),
+                ),
+                Container(
+                  width: SizeConfig.screenWidth /1.2,
+                  child: DropdownButton(
+                    elevation: 5,
+                    hint: Text('------'),
+                    dropdownColor: Colors.grey[200],
+                    isExpanded: true,
+                    items: [
+                      DropdownMenuItem<String>(
+                        value: "-- Pilih --",
+                        child: Text(
+                          "-- Pilih --",style: TextStyle(color: Colors.black),
+                        ),
+                      ),
+                      DropdownMenuItem<String>(
+                        value: "Bencana Alam",
+                        child: Text(
+                          "Bencana Alam",
+                        ),
+                      ),
+                      DropdownMenuItem<String>(
+                        value: "Bencana Non Alam",
+                        child: Text(
+                          "Bencana Non Alam",
+                        ),
+                      ),
+                    ],
+                    onChanged: (value) {
+                      setState(() {
+                        jenis_bencana = value;
+                      });
+                    },
+                    value: jenis_bencana,
+                  ),
                 ),
                 Container(
                   width: SizeConfig.screenWidth,
@@ -243,6 +281,10 @@ class _InputPengaduanPageState extends State<InputPengaduanPage> {
 
   startUpload() {
     setStatus('Uploading Image...');
+
+    showToast(context, "berhasil diupload");
+    Navigator.pop(context);
+    Navigator.pop(context);
     if (null == tmpFile) {
       setStatus(errMessage);
       return;

@@ -1,7 +1,6 @@
-/**
- * Created by Bayu Nugroho
- * Copyright (c) 2020 . All rights reserved.
- */
+// To parse this JSON data, do
+//
+//     final responseLogin = responseLoginFromJson(jsonString);
 
 import 'dart:convert';
 
@@ -40,6 +39,7 @@ class ResponseLogin {
 class UserData {
   UserData({
     this.idUser,
+    this.fullname,
     this.username,
     this.idRole,
     this.noTelpon,
@@ -47,23 +47,26 @@ class UserData {
   });
 
   int idUser;
+  String fullname;
   String username;
-  int idRole;
-  String noTelpon;
+  dynamic idRole;
+  int noTelpon;
   String email;
 
   factory UserData.fromJson(Map<String, dynamic> json) => UserData(
     idUser: json["id_user"] == null ? null : json["id_user"],
+    fullname: json["fullname"] == null ? null : json["fullname"],
     username: json["username"] == null ? null : json["username"],
-    idRole: json["id_role"] == null ? null : json["id_role"],
+    idRole: json["id_role"],
     noTelpon: json["no_telpon"] == null ? null : json["no_telpon"],
     email: json["email"] == null ? null : json["email"],
   );
 
   Map<String, dynamic> toJson() => {
     "id_user": idUser == null ? null : idUser,
+    "fullname": fullname == null ? null : fullname,
     "username": username == null ? null : username,
-    "id_role": idRole == null ? null : idRole,
+    "id_role": idRole,
     "no_telpon": noTelpon == null ? null : noTelpon,
     "email": email == null ? null : email,
   };
