@@ -267,10 +267,6 @@ class _DashboardPageState extends State<DashboardPage> {
       setState(() {    imgList.add("assets/img/flutter.png");
       imgList.add("assets/img/flutter.png");
       itemDashboard.add(new DashboardItems(
-          title: "Profile Daerah",
-          subtitle: "dsadas",
-          img: "assets/icons/Artboard – 18.png"));
-      itemDashboard.add(new DashboardItems(
           title: "Program & \n Kegiatan",
           subtitle: "dsadas",
           img: "assets/icons/Artboard – 16.png"));

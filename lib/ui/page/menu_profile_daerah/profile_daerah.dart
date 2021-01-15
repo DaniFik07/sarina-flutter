@@ -28,12 +28,12 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
   String kab_id = "";
   String kab = "";
   String prov = "";
+  String prov_id = "";
   final storage = new FlutterSecureStorage();
 
   @override
   void initState() {
     chekRole();
-    //cek role sebelm widget dibangun / pertama kali page ini di jalankan
     super.initState();
   }
 
@@ -71,7 +71,7 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                         Navigator.of(context).push(
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    InputBPDBPage(title: "Data Kapasitas BPBD",kab_id: kab_id,kab: kab,prov: prov)));
+                                    InputBPDBPage(title: "Data Kapasitas BPBD",kab_id: kab_id,kab: kab,prov: prov,prov_id: prov_id)));
                       }else{
                         print("wait");
                       }
@@ -194,9 +194,10 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                                 builder: (context) =>
                                     InformasiBencanaPage(
                                       title: "Data Informasi Bencana",
-                                        kab_id: kab_id,kab: kab,prov: prov)));
+                                        kab_id: kab_id,kab: kab,
+                                        prov: prov,prov_id:prov_id)));
                       }else{
-                        showToast(context, "");
+                        showToast(context, "Wait");
                       }
                     }
                   },
@@ -248,14 +249,15 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
   void chekRole() async {
     //baca vale dari kunci STATuS_LOGIN
     status_login = await storage.read(key: STATUS_LOGIN);
-    String id_user = await storage.read(key: ID_USER);
+    String id_pic = await storage.read(key: ID_PIC);
     String token = await storage.read(key: TOKEN_LOGIN);
     if (status_login != IS_ADMIN) {
-      ServiceApiConfig().getPicById(id_user, token).then((val) {
+      ServiceApiConfig().getPicById(id_pic, token).then((val) {
         if (val.data.length > 0) {
           kab_id = val.data[0].regenciesId.toString();
           kab = val.data[0].namaKabupaten.toString();
           prov = val.data[0].namaProvinsi.toString();
+          prov_id = val.data[0].provincesId.toString();
         }
       }).catchError((onError) {});
     }

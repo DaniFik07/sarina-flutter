@@ -6,6 +6,10 @@ const String IS_USER = "user";
 const String ID_USER = "ID_USER";
 const String STATUS_LOGIN = "STATUS_LOGIN";
 const String TOKEN_LOGIN = "TOKEN_LOGIN";
+const String PHONE_LOGIN = "PHONE_LOGIN";
+const String EMAIL_LOGIN= "EMAIL_LOGIN";
+const String FULL_NAME_LOGIN= "FULL_NAME_LOGIN";
+const String ID_PIC = "ID_PIC";
 const String BASE_URL_COVID = "https://data.covid19.go.id/public/api/";
 const String BASE_URL = "https://lencanaapi2020.herokuapp.com/api/v1";
 

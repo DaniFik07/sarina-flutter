@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:sarina/data/network/servis_api_config.dart';
 import 'package:sarina/ui/page/login_page.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
@@ -17,19 +18,23 @@ class _ProfilePageState extends State<ProfilePage> {
   String email = "";
   String no_kk = "";
   String userId = "";
+  String pangkat = "";
+  String instansi = "";
   String telephone_number = "";
   TextEditingController emailController = new TextEditingController();
   TextEditingController alamatController = new TextEditingController();
   TextEditingController hpController = new TextEditingController();
   String nominal = "";
+  String fullname = "";
   final storage = new FlutterSecureStorage();
 
   @override
   void initState() {
+    getProfile();
     setState(() {
-      emailController.text ="atung@gmail.com";
-      hpController.text ="08212122233";
-      alamatController.text ="jl. Putri Tunggal";
+      emailController.text = "atung@gmail.com";
+      hpController.text = "08212122233";
+      alamatController.text = "jl. Putri Tunggal";
     });
     super.initState();
   }
@@ -102,7 +107,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             height: 10.0,
                           ),
                           Text(
-                            "Atung Nugroho",
+                            "$fullname",
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.black,
@@ -143,7 +148,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             height: 10.0,
                           ),
                           Text(
-                            '-',
+                            '$pangkat',
                             style: TextStyle(color: blueColors),
                           )
                         ],
@@ -158,7 +163,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             height: 10.0,
                           ),
                           Text(
-                            '-',
+                            '$instansi',
                             style: TextStyle(color: blueColors),
                           )
                         ],
@@ -181,8 +186,8 @@ class _ProfilePageState extends State<ProfilePage> {
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
                             margin: EdgeInsets.symmetric(vertical: 10),
-                            padding:
-                                EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 5),
                             width: MediaQuery.of(context).size.width * 0.8,
                             decoration: BoxDecoration(
                               color: whiteColor,
@@ -210,8 +215,8 @@ class _ProfilePageState extends State<ProfilePage> {
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
                             margin: EdgeInsets.symmetric(vertical: 10),
-                            padding:
-                                EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 5),
                             width: MediaQuery.of(context).size.width * 0.8,
                             decoration: BoxDecoration(
                               color: whiteColor,
@@ -239,8 +244,8 @@ class _ProfilePageState extends State<ProfilePage> {
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
                             margin: EdgeInsets.symmetric(vertical: 10),
-                            padding:
-                                EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 5),
                             width: MediaQuery.of(context).size.width * 0.8,
                             decoration: BoxDecoration(
                               color: whiteColor,
@@ -250,11 +255,11 @@ class _ProfilePageState extends State<ProfilePage> {
                               controller: alamatController,
                               cursorColor: Colors.black,
                               decoration: InputDecoration(
-                                labelText: "Alamat",
+                                labelText: "Full Name",
                                 hintText: "-",
                                 suffixIcon: IconButton(
                                   onPressed: () {},
-                                  icon: Icon(Icons.location_on),
+                                  icon: Icon(Icons.person),
                                 ),
                                 border: InputBorder.none,
                               ),
@@ -262,7 +267,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 40,)
+                      SizedBox(
+                        height: 40,
+                      )
                     ],
                   )
                 ],
@@ -274,11 +281,29 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  void logout() async{
-    await storage.write(key: STATUS_LOGIN,value: "STATUS_LOGIN");
+  void logout() async {
+    await storage.write(key: STATUS_LOGIN, value: "STATUS_LOGIN");
     await storage.delete(key: IS_ADMIN);
     await storage.delete(key: IS_STAFF);
     Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (BuildContext context) => LoginPage()));
+  }
+
+  void getProfile() async {
+    String pic_id = await storage.read(key: ID_PIC);
+    String token = await storage.read(key: TOKEN_LOGIN);
+    fullname = await storage.read(key: FULL_NAME_LOGIN);
+
+    hpController.text = await storage.read(key: PHONE_LOGIN);
+    emailController.text = await storage.read(key: EMAIL_LOGIN);
+    alamatController.text = await storage.read(key: FULL_NAME_LOGIN);
+    // String phone = await storage.read(key: PHONE_LOGIN);
+    ServiceApiConfig().getPicById(pic_id, token).then((value) {
+        setState(() {
+          instansi = value.data[0].namaProvinsi;
+          pangkat = value.data[0].fullname;
+        });
+        print(value.data[0].fullname +" dataaaaa");
+    }).catchError((onError) {});
   }
 }

@@ -30,8 +30,7 @@ class ResponsePicbyId {
 
 class Datum {
   Datum({
-    this.id,
-    this.levelId,
+    this.picId,
     this.namaProvinsi,
     this.namaKabupaten,
     this.provincesId,
@@ -42,8 +41,7 @@ class Datum {
     this.noTelpon,
   });
 
-  int id;
-  int levelId;
+  int picId;
   String namaProvinsi;
   String namaKabupaten;
   int provincesId;
@@ -51,11 +49,10 @@ class Datum {
   String fullname;
   String email;
   String alamat;
-  int noTelpon;
+  String noTelpon;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-    id: json["id"] == null ? null : json["id"],
-    levelId: json["level_id"] == null ? null : json["level_id"],
+    picId: json["pic_id"] == null ? null : json["pic_id"],
     namaProvinsi: json["nama_provinsi"] == null ? null : json["nama_provinsi"],
     namaKabupaten: json["nama_kabupaten"] == null ? null : json["nama_kabupaten"],
     provincesId: json["provinces_id"] == null ? null : json["provinces_id"],
@@ -67,8 +64,7 @@ class Datum {
   );
 
   Map<String, dynamic> toJson() => {
-    "id": id == null ? null : id,
-    "level_id": levelId == null ? null : levelId,
+    "pic_id": picId == null ? null : picId,
     "nama_provinsi": namaProvinsi == null ? null : namaProvinsi,
     "nama_kabupaten": namaKabupaten == null ? null : namaKabupaten,
     "provinces_id": provincesId == null ? null : provincesId,

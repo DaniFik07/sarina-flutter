@@ -41,33 +41,37 @@ class UserData {
     this.idUser,
     this.fullname,
     this.username,
-    this.idRole,
+    this.levelId,
     this.noTelpon,
     this.email,
+    this.picId,
   });
 
   int idUser;
   String fullname;
   String username;
-  dynamic idRole;
+  int levelId;
   int noTelpon;
   String email;
+  int picId;
 
   factory UserData.fromJson(Map<String, dynamic> json) => UserData(
     idUser: json["id_user"] == null ? null : json["id_user"],
     fullname: json["fullname"] == null ? null : json["fullname"],
     username: json["username"] == null ? null : json["username"],
-    idRole: json["id_role"],
+    levelId: json["level_id"] == null ? null : json["level_id"],
     noTelpon: json["no_telpon"] == null ? null : json["no_telpon"],
     email: json["email"] == null ? null : json["email"],
+    picId: json["pic_id"] == null ? null : json["pic_id"],
   );
 
   Map<String, dynamic> toJson() => {
     "id_user": idUser == null ? null : idUser,
     "fullname": fullname == null ? null : fullname,
     "username": username == null ? null : username,
-    "id_role": idRole,
+    "level_id": levelId == null ? null : levelId,
     "no_telpon": noTelpon == null ? null : noTelpon,
     "email": email == null ? null : email,
+    "pic_id": picId == null ? null : picId,
   };
 }

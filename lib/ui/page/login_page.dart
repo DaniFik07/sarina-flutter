@@ -167,10 +167,14 @@ class _LoginPageState extends State<LoginPage> {
 
   void saveLocals(ResponseLogin val) async {
     await storage.write(key: TOKEN_LOGIN, value: val.token);
+    await storage.write(key: ID_PIC, value: val.userData.picId.toString() + "");
     await storage.write(key: ID_USER, value: val.userData.idUser.toString());
-    if (val.userData.idRole == 1) {
+    await storage.write(key: PHONE_LOGIN, value: val.userData.noTelpon.toString());
+    await storage.write(key: EMAIL_LOGIN, value: val.userData.email.toString());
+    await storage.write(key: FULL_NAME_LOGIN, value: val.userData.fullname);
+    if (val.userData.levelId == 1) {
       await storage.write(key: STATUS_LOGIN, value: IS_ADMIN);
-    } else if (val.userData.idRole == 2) {
+    } else if (val.userData.levelId == 2) {
       await storage.write(key: STATUS_LOGIN, value: IS_STAFF);
     } else {
       await storage.write(key: STATUS_LOGIN, value: "user");

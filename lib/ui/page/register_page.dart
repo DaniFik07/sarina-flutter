@@ -312,7 +312,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                 ),
                 SizedBox(height: size.height * 0.03),
-
               ],
             ),
           ),
@@ -327,7 +326,7 @@ class _RegisterPageState extends State<RegisterPage> {
     }else if(password!=cpassword){
       showToast(context, "password harus sama");
     }else{
-      ServiceApiConfig().postRegister(fullname,username, password, email, no).then((value){
+      ServiceApiConfig().postRegister(fullname,username, password, email, no,provinceId,cityId).then((value){
         Navigator.pop(context);
         showToast(context, "berhasil register");
       }).catchError((onError){

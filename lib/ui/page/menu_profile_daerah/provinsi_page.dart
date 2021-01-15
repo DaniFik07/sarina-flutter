@@ -115,7 +115,7 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
                           if (widget.title == "Data Kapasitas BPBD") {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => InputBPDBPage(kab_id: list_city[i].id.toString(),kab: list_city[i].regenciesName,
-                                    prov:widget.name)));
+                                    prov:widget.name,prov_id: widget.id_prov,)));
                           } else if (widget.title == "Data Sarana Prasarana") {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) =>
@@ -123,7 +123,7 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
                           } else if (widget.title == "Data Informasi Bencana") {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => InformasiBencanaPage(kab_id: list_city[i].id.toString(),kab: list_city[i].regenciesName,
-                                    prov:widget.name)));
+                                    prov:widget.name,prov_id:widget.id_prov)));
                           }
                         },
                       ),

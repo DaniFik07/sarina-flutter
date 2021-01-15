@@ -35,7 +35,7 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
     SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Data Kapasitas BPDB', style: TextStyle(),),
+        title: Text('Data Kapasitas BPBD', style: TextStyle(),),
       ),
       body: Container(
         child: Column(
