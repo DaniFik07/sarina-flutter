@@ -70,7 +70,7 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
     SizeConfig().init(context);
     return Scaffold(
       floatingActionButton: Visibility(
-        visible: visible_upload,
+        visible: true,
         child: Padding(
           padding: const EdgeInsets.only(bottom: 20),
           child: FloatingActionButton.extended(
@@ -497,20 +497,23 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
                   ),
                 ),
               ),
-              Card(
-                clipBehavior: Clip.antiAlias,
-                elevation: 0.0,
-                color: Colors.grey.shade300,
-                child: ListTile(
-                  title: Padding(
-                    padding: EdgeInsets.only(bottom: 00.0, top: 00.0),
-                    child: new RaisedButton(
-                      child: Text('Select Image'),
-                      color: greenColors,
-                      textColor: Colors.white,
-                      onPressed: () {
-                        chooseImage();
-                      },
+              Visibility(
+                visible: false,
+                child: Card(
+                  clipBehavior: Clip.antiAlias,
+                  elevation: 0.0,
+                  color: Colors.grey.shade300,
+                  child: ListTile(
+                    title: Padding(
+                      padding: EdgeInsets.only(bottom: 00.0, top: 00.0),
+                      child: new RaisedButton(
+                        child: Text('Select Image'),
+                        color: greenColors,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          chooseImage();
+                        },
+                      ),
                     ),
                   ),
                 ),
