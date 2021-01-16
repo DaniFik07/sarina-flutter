@@ -43,7 +43,7 @@ dependencies:
   select_dialog: ^1.2.1
   geolocator: ^6.1.13
   intl: ^0.16.1
-
+  date_format: ^1.0.9
 
 
 

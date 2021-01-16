@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' show Client, Response;
+import 'package:sarina/data/network/responses/get_sumber.dart';
 import 'package:sarina/data/network/responses/reponse_pic.dart';
+import 'package:sarina/data/network/responses/response_get_kegiatan.dart';
 import 'package:sarina/data/network/responses/response_get_submit_bpbd.dart';
 import 'package:sarina/data/network/responses/response_kabupaten.dart';
 import 'package:sarina/data/network/responses/response_login.dart';
@@ -9,6 +11,7 @@ import 'package:sarina/data/network/responses/response_message.dart';
 import 'package:sarina/data/network/responses/response_pic_by_id.dart';
 import 'package:sarina/data/network/responses/response_province.dart';
 import 'package:sarina/data/network/responses/response_register.dart';
+import 'package:sarina/data/network/responses/response_slider.dart';
 import 'package:sarina/utils/constants.dart';
 
 import 'responses/response_covid_provinsi.dart';
@@ -98,6 +101,79 @@ class ServiceApiConfig {
     }
   }
 
+  Future<ResponseGetSlider> getSlider( String token) async {
+    Response response;
+    response = await client.get("$base_url/image",
+        headers: {"Authorization": "Bearer $token"});
+    print(response.body.toString() + "dsadsa");
+    if (response.statusCode == 200) {
+      return ResponseGetSlider.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+  Future<ResponseGetSumber> getSumber( String token) async {
+    Response response;
+    response = await client.get("$base_url/get_sumber",
+        headers: {"Authorization": "Bearer $token"});
+    if (response.statusCode == 200) {
+      return ResponseGetSumber.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+
+ Future<ResponseGetKegiatan> getKegiatan( String token,String type) async {
+    Response response;
+    response = await client.get("$base_url/data_kegiatan/$type",
+        headers: {"Authorization": "Bearer $token"});
+    print(response.body.toString() + "dsadsa");
+    if (response.statusCode == 200) {
+      return ResponseGetKegiatan.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+  Future<ResponseMessage> submitNonAlam(
+      String token,
+      String ID_PROVINSI,
+      String ID_KABUPATEN,
+      String ID_USER,
+      String ID_KEPLAK,
+      String KERUGIAN_MATERI,
+      String KETERANGAN,
+      String TAHUN,
+      String BENCANA,
+      String CREATED_AT,
+      String LAT,
+      String LNG,
+      ) async {
+    Response response;
+    response = await client.post("$base_url/data_bencana_non/submit", body: {
+      "ID_PROVINSI": ID_PROVINSI,
+      "ID_KABUPATEN": ID_KABUPATEN,
+      "ID_USER": ID_USER,
+      "ID_KEPLAK": ID_KEPLAK,
+      "KERUGIAN_MATERI": KERUGIAN_MATERI,
+      "KETERANGAN": KETERANGAN,
+      "TAHUN": TAHUN,
+      "BENCANA": BENCANA,
+      "CREATED_AT": CREATED_AT,
+      "LAT": LAT,
+      "LNG": LNG,
+    }, headers: {
+      "Authorization": "Bearer $token"
+    });
+    print(response.body + " DATAAAAA");
+    if (response.statusCode == 200) {
+      return ResponseMessage.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
   Future<ResponseMessage> submitBPBDCapacity(
     String token,
     String ID_PROVINSI,
@@ -161,7 +237,6 @@ class ServiceApiConfig {
     String TAHUN,
     String LAT,
     String LNG,
-
   ) async {
     Response response;
     response = await client.post("$base_url/data_bencana/submit", body: {
@@ -228,6 +303,38 @@ class ServiceApiConfig {
     if (response.statusCode == 200) {
       print('200 ok');
       return ResponseLogin.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+  Future<ResponseMessage> postKegiatan(
+      String ID_USER,
+      String ID_SUMBER,
+      String JENIS_KEGIATAN,
+      String NAMA_KEGIATAN,
+      String PROGRESS,
+      String TANGGAL,
+      String WAKTU,
+      String DESKRIPSI_KEGIATAN,
+      String token
+      ) async {
+    Response response;
+    response = await client
+        .post("$base_url/data_kegiatan/submit", body: {
+          "ID_USER": ID_USER,
+          "ID_SUMBER": ID_SUMBER,
+          "JENIS_KEGIATAN": JENIS_KEGIATAN,
+          "NAMA_KEGIATAN": NAMA_KEGIATAN,
+          "PROGRESS": PROGRESS,
+          "TANGGAL": TANGGAL,
+          "WAKTU": WAKTU,
+          "DESKRIPSI_KEGIATAN": DESKRIPSI_KEGIATAN,
+        },headers: {"Authorization": "Bearer $token"});
+    print(response.body.toString());
+    if (response.statusCode == 200) {
+      print('200 ok');
+      return ResponseMessage.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
     }

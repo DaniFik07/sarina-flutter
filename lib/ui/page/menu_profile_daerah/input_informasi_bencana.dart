@@ -32,7 +32,6 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
   String base64Image;
   File tmpFile;
   bool visible_upload = false;
-
   String name = "";
   String pic_id = "";
   String address = "";
@@ -49,6 +48,7 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
   TextEditingController gempaBumiController = new TextEditingController();
   TextEditingController tsunamiController = new TextEditingController();
   TextEditingController gunungApiController = new TextEditingController();
+  TextEditingController bencanaController = new TextEditingController();
   bool permission = false;
   String lat = "";
   String lng = "";
@@ -263,110 +263,174 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, top: 8, right: 20),
-                child: TextField(
-                  cursorColor: Colors.black,
-                  controller: gempaBumiController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.arrow_upward,
-                        color: Colors.black,
-                      ),
-                      hintText: "Gempa Bumi",
-                      hintStyle: TextStyle(fontSize: 16, color: abuAbu)),
+              Visibility(
+                visible: type_bencana == "1" ? true : false,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 8, right: 20),
+                  child: TextField(
+                    cursorColor: Colors.black,
+                    controller: gempaBumiController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                        icon: Icon(
+                          Icons.arrow_upward,
+                          color: Colors.black,
+                        ),
+                        hintText: "Gempa Bumi",
+                        hintStyle: TextStyle(fontSize: 16, color: abuAbu)),
+                  ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, top: 8, right: 20),
-                child: TextField(
-                  cursorColor: Colors.black,
-                  controller: tsunamiController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.arrow_upward,
-                        color: Colors.black,
-                      ),
-                      hintText: "Tsunami",
-                      hintStyle: TextStyle(fontSize: 16, color: abuAbu)),
+              Visibility(
+                visible: type_bencana == "1" ? true : false,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 8, right: 20),
+                  child: TextField(
+                    cursorColor: Colors.black,
+                    controller: tsunamiController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                        icon: Icon(
+                          Icons.arrow_upward,
+                          color: Colors.black,
+                        ),
+                        hintText: "Tsunami",
+                        hintStyle: TextStyle(fontSize: 16, color: abuAbu)),
+                  ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, top: 8, right: 20),
-                child: TextField(
-                  cursorColor: Colors.black,
-                  controller: gunungApiController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.arrow_upward,
-                        color: Colors.black,
-                      ),
-                      hintText: "Gunung Api",
-                      hintStyle: TextStyle(fontSize: 16, color: abuAbu)),
+              Visibility(
+                visible: type_bencana == "1" ? true : false,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 8, right: 20),
+                  child: TextField(
+                    cursorColor: Colors.black,
+                    controller: gunungApiController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                        icon: Icon(
+                          Icons.arrow_upward,
+                          color: Colors.black,
+                        ),
+                        hintText: "Gunung Api",
+                        hintStyle: TextStyle(fontSize: 16, color: abuAbu)),
+                  ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, top: 8, right: 20),
-                child: TextField(
-                  cursorColor: Colors.black,
-                  controller: anginTController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.arrow_upward,
-                        color: Colors.black,
-                      ),
-                      hintText: "Angin Topan",
-                      hintStyle: TextStyle(fontSize: 16, color: abuAbu)),
+              Visibility(
+                visible: type_bencana == "1" ? true : false,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 8, right: 20),
+                  child: TextField(
+                    cursorColor: Colors.black,
+                    controller: anginTController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                        icon: Icon(
+                          Icons.arrow_upward,
+                          color: Colors.black,
+                        ),
+                        hintText: "Angin Topan",
+                        hintStyle: TextStyle(fontSize: 16, color: abuAbu)),
+                  ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, top: 8, right: 20),
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  cursorColor: Colors.black,
-                  controller: kekeringanController,
-                  decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.arrow_upward,
-                        color: Colors.black,
-                      ),
-                      hintText: "Kekeringan",
-                      hintStyle: TextStyle(fontSize: 16, color: abuAbu)),
+              Visibility(
+                visible: type_bencana == "1" ? true : false,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 8, right: 20),
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    cursorColor: Colors.black,
+                    controller: kekeringanController,
+                    decoration: InputDecoration(
+                        icon: Icon(
+                          Icons.arrow_upward,
+                          color: Colors.black,
+                        ),
+                        hintText: "Kekeringan",
+                        hintStyle: TextStyle(fontSize: 16, color: abuAbu)),
+                  ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, top: 8, right: 20),
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  cursorColor: Colors.black,
-                  controller: karhutlaController,
-                  decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.arrow_upward,
-                        color: Colors.black,
-                      ),
-                      hintText: "KARHUTLA",
-                      hintStyle: TextStyle(fontSize: 16, color: abuAbu)),
+              Visibility(
+                visible: type_bencana == "1" ? true : false,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 8, right: 20),
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    cursorColor: Colors.black,
+                    controller: karhutlaController,
+                    decoration: InputDecoration(
+                        icon: Icon(
+                          Icons.arrow_upward,
+                          color: Colors.black,
+                        ),
+                        hintText: "KARHUTLA",
+                        hintStyle: TextStyle(fontSize: 16, color: abuAbu)),
+                  ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, top: 8, right: 20),
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  cursorColor: Colors.black,
-                  controller: lainnyaController,
-                  decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.arrow_upward,
-                        color: Colors.black,
-                      ),
-                      hintText: "Lainnya",
-                      hintStyle: TextStyle(fontSize: 16, color: abuAbu)),
+              Visibility(
+                visible: type_bencana == "1" ? true : false,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 8, right: 20),
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    cursorColor: Colors.black,
+                    controller: lainnyaController,
+                    decoration: InputDecoration(
+                        icon: Icon(
+                          Icons.arrow_upward,
+                          color: Colors.black,
+                        ),
+                        hintText: "Lainnya",
+                        hintStyle: TextStyle(fontSize: 16, color: abuAbu)),
+                  ),
                 ),
+              ),
+              Visibility(
+                visible: type_bencana == "1" ? false : true,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 12.0, top: 8.0),
+                      child: Text(
+                        'Bencana',
+                        style: TextStyle(color: abuAbu),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextField(
+                        minLines: 3,
+                        controller: bencanaController,
+                        maxLines: 6,
+                        autocorrect: false,
+                        decoration: InputDecoration(
+                          hintText: 'Isi Bencana di sini..',
+                          filled: true,
+                          fillColor: Colors.grey[100],
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                            BorderRadius.all(Radius.circular(10.0)),
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                            BorderRadius.all(Radius.circular(10.0)),
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
               ),
               SizedBox(
                 height: 8,
@@ -401,8 +465,9 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 8,
               ),
+
               Padding(
                 padding: const EdgeInsets.only(left: 12.0, top: 8.0),
                 child: Text(
@@ -487,35 +552,69 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
     //   LocationPermission permission = await Geolocator.requestPermission();
 
     if (position.latitude != null || position.latitude.toString().length > 2) {
-      ServiceApiConfig()
-          .submitBencana(
-              token,
-              widget.prov_id,
-              widget.kab_id,
-              id_user,
-              pic_id,
-              gempaBumiController.text,
-              tsunamiController.text,
-              gunungApiController.text,
-              anginTController.text,
-              kekeringanController.text,
-              karhutlaController.text,
-              lainnyaController.text,
-              kerugianMateriController.text,
-              keteranganController.text,
-              mydate,
-              tahun,
-              position.latitude.toString(),
-              position.longitude.toString())
-          .then((val) {
-        if (val.msg == "Form Submitted") {
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (BuildContext context) => HomePage()));
-        } else {
-          showToast(context, "${val.msg}");
-        }
-      }).catchError((onError) {});
+      if (type_bencana == "1") {
+        ServiceApiConfig()
+            .submitBencana(
+                token,
+                widget.prov_id,
+                widget.kab_id,
+                id_user,
+                pic_id,
+                gempaBumiController.text,
+                tsunamiController.text,
+                gunungApiController.text,
+                anginTController.text,
+                kekeringanController.text,
+                karhutlaController.text,
+                lainnyaController.text,
+                kerugianMateriController.text,
+                keteranganController.text,
+                mydate,
+                tahun,
+                position.latitude.toString(),
+                position.longitude.toString())
+            .then((val) {
+          if (val.msg == "Form Submitted") {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => HomePage()));
+          } else {
+            showToast(context, "${val.msg}");
+          }
+        }).catchError((onError) {
+          showToast(context, "${onError}");
+        });
+      } else {
+        ServiceApiConfig()
+            .submitNonAlam(
+                token,
+                widget.prov_id,
+                widget.kab_id,
+                id_user,
+                pic_id,
+                kerugianMateriController.text,
+                keteranganController.text,
+                tahun,
+                bencanaController.text,
+                mydate,
+                position.latitude.toString(),
+                position.longitude.toString())
+            .then((val) {
+          if (val.msg == "Form Submitted") {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => HomePage()));
+          } else {
+            showToast(context, "${val.msg}");
+          }
+        }).catchError((onError) {
+          showToast(context, "${onError}");
+        });
+      }
     } else {
+      _determinePosition();
       showToast(context, "aktifkan permission lokasi terlebih dahulu");
     }
   }

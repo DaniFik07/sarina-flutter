@@ -432,19 +432,19 @@ class _InputBPDBPageState extends State<InputBPDBPage> {
   }
 
   void getSubmitBPBD() async{
-    String token = await storage.read(key: TOKEN_LOGIN);
-    ServiceApiConfig().getSubmitBPBD(token, widget.kab_id).then((val){
-      if(val.data != null){
-      tipeController.text = "${val.data[0].type.toString()}";
-      pnsController.text= "${val.data[0].pns.toString()}";
-      nonPnsController.text= "${val.data[0].nonPns.toString()}";
-      sukarelawanController.text= "${val.data[0].volunteer.toString()}";
-      lainnyaController.text= "${val.data[0].lainnya.toString()}";
-      dasarPembentukanController.text= "${val.data[0].basicFormation.toString()}";
-      deskController.text = "${val.data[0].description.toString()}";
-      }
-    }).catchError((eror){
-
-    });
+    // String token = await storage.read(key: TOKEN_LOGIN);
+    // ServiceApiConfig().getSubmitBPBD(token, widget.kab_id).then((val){
+    //   if(val.data != null){
+    //   tipeController.text = "${val.data[0].type.toString()}";
+    //   pnsController.text= "${val.data[0].pns.toString()}";
+    //   nonPnsController.text= "${val.data[0].nonPns.toString()}";
+    //   sukarelawanController.text= "${val.data[0].volunteer.toString()}";
+    //   lainnyaController.text= "${val.data[0].lainnya.toString()}";
+    //   dasarPembentukanController.text= "${val.data[0].basicFormation.toString()}";
+    //   deskController.text = "${val.data[0].description.toString()}";
+    //   }
+    // }).catchError((eror){
+    //
+    // });
   }
 }
