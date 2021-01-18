@@ -15,6 +15,7 @@ import 'package:sarina/utils/size_config.dart';
 import 'menu_covid/covid_page.dart';
 import 'menu_berita_terkait/berita_terkait_page.dart';
 import 'menu_info_publik/info_public.dart';
+import 'menu_info_publik/undangan_page.dart';
 import 'menu_pengaduan/pengaduan_page.dart';
 import 'menu_profile_daerah/profile_daerah.dart';
 import 'menu_program_dan_kegiatan/program_dan_kegiatan.dart';
@@ -155,7 +156,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                InfoPublicPage()));
+                                                DaftarUndanganPage()));
                                   } else if (itemDashboard[index].title ==
                                       "Berita Terkait") {
                                     Navigator.of(context).push(

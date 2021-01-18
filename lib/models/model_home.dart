@@ -7,12 +7,20 @@ class DashboardItems {
   DashboardItems({this.title, this.subtitle, this.event, this.img});
 }
 class ModelItemUndangan{
+  String id;
   String judul;
   String Deskripsi;
   String tglPelaksanan;
   String WaktuPelaksana;
+  String eventType;
 
-  ModelItemUndangan({this.judul, this.Deskripsi, this.tglPelaksanan, this.WaktuPelaksana});
+  ModelItemUndangan({this.id,this.judul, this.Deskripsi, this.tglPelaksanan, this.WaktuPelaksana,this.eventType});
+}
+
+class GambarKegiatan{
+  String img;
+
+  GambarKegiatan({this.img});
 }
 
 class ModelPengaduan{
