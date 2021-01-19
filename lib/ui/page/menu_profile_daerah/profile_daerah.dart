@@ -60,7 +60,7 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                 height: 100,
                 child: InkWell(
                   onTap: () {
-                    if (status_login == IS_ADMIN) {
+                    if (status_login == IS_STAFF) {
                       Navigator.of(context).push(
                           MaterialPageRoute(
                               builder: (context) =>
