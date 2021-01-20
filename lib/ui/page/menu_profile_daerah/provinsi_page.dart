@@ -3,9 +3,9 @@ import 'package:sarina/data/network/responses/response_kabupaten.dart';
 import 'package:sarina/data/network/servis_api_config.dart';
 import 'package:sarina/ui/widget/text_field_container.dart';
 import 'package:sarina/utils/constants.dart';
-import 'package:sarina/utils/size_config.dart';
-
-import 'input_data_kapasitas_bpdb_page.dart';
+  import 'package:sarina/utils/size_config.dart';
+  import 'package:sarina/utils/refresh.dart';
+  import 'input_data_kapasitas_bpdb_page.dart';
 import 'input_informasi_bencana.dart';
 import 'input_sarana_prasarana.dart';
 
@@ -27,6 +27,8 @@ class ProvinsiPage extends StatefulWidget {
 
 class _ProvinsiPageState extends State<ProvinsiPage> {
   List<Datum> list_city = [];
+  List<Datum> filteredData = List();
+  final _debouncer = Debouncer(milliseconds: 500);
 
   @override
   void initState() {
@@ -73,6 +75,20 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
                             ),
                             border: InputBorder.none,
                           ),
+                          onChanged: (string) {
+                            _debouncer.run(() {
+                              setState(() {
+                                filteredData = list_city
+                                    .where((u) => (u.regenciesName
+                                    .toLowerCase()
+                                    .contains(string.toLowerCase()) ||
+                                    u.regenciesName
+                                        .toLowerCase()
+                                        .contains(string.toLowerCase())))
+                                    .toList();
+                              });
+                            });
+                          },
                         ),
                       ),
                     ),
@@ -90,51 +106,42 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
   Widget buildListCity() {
     return SizedBox(
       height: MediaQuery.of(context).size.height / 1.5,
-      child: FutureBuilder(
-        future: get_city(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-                itemCount: snapshot.data.length,
-                physics: ClampingScrollPhysics(),
-                itemBuilder: (context, i) {
-                  return Center(
-                      child: Center(
-                    child: InkWell(
-                      onTap: () {},
-                      child: ListTile(
-                        title: Text(
-                          '${list_city[i].regenciesName}',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black,
-                          ),
+      child: ListView.builder(
+          itemCount: filteredData.length,
+          physics: ClampingScrollPhysics(),
+          itemBuilder: (context, i) {
+            return Center(
+                child: Center(
+                  child: InkWell(
+                    onTap: () {},
+                    child: ListTile(
+                      title: Text(
+                        '${list_city[i].regenciesName}',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black,
                         ),
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () {
-                          if (widget.title == "Data Kapasitas BPBD") {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => InputBPDBPage(kab_id: list_city[i].id.toString(),kab: list_city[i].regenciesName,
-                                    prov:widget.name,prov_id: widget.id_prov,)));
-                          } else if (widget.title == "Data Sarana Prasarana") {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    InputSaranaPrasaranaPage()));
-                          } else if (widget.title == "Data Informasi Bencana") {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => InformasiBencanaPage(kab_id: list_city[i].id.toString(),kab: list_city[i].regenciesName,
-                                    prov:widget.name,prov_id:widget.id_prov)));
-                          }
-                        },
                       ),
+                      trailing: Icon(Icons.keyboard_arrow_right),
+                      onTap: () {
+                        if (widget.title == "Data Kapasitas BPBD") {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => InputBPDBPage(kab_id: list_city[i].id.toString(),kab: list_city[i].regenciesName,
+                                prov:widget.name,prov_id: widget.id_prov,)));
+                        } else if (widget.title == "Data Sarana Prasarana") {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  InputSaranaPrasaranaPage()));
+                        } else if (widget.title == "Data Informasi Bencana") {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => InformasiBencanaPage(kab_id: list_city[i].id.toString(),kab: list_city[i].regenciesName,
+                                  prov:widget.name,prov_id:widget.id_prov)));
+                        }
+                      },
                     ),
-                  ));
-                });
-          } else {
-            return Container(child: Center(child: CircularProgressIndicator()));
-          }
-        },
-      ),
+                  ),
+                ));
+          }),
     );
   }
 
@@ -148,6 +155,7 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
     ServiceApiConfig().getCity(widget.id_prov).then((val) {
       setState(() {
         list_city = val.data;
+        filteredData = val.data;
       });
     }).catchError((_) {});
   }
