@@ -3,8 +3,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:sarina/data/network/servis_api_config.dart';
 import 'package:sarina/models/model_home.dart';
 import 'package:sarina/utils/constants.dart';
+import 'package:sarina/utils/refresh.dart';
 import 'package:sarina/utils/size_config.dart';
 
 import 'input_pengaduan_page.dart';
@@ -23,6 +25,8 @@ class _PengaduanPageState extends State<PengaduanPage> {
   Color red800 = Colors.red[800];
   List<ModelPengaduan> listItem = [];
   String status_login = "";
+  List<ModelPengaduan> filteredData = List();
+  final _debouncer = Debouncer(milliseconds: 500);
   final storage = new FlutterSecureStorage();
 
   @override
@@ -80,7 +84,8 @@ class _PengaduanPageState extends State<PengaduanPage> {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
-                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                         width: MediaQuery.of(context).size.width * 0.8,
                         decoration: BoxDecoration(
                           color: whiteColor,
@@ -90,14 +95,27 @@ class _PengaduanPageState extends State<PengaduanPage> {
                           cursorColor: Colors.black,
                           decoration: InputDecoration(
                             hintText: "Cari",
-                            hintStyle: TextStyle(
-                                fontSize: 16),
+                            hintStyle: TextStyle(fontSize: 16),
                             suffixIcon: IconButton(
                               onPressed: () {},
                               icon: Icon(Icons.search_outlined),
                             ),
                             border: InputBorder.none,
                           ),
+                          onChanged: (string) {
+                            _debouncer.run(() {
+                              setState(() {
+                                filteredData = listItem
+                                    .where((u) => (u.judul
+                                            .toLowerCase()
+                                            .contains(string.toLowerCase()) ||
+                                        u.judul
+                                            .toLowerCase()
+                                            .contains(string.toLowerCase())))
+                                    .toList();
+                              });
+                            });
+                          },
                         ),
                       ),
                     ),
@@ -105,9 +123,9 @@ class _PengaduanPageState extends State<PengaduanPage> {
                 ),
               ),
               Container(
-                height: SizeConfig.screenHight /1.5,
+                height: SizeConfig.screenHight / 1.5,
                 child: ListView.builder(
-                  itemCount: listItem.length,
+                  itemCount: filteredData.length,
                   itemBuilder: (BuildContext context, int index) {
                     return AnimationConfiguration.staggeredList(
                       position: index,
@@ -127,34 +145,45 @@ class _PengaduanPageState extends State<PengaduanPage> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                              MainAxisAlignment.start,
                                           children: [
                                             Padding(
                                               padding:
-                                              const EdgeInsets.all(4.0),
-                                              child: Text(
-                                                  listItem[index].judul),
+                                                  const EdgeInsets.all(4.0),
+                                              child:
+                                                  Text(listItem[index].judul),
                                             ),
                                             Padding(
                                               padding:
-                                              const EdgeInsets.all(4.0),
+                                                  const EdgeInsets.all(4.0),
                                               child: Row(
                                                 children: [
                                                   Text("Status : "),
                                                   Padding(
-                                                    padding: const EdgeInsets.all(8.0),
-                                                    child: Card(color:listItem[index].status == "1"?greenColors:redColors,child:
-                                                    Text("${listItem[index].status == "1"?"Sudah Ditangani":"Belum diTangani"} ",
-                                                      style: TextStyle(color: whiteColor),),),
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
+                                                    child: Card(
+                                                      color: listItem[index]
+                                                                  .status ==
+                                                              "1"
+                                                          ? greenColors
+                                                          : redColors,
+                                                      child: Text(
+                                                        "${listItem[index].status == "1" ? "Sudah Ditangani" : "Belum diTangani"} ",
+                                                        style: TextStyle(
+                                                            color: whiteColor),
+                                                      ),
+                                                    ),
                                                   )
                                                 ],
                                               ),
                                             ),
                                             Padding(
                                               padding:
-                                              const EdgeInsets.all(4.0),
+                                                  const EdgeInsets.all(4.0),
                                               child: Text(
                                                   listItem[index].Deskripsi),
                                             ),
@@ -198,7 +227,6 @@ class _PengaduanPageState extends State<PengaduanPage> {
                   },
                 ),
               )
-
             ],
           ),
         ),
@@ -206,24 +234,24 @@ class _PengaduanPageState extends State<PengaduanPage> {
     );
   }
 
-  void addData() {
-    setState(() {
-      listItem.add(new ModelPengaduan(
-          judul: "Lorem Ipsum Lorem Ipsum ",
-          Deskripsi: "Lorem Ipsum Lorem Ipsum",
-          status: "1"));
-      listItem.add(new ModelPengaduan(
-          judul: "Lorem Ipsum Lorem Ipsum 2",
-          Deskripsi: "Lorem Ipsum Lorem Ipsum2",
-          status: "1"));
-      listItem.add(new ModelPengaduan(
-          judul: "Lorem Ipsum Lorem Ipsum3 ",
-          Deskripsi: "Lorem Ipsum Lorem Ipsum3",
-          status: "2"));
+  void addData() async {
+    String token = await storage.read(key: TOKEN_LOGIN);
+    ServiceApiConfig().getAllPengaduan(token).then((data) {
+      data.data.forEach((element) {
+        setState(() {
+          listItem.add(new ModelPengaduan(
+              judul: element.judul,
+              Deskripsi: element.deskripsiKejadian,
+              status: element.status == "Sudah Ditangani" ? "1" : "2"));
+        });
+      });
+      setState(() {
+        filteredData = listItem;
+      });
     });
   }
 
-  void checkRole() async{
+  void checkRole() async {
     status_login = await storage.read(key: STATUS_LOGIN);
     setState(() {});
   }

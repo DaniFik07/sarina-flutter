@@ -5,6 +5,7 @@ import 'package:sarina/data/network/responses/get_sumber.dart';
 import 'package:sarina/data/network/responses/reponse_pic.dart';
 import 'package:sarina/data/network/responses/response_data_kegiatan.dart';
 import 'package:sarina/data/network/responses/response_get_kegiatan.dart';
+import 'package:sarina/data/network/responses/response_get_pengaduan.dart';
 import 'package:sarina/data/network/responses/response_get_submit_bpbd.dart';
 import 'package:sarina/data/network/responses/response_kabupaten.dart';
 import 'package:sarina/data/network/responses/response_login.dart';
@@ -376,6 +377,20 @@ class ServiceApiConfig {
     if (response.statusCode == 200) {
       print('200 ok');
       return ResponseDataKegiatan.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+  Future<ResponseGetAllPengaduan> getAllPengaduan(
+      String token) async {
+    Response response;
+    response = await client.get("$base_url/data_pengaduan",
+        headers: {"Authorization": "Bearer $token"});
+    print(response.body.toString());
+    if (response.statusCode == 200) {
+      print('200 ok');
+      return ResponseGetAllPengaduan.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
     }
