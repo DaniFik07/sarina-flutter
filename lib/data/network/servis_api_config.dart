@@ -251,8 +251,6 @@ class ServiceApiConfig {
     String KETERANGAN,
     String CREATED_AT,
     String TAHUN,
-    String LAT,
-    String LNG,
   ) async {
     Response response;
     response = await client.post("$base_url/data_bencana/submit", body: {
@@ -271,8 +269,6 @@ class ServiceApiConfig {
       "KETERANGAN": KETERANGAN,
       "TAHUN": TAHUN,
       "CREATED_AT": CREATED_AT,
-      "LAT": LAT,
-      "LNG": LNG,
     }, headers: {
       "Authorization": "Bearer $token"
     });

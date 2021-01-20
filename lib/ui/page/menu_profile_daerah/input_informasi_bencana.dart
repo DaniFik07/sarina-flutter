@@ -573,9 +573,7 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
                 kerugianMateriController.text,
                 keteranganController.text,
                 mydate,
-                tahun,
-                position.latitude.toString(),
-                position.longitude.toString())
+                tahun,)
             .then((val) {
           if (val.msg == "Form Submitted") {
             Navigator.pushReplacement(

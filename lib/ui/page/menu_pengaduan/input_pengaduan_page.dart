@@ -1,11 +1,23 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:ui';
 
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:path/path.dart';
+import 'package:async/async.dart';
+import 'package:http/http.dart' as http;
+
+import 'package:image/image.dart' as Img;
+import 'dart:math' as Math;
+import 'dart:ui';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:sarina/ui/page/home_page.dart';
 import 'package:sarina/ui/widget/text_field_container.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
@@ -24,15 +36,20 @@ class InputPengaduanPage extends StatefulWidget {
 class _InputPengaduanPageState extends State<InputPengaduanPage> {
   String _date = "Tgl/Bln/Thn";
   String jenis_bencana = "-- Pilih --";
-
-
   bool visible_upload = false;
-  String errMessage = 'Error Uploading Image';
-  Future<File> file;
-  String base64Image;
-  File tmpFile;
-  String status = '';
+  File _image;
+  String token = "";
+  String id_user = "";
+  final storage = new FlutterSecureStorage();
+  TextEditingController judulController = new TextEditingController();
+  TextEditingController deskController = new TextEditingController();
 
+  @override
+  void initState() {
+    getDataLogin();
+    _determinePosition();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +82,7 @@ class _InputPengaduanPageState extends State<InputPengaduanPage> {
                       fontWeight: FontWeight.bold),
                 ),
                 Container(
-                  width: SizeConfig.screenWidth /1.2,
+                  width: SizeConfig.screenWidth / 1.2,
                   child: DropdownButton(
                     elevation: 5,
                     hint: Text('------'),
@@ -75,7 +92,8 @@ class _InputPengaduanPageState extends State<InputPengaduanPage> {
                       DropdownMenuItem<String>(
                         value: "-- Pilih --",
                         child: Text(
-                          "-- Pilih --",style: TextStyle(color: Colors.black),
+                          "-- Pilih --",
+                          style: TextStyle(color: Colors.black),
                         ),
                       ),
                       DropdownMenuItem<String>(
@@ -103,6 +121,7 @@ class _InputPengaduanPageState extends State<InputPengaduanPage> {
                   width: SizeConfig.screenWidth,
                   child: TextFieldContainer(
                     child: TextField(
+                      controller: judulController,
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
                           icon: Icon(
@@ -110,9 +129,7 @@ class _InputPengaduanPageState extends State<InputPengaduanPage> {
                             color: abuAbu,
                           ),
                           hintText: "Judul",
-                          hintStyle: TextStyle(
-                              fontSize: 16,
-                              color: abuAbu)),
+                          hintStyle: TextStyle(fontSize: 16, color: abuAbu)),
                     ),
                   ),
                 ),
@@ -120,16 +137,15 @@ class _InputPengaduanPageState extends State<InputPengaduanPage> {
                   width: SizeConfig.screenWidth,
                   child: TextFieldContainer(
                     child: TextField(
+                      controller: deskController,
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
                           icon: Icon(
                             Icons.map,
                             color: abuAbu,
                           ),
-                          hintText: "Lokasi Kejadian",
-                          hintStyle: TextStyle(
-                              fontSize: 16,
-                              color: abuAbu)),
+                          hintText: "Deskripsi",
+                          hintStyle: TextStyle(fontSize: 16, color: abuAbu)),
                     ),
                   ),
                 ),
@@ -149,10 +165,13 @@ class _InputPengaduanPageState extends State<InputPengaduanPage> {
                               ),
                               showTitleActions: true,
                               minTime: DateTime(2000, 1, 1),
-                              maxTime: DateTime(2022, 12, 31), onConfirm: (date) {
+                              maxTime: DateTime(2022, 12, 31),
+                              onConfirm: (date) {
                             _date = '${date.day}/${date.month}/${date.year}';
                             setState(() {});
-                          }, currentTime: DateTime.now(), locale: LocaleType.en);
+                          },
+                              currentTime: DateTime.now(),
+                              locale: LocaleType.en);
                         },
                         child: Container(
                           alignment: Alignment.center,
@@ -197,7 +216,22 @@ class _InputPengaduanPageState extends State<InputPengaduanPage> {
                     ),
                   ),
                 ),
-                showImage(),
+                _image == null
+                    ? new Text("No image selected!")
+                    : Column(
+                        children: [
+                          Card(
+                              elevation: 4,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: new Image.file(
+                                  _image,
+                                  width: 200,
+                                  height: 200,
+                                ),
+                              )),
+                        ],
+                      ),
                 Padding(
                   padding: EdgeInsets.only(top: 12.0),
                 ),
@@ -209,38 +243,66 @@ class _InputPengaduanPageState extends State<InputPengaduanPage> {
                     title: Padding(
                       padding: EdgeInsets.only(bottom: 00.0, top: 00.0),
                       child: new RaisedButton(
-                        child: Text('Select Image'),
+                        child: Text(
+                            _image == null ? "Select Image" : "Change Image"),
                         color: greenColors,
                         textColor: Colors.white,
                         onPressed: () {
-                          chooseImage();
+                          AwesomeDialog(
+                            context: context,
+                            dialogType: DialogType.NO_HEADER,
+                            animType: AnimType.BOTTOMSLIDE,
+                            title: 'Upload Gambar',
+                            desc: '',
+                            btnCancelText: 'Via Gallery',
+                            btnOkText: 'Via Camera',
+                            btnCancelOnPress: () {
+                              getImageGallery();
+                            },
+                            btnOkOnPress: () {
+                              getImageCamera();
+                            },
+                          )..show();
                         },
                       ),
                     ),
                   ),
                 ),
-                Visibility(
-                  visible: visible_upload,
-                  child: Card(
-                    clipBehavior: Clip.antiAlias,
-                    elevation: 0.0,
-                    color: Colors.grey.shade300,
-                    child: ListTile(
-                      title: Padding(
-                        padding: EdgeInsets.only(bottom: 00.0, top: 00.0),
-                        child: new RaisedButton(
-                          child: Text('Upload Image'),
-                          color: greenColors,
-                          textColor: Colors.white,
-                          onPressed: () {
-                            startUpload();
-                          },
-                        ),
+                Card(
+                  clipBehavior: Clip.antiAlias,
+                  elevation: 0.0,
+                  color: Colors.grey.shade300,
+                  child: ListTile(
+                    title: Padding(
+                      padding: EdgeInsets.only(bottom: 00.0, top: 00.0),
+                      child: new RaisedButton(
+                        child: Text('Submit'),
+                        color: greenColors,
+                        textColor: Colors.white,
+                        onPressed: () async {
+                          Position position =
+                              await Geolocator.getCurrentPosition(
+                                  desiredAccuracy: LocationAccuracy.high);
+                          if (_image == null) {
+                            showToast(context,
+                                "silahkan upload gambar terlebih dahulu");
+                          } else {
+                            if (position.latitude != null ||
+                                position.latitude.toString().length > 2) {
+                              upload(_image, context, token, position.latitude,
+                                  position.longitude);
+                            } else {
+                              _determinePosition();
+                              showToast(context,
+                                  "aktifkan permission lokasi terlebih dahulu");
+                            }
+                          }
+                          // startUpload();
+                        },
                       ),
                     ),
                   ),
                 ),
-
               ],
             ),
           ),
@@ -249,58 +311,106 @@ class _InputPengaduanPageState extends State<InputPengaduanPage> {
     );
   }
 
-  Widget showImage() {
-    return FutureBuilder<File>(
-      future: file,
-      builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done &&
-            null != snapshot.data) {
-          tmpFile = snapshot.data;
-          base64Image = base64Encode(snapshot.data.readAsBytesSync());
-          WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
-            visible_upload = true;
-          }));
-          return Image.file(
-            snapshot.data,
-            fit: BoxFit.fill,
-          );
-        } else if (null != snapshot.error) {
-          return const Text(
-            'Error Picking Image',
-            textAlign: TextAlign.center,
-          );
-        } else {
-          return const Text(
-            '',
-            textAlign: TextAlign.center,
-          );
-        }
-      },
-    );
-  }
+  Future<Position> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
 
-  startUpload() {
-    setStatus('Uploading Image...');
-
-    showToast(context, "berhasil diupload");
-    Navigator.pop(context);
-    Navigator.pop(context);
-    if (null == tmpFile) {
-      setStatus(errMessage);
-      return;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
     }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permantly denied, we cannot request permissions.');
+    }
+
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission != LocationPermission.whileInUse &&
+          permission != LocationPermission.always) {
+        return Future.error(
+            'Location permissions are denied (actual value: $permission).');
+      }
+    }
+
+    return await Geolocator.getCurrentPosition();
   }
 
-  setStatus(String message) {
+  Future getImageGallery() async {
+    var imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
+
+    final tempDir = await getTemporaryDirectory();
+    final path = tempDir.path;
+
+    int rand = new Math.Random().nextInt(100000);
+
+    Img.Image image = Img.decodeImage(imageFile.readAsBytesSync());
+    Img.Image smallerImg = Img.copyResize(image, height: 500, width: 500);
+
+    var compressImg = new File("$path/image_$rand.jpg")
+      ..writeAsBytesSync(Img.encodeJpg(smallerImg, quality: 85));
+
     setState(() {
-      status = message;
+      _image = compressImg;
     });
   }
 
-  chooseImage() {
+  Future getImageCamera() async {
+    var imageFile = await ImagePicker.pickImage(source: ImageSource.camera);
+
+    final tempDir = await getTemporaryDirectory();
+    final path = tempDir.path;
+
+    int rand = new Math.Random().nextInt(100000);
+
+    Img.Image image = Img.decodeImage(imageFile.readAsBytesSync());
+    Img.Image smallerImg = Img.copyResize(image, height: 500, width: 500);
+
+    var compressImg = new File("$path/image_$rand.jpg")
+      ..writeAsBytesSync(Img.encodeJpg(smallerImg, quality: 85));
+
     setState(() {
-      file = ImagePicker.pickImage(source: ImageSource.gallery);
+      _image = compressImg;
     });
-    setStatus('');
+  }
+
+  void getDataLogin() async {
+    token = await storage.read(key: TOKEN_LOGIN);
+    id_user = await storage.read(key: ID_USER);
+    setState(() {});
+  }
+
+  Future upload(File imageFile, BuildContext context, String token,
+      double latitude, double longitude) async {
+    Map<String, String> headers = {"Authorization": "Bearer $token"};
+    var stream =
+        new http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+    var length = await imageFile.length();
+    var uri = Uri.parse("$SUBMIT_PENGADUAN");
+    var request = new http.MultipartRequest("POST", uri);
+    request.headers.addAll(headers);
+    var multipartFile = new http.MultipartFile("photo", stream, length,
+        filename: basename(imageFile.path));
+    request.fields['ID_USER'] = "$id_user";
+    request.fields['JUDUL'] = "${judulController.text}";
+    request.fields['LAT'] = "$latitude";
+    request.fields['LNG'] = "$longitude";
+    request.fields['TANGGAL'] = "$_date";
+    request.fields['DESKRIPSI'] = "${deskController.text}";
+    request.files.add(multipartFile);
+    var response = await request.send();
+
+    if (response.statusCode == 200) {
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+      showToast(context, "Data Uploaded");
+    } else {
+      showToast(context, "Upload Failed");
+    }
+    response.stream.transform(utf8.decoder).listen((value) {
+      print(value);
+    });
   }
 }
