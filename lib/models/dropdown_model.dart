@@ -45,6 +45,13 @@ class NamaKendaraan {
   NamaKendaraan({this.name, this.id});
 }
 
+class Kepemilikan {
+  String name;
+  int id;
+
+  Kepemilikan({this.name, this.id});
+}
+
 class KondisiKendaraan {
   String name;
   int id;

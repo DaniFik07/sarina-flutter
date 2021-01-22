@@ -25,15 +25,26 @@ class _PengaduanPageState extends State<PengaduanPage> {
   Color red800 = Colors.red[800];
   List<ModelPengaduan> listItem = [];
   String status_login = "";
-  List<ModelPengaduan> filteredData = List();
-  final _debouncer = Debouncer(milliseconds: 500);
   final storage = new FlutterSecureStorage();
+  TextEditingController searchController = new TextEditingController();
+  String filter;
 
   @override
   void initState() {
+    searchController.addListener(() {
+      setState(() {
+        filter = searchController.text;
+      });
+    });
     checkRole();
     addData();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
   }
 
   @override
@@ -92,6 +103,7 @@ class _PengaduanPageState extends State<PengaduanPage> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: TextField(
+                          controller: searchController,
                           cursorColor: Colors.black,
                           decoration: InputDecoration(
                             hintText: "Cari",
@@ -102,20 +114,6 @@ class _PengaduanPageState extends State<PengaduanPage> {
                             ),
                             border: InputBorder.none,
                           ),
-                          onChanged: (string) {
-                            _debouncer.run(() {
-                              setState(() {
-                                filteredData = listItem
-                                    .where((u) => (u.judul
-                                            .toLowerCase()
-                                            .contains(string.toLowerCase()) ||
-                                        u.judul
-                                            .toLowerCase()
-                                            .contains(string.toLowerCase())))
-                                    .toList();
-                              });
-                            });
-                          },
                         ),
                       ),
                     ),
@@ -124,108 +122,239 @@ class _PengaduanPageState extends State<PengaduanPage> {
               ),
               Container(
                 height: SizeConfig.screenHight / 1.5,
-                child: filteredData.length > 0?ListView.builder(
-                  itemCount: filteredData.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return AnimationConfiguration.staggeredList(
-                      position: index,
-                      duration: const Duration(milliseconds: 375),
-                      child: SlideAnimation(
-                        verticalOffset: 50.0,
-                        child: FadeInAnimation(
-                          child: new Stack(
-                            children: <Widget>[
-                              new Padding(
-                                padding: const EdgeInsets.only(left: 50.0),
-                                child: new Card(
-                                  margin: new EdgeInsets.all(20.0),
-                                  child: new Container(
-                                      margin: EdgeInsets.all(8.0),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(4.0),
-                                              child:
-                                                  Text(listItem[index].judul),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(4.0),
-                                              child: Row(
-                                                children: [
-                                                  Text("Status : "),
-                                                  Padding(
+                child: listItem.length > 0
+                    ? ListView.builder(
+                        itemCount: listItem.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return filter == null || filter == ""
+                              ? AnimationConfiguration.staggeredList(
+                                  position: index,
+                                  duration: const Duration(milliseconds: 375),
+                                  child: SlideAnimation(
+                                    verticalOffset: 50.0,
+                                    child: FadeInAnimation(
+                                      child: new Stack(
+                                        children: <Widget>[
+                                          new Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 50.0),
+                                            child: new Card(
+                                              margin: new EdgeInsets.all(20.0),
+                                              child: new Container(
+                                                  margin: EdgeInsets.all(8.0),
+                                                  child: Padding(
                                                     padding:
                                                         const EdgeInsets.all(
                                                             8.0),
-                                                    child: Card(
-                                                      color: listItem[index]
-                                                                  .status ==
-                                                              "1"
-                                                          ? greenColors
-                                                          : redColors,
-                                                      child: Text(
-                                                        "${listItem[index].status == "1" ? "Sudah Ditangani" : "Belum diTangani"} ",
-                                                        style: TextStyle(
-                                                            color: whiteColor),
-                                                      ),
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(4.0),
+                                                          child: Text(
+                                                              listItem[index]
+                                                                  .judul),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(4.0),
+                                                          child: Row(
+                                                            children: [
+                                                              Text("Status : "),
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .all(
+                                                                        8.0),
+                                                                child: Card(
+                                                                  color: listItem[index]
+                                                                              .status ==
+                                                                          "1"
+                                                                      ? greenColors
+                                                                      : redColors,
+                                                                  child: Text(
+                                                                    "${listItem[index].status == "1" ? "Sudah Ditangani" : "Belum diTangani"} ",
+                                                                    style: TextStyle(
+                                                                        color:
+                                                                            whiteColor),
+                                                                  ),
+                                                                ),
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(4.0),
+                                                          child: Text(
+                                                              "${listItem[index].Deskripsi}"),
+                                                        ),
+                                                      ],
                                                     ),
-                                                  )
-                                                ],
+                                                  )),
+                                            ),
+                                          ),
+                                          new Positioned(
+                                            top: 0.0,
+                                            bottom: 0.0,
+                                            left: 35.0,
+                                            child: new Container(
+                                              height: double.infinity,
+                                              width: 1.0,
+                                              color: blueColors,
+                                            ),
+                                          ),
+                                          new Positioned(
+                                            top: 100.0,
+                                            left: 27.0,
+                                            child: new Container(
+                                              height: 20.0,
+                                              width: 20.0,
+                                              decoration: new BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Colors.blue,
+                                              ),
+                                              child: new Container(
+                                                margin: new EdgeInsets.all(5.0),
+                                                height: 30.0,
+                                                width: 30.0,
                                               ),
                                             ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(4.0),
-                                              child: Text(
-                                                  "${listItem[index].Deskripsi}"),
-                                            ),
-                                          ],
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : '${listItem[index].judul}'
+                                      .toLowerCase()
+                                      .contains(filter.toLowerCase())
+                                  ? AnimationConfiguration.staggeredList(
+                                      position: index,
+                                      duration:
+                                          const Duration(milliseconds: 375),
+                                      child: SlideAnimation(
+                                        verticalOffset: 50.0,
+                                        child: FadeInAnimation(
+                                          child: new Stack(
+                                            children: <Widget>[
+                                              new Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 50.0),
+                                                child: new Card(
+                                                  margin:
+                                                      new EdgeInsets.all(20.0),
+                                                  child: new Container(
+                                                      margin:
+                                                          EdgeInsets.all(8.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(4.0),
+                                                              child: Text(
+                                                                  listItem[
+                                                                          index]
+                                                                      .judul),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(4.0),
+                                                              child: Row(
+                                                                children: [
+                                                                  Text(
+                                                                      "Status : "),
+                                                                  Padding(
+                                                                    padding:
+                                                                        const EdgeInsets.all(
+                                                                            8.0),
+                                                                    child: Card(
+                                                                      color: listItem[index].status ==
+                                                                              "1"
+                                                                          ? greenColors
+                                                                          : redColors,
+                                                                      child:
+                                                                          Text(
+                                                                        "${listItem[index].status == "1" ? "Sudah Ditangani" : "Belum diTangani"} ",
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                whiteColor),
+                                                                      ),
+                                                                    ),
+                                                                  )
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(4.0),
+                                                              child: Text(
+                                                                  "${listItem[index].Deskripsi}"),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      )),
+                                                ),
+                                              ),
+                                              new Positioned(
+                                                top: 0.0,
+                                                bottom: 0.0,
+                                                left: 35.0,
+                                                child: new Container(
+                                                  height: double.infinity,
+                                                  width: 1.0,
+                                                  color: blueColors,
+                                                ),
+                                              ),
+                                              new Positioned(
+                                                top: 100.0,
+                                                left: 27.0,
+                                                child: new Container(
+                                                  height: 20.0,
+                                                  width: 20.0,
+                                                  decoration: new BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    color: Colors.blue,
+                                                  ),
+                                                  child: new Container(
+                                                    margin:
+                                                        new EdgeInsets.all(5.0),
+                                                    height: 30.0,
+                                                    width: 30.0,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      )),
-                                ),
-                              ),
-                              new Positioned(
-                                top: 0.0,
-                                bottom: 0.0,
-                                left: 35.0,
-                                child: new Container(
-                                  height: double.infinity,
-                                  width: 1.0,
-                                  color: blueColors,
-                                ),
-                              ),
-                              new Positioned(
-                                top: 100.0,
-                                left: 27.0,
-                                child: new Container(
-                                  height: 20.0,
-                                  width: 20.0,
-                                  decoration: new BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.blue,
-                                  ),
-                                  child: new Container(
-                                    margin: new EdgeInsets.all(5.0),
-                                    height: 30.0,
-                                    width: 30.0,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                ):Image.asset("assets/img/not.png"),
+                                      ),
+                                    )
+                                  : Container();
+                        },
+                      )
+                    : Image.asset("assets/img/not.png"),
               )
             ],
           ),
@@ -239,7 +368,7 @@ class _PengaduanPageState extends State<PengaduanPage> {
     status_login = await storage.read(key: STATUS_LOGIN);
     String pic_id = await storage.read(key: ID_PIC);
 
-    if(status_login == IS_ADMIN){
+    if (status_login == IS_ADMIN) {
       ServiceApiConfig().getAllPengaduan(token).then((data) {
         data.data.forEach((element) {
           setState(() {
@@ -249,12 +378,9 @@ class _PengaduanPageState extends State<PengaduanPage> {
                 status: element.status == "Sudah Ditangani" ? "1" : "2"));
           });
         });
-        setState(() {
-          filteredData = listItem;
-        });
       });
-    }else{
-      ServiceApiConfig().getPengaduan(token,pic_id).then((data) {
+    } else {
+      ServiceApiConfig().getPengaduan(token, pic_id).then((data) {
         data.data.forEach((element) {
           setState(() {
             listItem.add(new ModelPengaduan(
@@ -262,9 +388,6 @@ class _PengaduanPageState extends State<PengaduanPage> {
                 Deskripsi: element.deskripsiKejadian,
                 status: element.status == "Sudah Ditangani" ? "1" : "2"));
           });
-        });
-        setState(() {
-          filteredData = listItem;
         });
       });
     }

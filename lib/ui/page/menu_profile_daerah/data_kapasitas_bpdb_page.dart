@@ -22,13 +22,24 @@ class DataKapasitasBPDBPage extends StatefulWidget {
 
 class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
   List<Datum> list_province = [];
-  List<Datum> filteredData = List();
-  final _debouncer = Debouncer(milliseconds: 500);
+  TextEditingController searchController = new TextEditingController();
+  String filter;
 
   @override
   void initState() {
+    searchController.addListener(() {
+      setState(() {
+        filter = searchController.text;
+      });
+    });
     getProvince();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
   }
 
   @override
@@ -64,6 +75,7 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: TextField(
+                          controller: searchController,
                           cursorColor: Colors.black,
                           decoration: InputDecoration(
                             hintText: "Cari",
@@ -74,20 +86,6 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
                             ),
                             border: InputBorder.none,
                           ),
-                          onChanged: (string) {
-                            _debouncer.run(() {
-                              setState(() {
-                                filteredData = list_province
-                                    .where((u) => (u.provincesName
-                                            .toLowerCase()
-                                            .contains(string.toLowerCase()) ||
-                                        u.provincesName
-                                            .toLowerCase()
-                                            .contains(string.toLowerCase())))
-                                    .toList();
-                              });
-                            });
-                          },
                         ),
                       ),
                     ),
@@ -106,7 +104,6 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
     ServiceApiConfig().getProvince().then((val) {
       setState(() {
         list_province = val.data;
-        filteredData = val.data;
       });
     }).catchError((_) {});
   }
@@ -115,32 +112,60 @@ class _DataKapasitasBPDBPageState extends State<DataKapasitasBPDBPage> {
     return SizedBox(
       height: MediaQuery.of(context).size.height / 1.5,
       child: ListView.builder(
-          itemCount: filteredData.length,
+          itemCount: list_province.length,
           physics: ClampingScrollPhysics(),
           itemBuilder: (context, i) {
-            return Center(
-                child: Center(
-              child: InkWell(
-                onTap: () {},
-                child: ListTile(
-                  title: Text(
-                    '${list_province[i].provincesName}',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
+            return filter == null || filter == ""
+                ? Center(
+                    child: Center(
+                    child: InkWell(
+                      onTap: () {},
+                      child: ListTile(
+                        title: Text(
+                          '${list_province[i].provincesName}',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                        trailing: Icon(Icons.keyboard_arrow_right),
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ProvinsiPage(
+                                  title: widget.title,
+                                  id_prov: list_province[i].id.toString(),
+                                  name: list_province[i].provincesName)));
+                        },
+                      ),
                     ),
-                  ),
-                  trailing: Icon(Icons.keyboard_arrow_right),
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ProvinsiPage(
-                            title: widget.title,
-                            id_prov: list_province[i].id.toString(),
-                            name: list_province[i].provincesName)));
-                  },
-                ),
-              ),
-            ));
+                  ))
+                : '${list_province[i].provincesName}'
+                        .toLowerCase()
+                        .contains(filter.toLowerCase())
+                    ? Center(
+                        child: Center(
+                        child: InkWell(
+                          onTap: () {},
+                          child: ListTile(
+                            title: Text(
+                              '${list_province[i].provincesName}',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
+                            ),
+                            trailing: Icon(Icons.keyboard_arrow_right),
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => ProvinsiPage(
+                                      title: widget.title,
+                                      id_prov: list_province[i].id.toString(),
+                                      name: list_province[i].provincesName)));
+                            },
+                          ),
+                        ),
+                      ))
+                    : Container();
           }),
     );
   }

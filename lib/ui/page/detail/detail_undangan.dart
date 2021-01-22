@@ -169,7 +169,7 @@ class _DetailUndanganPageState extends State<DetailUndanganPage> {
                     ? new Text("No image selected!")
                     : Column(
                       children: [
-                        new Image.file(_image),
+                        Image.file(_image),
                         FlatButton(
                           onPressed: () {
                             upload(_image,context,token);
@@ -217,7 +217,7 @@ class _DetailUndanganPageState extends State<DetailUndanganPage> {
       val.data.forEach((element) {
         setState(() {
           listGambar.add(new GambarKegiatan(
-              img: BASE_URL+element.image
+              img: element.image
           ));
         });
       });
@@ -280,6 +280,10 @@ class _DetailUndanganPageState extends State<DetailUndanganPage> {
 
     if(response.statusCode==200){
       Navigator.pop(context);
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => DetailUndanganPage(
+          modelItemUndangan:widget.modelItemUndangan,status :widget.status
+      )));
       showToast(context, "Image Uploaded");
     }else{
       showToast(context, "Upload Failed");

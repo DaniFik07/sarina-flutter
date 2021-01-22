@@ -2,7 +2,10 @@
  * Created by Bayu Nugroho
  * Copyright (c) 2020 . All rights reserved.
  */
-// To parse this JSON data, do
+/**
+ * Created by Bayu Nugroho
+ * Copyright (c) 2020 . All rights reserved.
+ */
 //
 //     final responseDetailProvinsi = responseDetailProvinsiFromJson(jsonString);
 

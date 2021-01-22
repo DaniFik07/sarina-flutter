@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' show Client, Response;
+import 'package:sarina/data/network/responses/get_fasilitas_p.dart';
+import 'package:sarina/data/network/responses/get_kendaraan.dart';
 import 'package:sarina/data/network/responses/get_sumber.dart';
 import 'package:sarina/data/network/responses/reponse_pic.dart';
 import 'package:sarina/data/network/responses/response_data_kegiatan.dart';
@@ -8,6 +10,7 @@ import 'package:sarina/data/network/responses/response_get_berita.dart';
 import 'package:sarina/data/network/responses/response_get_galery.dart';
 import 'package:sarina/data/network/responses/response_get_kegiatan.dart';
 import 'package:sarina/data/network/responses/response_get_kuesioner.dart';
+import 'package:sarina/data/network/responses/response_get_kuesionerap.dart';
 import 'package:sarina/data/network/responses/response_get_pengaduan.dart';
 import 'package:sarina/data/network/responses/response_get_submit_bpbd.dart';
 import 'package:sarina/data/network/responses/response_kabupaten.dart';
@@ -81,14 +84,113 @@ class ServiceApiConfig {
     }
   }
 
-  Future<ResponseMessage> addGalery(String EVENT_ID,String photo,String token,) async {
+  Future<ResponseMessage> addGalery(
+    String EVENT_ID,
+    String photo,
+    String token,
+  ) async {
     Response response;
-    response = await client
-        .post("$base_url/gallery/submit",
-        body: {
-          "EVENT_ID": EVENT_ID,
-          "photo": photo,
-        });
+    response = await client.post("$base_url/gallery/submit", body: {
+      "EVENT_ID": EVENT_ID,
+      "photo": photo,
+    });
+    if (response.statusCode == 200) {
+      return ResponseMessage.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+  Future<ResponseMessage> postFasilitasPenunjang(
+    String ID_PROVINSI,
+    String ID_KABUPATEN,
+    String ID_JENIS_BANGUNAN,
+    String ID_KONDISI,
+    String ID_SUMBER,
+    String TAHUN,
+    String ID_USER,
+    String ID_KEPLAK,
+    String KETERANGAN,
+    String ID_KEPEMILIKAN,
+    String token,
+  ) async {
+    Response response;
+    response = await client.post("$base_url/kuesioner/submit", body: {
+      "ID_PROVINSI": ID_PROVINSI,
+      "ID_KABUPATEN": ID_KABUPATEN,
+      "ID_JENIS_BANGUNAN": ID_JENIS_BANGUNAN,
+      "ID_KONDISI": ID_KONDISI,
+      "ID_SUMBER": ID_SUMBER,
+      "TAHUN": TAHUN,
+      "ID_USER": ID_USER,
+      "ID_KEPLAK": ID_KEPLAK,
+      "KETERANGAN": KETERANGAN,
+      "ID_KEPEMILIKAN": ID_KEPEMILIKAN,
+    });
+    if (response.statusCode == 200) {
+      return ResponseMessage.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+  Future<ResponseMessage> postUnitKendaraan(
+    String ID_PROVINSI,
+    String ID_KABUPATEN,
+    String ID_JENIS_KENDARAAN,
+    String ID_KONDISI,
+    String ID_SUMBER,
+    String ID_KENDARAAN,
+    String ID_USER,
+    String ID_KEPLAK,
+    String KETERANGAN,
+    String JUMLAH_UNIT,
+    String token,
+  ) async {
+    Response response;
+    response = await client.post("$base_url/kuesioneruk/submit", body: {
+      "ID_PROVINSI": ID_PROVINSI,
+      "ID_KABUPATEN": ID_KABUPATEN,
+      "ID_JENIS_KENDARAAN": ID_JENIS_KENDARAAN,
+      "ID_KONDISI": ID_KONDISI,
+      "ID_SUMBER": ID_SUMBER,
+      "ID_KENDARAAN": ID_KENDARAAN,
+      "ID_USER": ID_USER,
+      "ID_KEPLAK": ID_KEPLAK,
+      "KETERANGAN": KETERANGAN,
+      "JUMLAH_UNIT": JUMLAH_UNIT,
+    });
+    if (response.statusCode == 200) {
+      return ResponseMessage.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+
+  Future<ResponseMessage> postAlatPendukung(
+    String ID_PROVINSI,
+    String ID_KABUPATEN,
+    String ID_PERALATAN,
+    String ID_KONDISI,
+    String ID_SUMBER,
+    String ID_USER,
+    String ID_KEPLAK,
+    String KETERANGAN,
+    String JUMLAH_UNIT,
+    String token,
+  ) async {
+    Response response;
+    response = await client.post("$base_url/kuesionerap/submit", body: {
+      "ID_PROVINSI": ID_PROVINSI,
+      "ID_KABUPATEN": ID_KABUPATEN,
+      "ID_KONDISI": ID_KONDISI,
+      "ID_SUMBER": ID_SUMBER,
+      "ID_USER": ID_USER,
+      "ID_KEPLAK": ID_KEPLAK,
+      "KETERANGAN": KETERANGAN,
+      "JUMLAH_UNIT": JUMLAH_UNIT,
+    });
     if (response.statusCode == 200) {
       return ResponseMessage.fromJson(json.decode(response.body));
     } else {
@@ -371,8 +473,7 @@ class ServiceApiConfig {
     }
   }
 
-  Future<ResponseDataKegiatan> getAllKegiatan(
-      String token) async {
+  Future<ResponseDataKegiatan> getAllKegiatan(String token) async {
     Response response;
     response = await client.get("$base_url/data_kegiatan",
         headers: {"Authorization": "Bearer $token"});
@@ -385,12 +486,10 @@ class ServiceApiConfig {
     }
   }
 
-  Future<ResponseGetAllPengaduan> getAllPengaduan(
-      String token) async {
+  Future<ResponseGetAllPengaduan> getAllPengaduan(String token) async {
     Response response;
     response = await client.get("$base_url/data_pengaduan",
         headers: {"Authorization": "Bearer $token"});
-    print(response.body.toString());
     if (response.statusCode == 200) {
       print('200 ok');
       return ResponseGetAllPengaduan.fromJson(json.decode(response.body));
@@ -399,8 +498,7 @@ class ServiceApiConfig {
     }
   }
 
-  Future<ResponseGetKuesioner> getKuesioner(
-      String token) async {
+  Future<ResponseGetKuesioner> getKuesioner(String token) async {
     Response response;
     response = await client.get("$base_url/kuesioner",
         headers: {"Authorization": "Bearer $token"});
@@ -414,9 +512,7 @@ class ServiceApiConfig {
   }
 
   Future<ResponseGetAllPengaduan> getPengaduan(
-      String token,
-      String id_city
-      ) async {
+      String token, String id_city) async {
     Response response;
     response = await client.get("$base_url/data_pengaduan/$id_city",
         headers: {"Authorization": "Bearer $token"});
@@ -429,14 +525,12 @@ class ServiceApiConfig {
   }
 
   Future<ResponseGetGallery> getGallery(
-      String token,
-      String id_kegiatan
-      ) async {
+      String token, String id_kegiatan) async {
     Response response;
     response = await client.get("$base_url/gallery/$id_kegiatan",
         headers: {"Authorization": "Bearer $token"});
     if (response.statusCode == 200) {
-      print('200 ok');
+      print(response.body.toString() + " sda");
       return ResponseGetGallery.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
@@ -444,14 +538,56 @@ class ServiceApiConfig {
   }
 
   Future<ResponseGetBerita> getBerita(
-      String token,
-      ) async {
+    String token,
+  ) async {
     Response response;
     response = await client.get("$base_url/data_pengaduan/status",
         headers: {"Authorization": "Bearer $token"});
     if (response.statusCode == 200) {
       print('${response.body}');
       return ResponseGetBerita.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+  Future<ResponseGetKuesionerAp> getPeralatanPendukung(
+    String token,
+  ) async {
+    Response response;
+    response = await client.get("$base_url/kuesionerap",
+        headers: {"Authorization": "Bearer $token"});
+    if (response.statusCode == 200) {
+      print('${response.body}');
+      return ResponseGetKuesionerAp.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+  Future<ResponseGetFasilitasP> getFasilitasPenunjang(
+    String token,
+  ) async {
+    Response response;
+    response = await client.get("$base_url/kuesioner",
+        headers: {"Authorization": "Bearer $token"});
+    if (response.statusCode == 200) {
+      print('${response.body}');
+      return ResponseGetFasilitasP.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+  Future<ResponseGetKendaraan> getKendaraan(
+    String token,
+  ) async {
+    Response response;
+    response = await client.get("$base_url/kuesioneruk",
+        headers: {"Authorization": "Bearer $token"});
+    if (response.statusCode == 200) {
+      print('${response.body}');
+      return ResponseGetKendaraan.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
     }

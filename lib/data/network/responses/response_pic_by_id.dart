@@ -1,4 +1,7 @@
-// To parse this JSON data, do
+/**
+ * Created by Bayu Nugroho
+ * Copyright (c) 2020 . All rights reserved.
+ */
 //
 //     final responsePicbyId = responsePicbyIdFromJson(jsonString);
 

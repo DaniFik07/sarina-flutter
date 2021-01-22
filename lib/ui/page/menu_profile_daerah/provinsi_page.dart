@@ -27,14 +27,27 @@ class ProvinsiPage extends StatefulWidget {
 
 class _ProvinsiPageState extends State<ProvinsiPage> {
   List<Datum> list_city = [];
-  List<Datum> filteredData = List();
-  final _debouncer = Debouncer(milliseconds: 500);
+  TextEditingController searchController = new TextEditingController();
+  String filter;
 
   @override
   void initState() {
+
+    searchController.addListener(() {
+      setState(() {
+        filter = searchController.text;
+      });
+    });
     getCity();
     super.initState();
   }
+
+
+    @override
+    void dispose() {
+      searchController.dispose();
+      super.dispose();
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +80,7 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
                         ),
                         child: TextField(
                           cursorColor: Colors.black,
+                          controller: searchController,
                           decoration: InputDecoration(
                             hintText: "Cari",
                             suffixIcon: IconButton(
@@ -75,20 +89,6 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
                             ),
                             border: InputBorder.none,
                           ),
-                          onChanged: (string) {
-                            _debouncer.run(() {
-                              setState(() {
-                                filteredData = list_city
-                                    .where((u) => (u.regenciesName
-                                    .toLowerCase()
-                                    .contains(string.toLowerCase()) ||
-                                    u.regenciesName
-                                        .toLowerCase()
-                                        .contains(string.toLowerCase())))
-                                    .toList();
-                              });
-                            });
-                          },
                         ),
                       ),
                     ),
@@ -107,10 +107,11 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
     return SizedBox(
       height: MediaQuery.of(context).size.height / 1.5,
       child: ListView.builder(
-          itemCount: filteredData.length,
+          itemCount: list_city.length,
           physics: ClampingScrollPhysics(),
           itemBuilder: (context, i) {
-            return Center(
+            return filter == null || filter == ""?
+             Center(
                 child: Center(
                   child: InkWell(
                     onTap: () {},
@@ -140,7 +141,39 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
                       },
                     ),
                   ),
-                ));
+                )):'${list_city[i].regenciesName}'
+                .toLowerCase()
+                .contains(filter.toLowerCase())? Center(
+                child: Center(
+                  child: InkWell(
+                    onTap: () {},
+                    child: ListTile(
+                      title: Text(
+                        '${list_city[i].regenciesName}',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black,
+                        ),
+                      ),
+                      trailing: Icon(Icons.keyboard_arrow_right),
+                      onTap: () {
+                        if (widget.title == "Data Kapasitas BPBD") {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => InputBPDBPage(kab_id: list_city[i].id.toString(),kab: list_city[i].regenciesName,
+                                prov:widget.name,prov_id: widget.id_prov,)));
+                        } else if (widget.title == "Data Sarana Prasarana") {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  InputSaranaPrasaranaPage()));
+                        } else if (widget.title == "Data Informasi Bencana") {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => InformasiBencanaPage(kab_id: list_city[i].id.toString(),kab: list_city[i].regenciesName,
+                                  prov:widget.name,prov_id:widget.id_prov)));
+                        }
+                      },
+                    ),
+                  ),
+                )):Container();
           }),
     );
   }
@@ -155,7 +188,6 @@ class _ProvinsiPageState extends State<ProvinsiPage> {
     ServiceApiConfig().getCity(widget.id_prov).then((val) {
       setState(() {
         list_city = val.data;
-        filteredData = val.data;
       });
     }).catchError((_) {});
   }

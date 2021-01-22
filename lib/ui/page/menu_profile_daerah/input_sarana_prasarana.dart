@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:sarina/data/network/responses/get_fasilitas_p.dart';
+import 'package:sarina/data/network/responses/get_kendaraan.dart';
+import 'package:sarina/data/network/responses/response_get_kuesionerap.dart';
+import 'package:sarina/data/network/servis_api_config.dart';
 import 'package:sarina/models/dropdown_model.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
@@ -24,6 +29,8 @@ class InputSaranaPrasaranaPage extends StatefulWidget {
 }
 
 class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
+  final storage = new FlutterSecureStorage();
+
   List<NamaBangunan> listNamaBangunan = [];
   int namaBangunan;
 
@@ -33,11 +40,13 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
   List<SumberBangunan> listSumberBangunan = [];
   int sumberBangunan;
 
-  List<TahunPerolehan> listTahunPerolehan = [];
-  int tahunPerolehan;
+  String tahunPerolehan = "2020";
 
   List<NamaKendaraan> listNamaKendaraan = [];
   int namaKendaraan;
+
+  List<Kepemilikan> listKepemilikan = [];
+  int kepemilikan;
 
   List<KondisiKendaraan> listKondisiKendaraan = [];
   int kondisiKendaraan;
@@ -67,7 +76,7 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
   next() {
     _currentStep + 1 != _stepper().length
         ? goTo(_currentStep + 1)
-        : setState(() => complete = true);
+        : uploadData();
   }
 
   cancel() {
@@ -102,15 +111,7 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
         onStepTapped: (step) => goTo(step),
         onStepContinue: next,
         onStepCancel: cancel,
-        type: _stepperType,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: switchStepType,
-        backgroundColor: blueColors,
-        child: Icon(
-          Icons.swap_horizontal_circle,
-          color: Colors.white,
-        ),
+        type: StepperType.horizontal,
       ),
     );
   }
@@ -147,6 +148,31 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
                   });
                 },
                 value: namaBangunan,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Jenis Kepemilikan',
+                textAlign: TextAlign.left,
+                style: TextStyle(fontSize: 14, color: Colors.black),
+              ),
+              DropdownButton(
+                elevation: 5,
+                underline: SizedBox(),
+                hint: Text("Pilih"),
+                dropdownColor: Colors.grey[200],
+                isExpanded: true,
+                items: listKepemilikan.map((item) {
+                  return DropdownMenuItem(
+                      child: Text(item.name), value: item.id);
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    kepemilikan = value;
+                  });
+                },
+                value: kepemilikan,
               ),
               SizedBox(
                 height: 10,
@@ -208,14 +234,42 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
               ),
               DropdownButton(
                 elevation: 5,
-                underline: SizedBox(),
-                hint: Text("Pilih"),
+                hint: Text('------'),
                 dropdownColor: Colors.grey[200],
                 isExpanded: true,
-                items: listTahunPerolehan.map((item) {
-                  return DropdownMenuItem(
-                      child: Text(item.name), value: item.id);
-                }).toList(),
+                items: [
+                  DropdownMenuItem<String>(
+                    value: "2020",
+                    child: Text(
+                      "2020",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                  DropdownMenuItem<String>(
+                    value: "2021",
+                    child: Text(
+                      "2021",
+                    ),
+                  ),
+                  DropdownMenuItem<String>(
+                    value: "2022",
+                    child: Text(
+                      "2022",
+                    ),
+                  ),
+                  DropdownMenuItem<String>(
+                    value: "2023",
+                    child: Text(
+                      "2023",
+                    ),
+                  ),
+                  DropdownMenuItem<String>(
+                    value: "2024",
+                    child: Text(
+                      "2024",
+                    ),
+                  ),
+                ],
                 onChanged: (value) {
                   setState(() {
                     tahunPerolehan = value;
@@ -516,128 +570,88 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
     return _steps;
   }
 
-  void addDropdown() {
-    setState(() {
-      listNamaBangunan.add(new NamaBangunan(
-        id: 1,
-        name: "tes 1",
-      ));
-      listNamaBangunan.add(new NamaBangunan(
-        id: 2,
-        name: "tes 2",
-      ));
-      listNamaBangunan.add(new NamaBangunan(
-        id: 3,
-        name: "tes 3",
-      ));
-      listKondisiBangunan.add(new KondisiBangunan(
-        id: 1,
-        name: "tes 1",
-      ));
-      listKondisiBangunan.add(new KondisiBangunan(
-        id: 2,
-        name: "tes 2",
-      ));
-      listKondisiBangunan.add(new KondisiBangunan(
-        id: 3,
-        name: "tes 3",
-      ));
-      listSumberBangunan.add(new SumberBangunan(
-        id: 1,
-        name: "tes 1",
-      ));
-      listSumberBangunan.add(new SumberBangunan(
-        id: 2,
-        name: "tes 2",
-      ));
-      listSumberBangunan.add(new SumberBangunan(
-        id: 3,
-        name: "tes 3",
-      ));
-      listTahunPerolehan.add(new TahunPerolehan(
-        id: 1,
-        name: "tes 1",
-      ));
-      listTahunPerolehan.add(new TahunPerolehan(
-        id: 2,
-        name: "tes 2",
-      ));
-      listTahunPerolehan.add(new TahunPerolehan(
-        id: 3,
-        name: "tes 3",
-      ));
-      listNamaKendaraan.add(new NamaKendaraan(
-        id: 1,
-        name: "tes 1",
-      ));
-      listNamaKendaraan.add(new NamaKendaraan(
-        id: 2,
-        name: "tes 2",
-      ));
-      listNamaKendaraan.add(new NamaKendaraan(
-        id: 3,
-        name: "tes 3",
-      ));
-      listKondisiKendaraan.add(new KondisiKendaraan(
-        id: 1,
-        name: "tes 1",
-      ));
-      listKondisiKendaraan.add(new KondisiKendaraan(
-        id: 2,
-        name: "tes 2",
-      ));
-      listKondisiKendaraan.add(new KondisiKendaraan(
-        id: 3,
-        name: "tes 3",
-      ));
-      listSumberKendaraan.add(new SumberKendaraan(
-        id: 1,
-        name: "tes 1",
-      ));
-      listSumberKendaraan.add(new SumberKendaraan(
-        id: 2,
-        name: "tes 2",
-      ));
-      listSumberKendaraan.add(new SumberKendaraan(
-        id: 3,
-        name: "tes 3",
-      ));
-      listJenisAlat.add(new JenisAlat(
-        id: 1,
-        name: "tes 1",
-      ));
-      listJenisAlat.add(new JenisAlat(
-        id: 2,
-        name: "tes 2",
-      ));
-      listJenisAlat.add(new JenisAlat(
-        id: 3,
-        name: "tes 3",
-      ));
-      listKondisiAlat.add(new KondisiAlat(
-        id: 1,
-        name: "tes 1",
-      ));
-      listKondisiAlat.add(new KondisiAlat(
-        id: 2,
-        name: "tes 2",
-      ));
-      listKondisiAlat.add(new KondisiAlat(
-        id: 3,
-        name: "tes 3",
-      ));
-      listSumberAlat.add(new SumberAlat(
-        id: 1,
-        name: "tes 1",
-      ));
-      listSumberAlat.add(new SumberAlat(
-        id: 2,
-        name: "tes 2",
-      ));
-      listSumberAlat.add(new SumberAlat(
-        id: 3,
-        name: "tes 3",
-      ));
-    });
+  void addDropdown() async {
+    String token = await storage.read(key: TOKEN_LOGIN);
+    await ServiceApiConfig().getFasilitasPenunjang(token).then((data) {
+      addBangunan(data.data.jenisBangunan.data);
+      addKepemilikan(data.data.jenisKepemilikan.data);
+    }).catchError((onError) {});
+
+    await ServiceApiConfig().getKendaraan(token).then((data) {
+      addKendaraan(data.data.kendaraan.data);
+    }).catchError((onError) {});
+
+    await ServiceApiConfig().getPeralatanPendukung(token).then((data) {
+      addKondisi(data.data.kondisi.data);
+      addSumber(data.data.sumber.data);
+      addPeralatanPendukung(data.data.peralatan.data);
+    }).catchError((onError) {});
+  }
+
+  void addKondisi(List<KondisiDatum> data) {
+    for (int i = 0; i < data.length; i++) {
+      setState(() {
+        listKondisiBangunan.add(
+            new KondisiBangunan(id: data[i].id, name: data[i].conditionName));
+        listKondisiAlat
+            .add(new KondisiAlat(id: data[i].id, name: data[i].conditionName));
+        listKondisiKendaraan.add(
+            new KondisiKendaraan(id: data[i].id, name: data[i].conditionName));
+      });
+    }
+  }
+
+  void addSumber(List<KondisiDatum> data) {
+    for (int i = 0; i < data.length; i++) {
+      setState(() {
+        listSumberAlat
+            .add(new SumberAlat(id: data[i].id, name: data[i].sumberdanaName));
+        listSumberBangunan.add(
+            new SumberBangunan(id: data[i].id, name: data[i].sumberdanaName));
+
+        listSumberKendaraan.add(
+            new SumberKendaraan(id: data[i].id, name: data[i].sumberdanaName));
+      });
+    }
+  }
+
+  void addBangunan(List<Datum> data) {
+    for (int i = 0; i < data.length; i++) {
+      setState(() {
+        listNamaBangunan
+            .add(new NamaBangunan(id: data[i].id, name: data[i].buildingType));
+      });
+    }
+  }
+
+  void addKendaraan(List<KendaraanDatum> data) {
+    for (int i = 0; i < data.length; i++) {
+      setState(() {
+        listNamaKendaraan
+            .add(new NamaKendaraan(id: data[i].id, name: data[i].vehicleName));
+      });
+    }
+  }
+
+  void addKepemilikan(List<Datum> data) {
+    for (int i = 0; i < data.length; i++) {
+      setState(() {
+        listKepemilikan.add(
+            new Kepemilikan(id: data[i].id, name: data[i].kepemilikanType));
+      });
+    }
+  }
+
+  void addPeralatanPendukung(List<PeralatanDatum> data) {
+    for (int i = 0; i < data.length; i++) {
+      setState(() {
+        listJenisAlat
+            .add(new JenisAlat(id: data[i].id, name: data[i].id.toString()));
+      });
+    }
+  }
+
+  uploadData() async {
+    print('dsadsadsadsasasdadas');
   }
 }

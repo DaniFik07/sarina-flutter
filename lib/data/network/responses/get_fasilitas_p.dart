@@ -2,22 +2,21 @@
  * Created by Bayu Nugroho
  * Copyright (c) 2020 . All rights reserved.
  */
-
 /**
  * Created by Bayu Nugroho
  * Copyright (c) 2020 . All rights reserved.
  */
 //
-//     final responseGetKuesioner = responseGetKuesionerFromJson(jsonString);
+//     final responseGetFasilitasP = responseGetFasilitasPFromJson(jsonString);
 
 import 'dart:convert';
 
-ResponseGetKuesioner responseGetKuesionerFromJson(String str) => ResponseGetKuesioner.fromJson(json.decode(str));
+ResponseGetFasilitasP responseGetFasilitasPFromJson(String str) => ResponseGetFasilitasP.fromJson(json.decode(str));
 
-String responseGetKuesionerToJson(ResponseGetKuesioner data) => json.encode(data.toJson());
+String responseGetFasilitasPToJson(ResponseGetFasilitasP data) => json.encode(data.toJson());
 
-class ResponseGetKuesioner {
-  ResponseGetKuesioner({
+class ResponseGetFasilitasP {
+  ResponseGetFasilitasP({
     this.status,
     this.data,
   });
@@ -25,7 +24,7 @@ class ResponseGetKuesioner {
   String status;
   Data data;
 
-  factory ResponseGetKuesioner.fromJson(Map<String, dynamic> json) => ResponseGetKuesioner(
+  factory ResponseGetFasilitasP.fromJson(Map<String, dynamic> json) => ResponseGetFasilitasP(
     status: json["status"] == null ? null : json["status"],
     data: json["data"] == null ? null : Data.fromJson(json["data"]),
   );
