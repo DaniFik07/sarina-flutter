@@ -7,6 +7,7 @@ import 'package:sarina/data/network/servis_api_config.dart';
 import 'package:sarina/models/model_home.dart';
 import 'package:sarina/ui/page/detail/detail_undangan.dart';
 import 'package:sarina/utils/constants.dart';
+import 'package:sarina/utils/refresh.dart';
 import 'package:sarina/utils/size_config.dart';
 
 /**
@@ -23,8 +24,12 @@ class _DaftarUndanganPageState extends State<DaftarUndanganPage> {
   Color red800 = Colors.red[800];
   List<ModelItemUndangan> modelItemUndanganList = [];
   String status_login = "";
+  String id_pic = "";
   final storage = new FlutterSecureStorage();
-  
+  final _debouncer = Debouncer(milliseconds: 500);
+  List<ModelItemUndangan> filteredData = List();
+
+
   @override
   void initState() {
     addData();
@@ -96,6 +101,20 @@ class _DaftarUndanganPageState extends State<DaftarUndanganPage> {
                               ),
                               border: InputBorder.none,
                             ),
+                            onChanged: (string) {
+                              _debouncer.run(() {
+                                setState(() {
+                                  filteredData = modelItemUndanganList
+                                      .where((u) => (u.judul
+                                      .toLowerCase()
+                                      .contains(string.toLowerCase()) ||
+                                      u.Deskripsi
+                                          .toLowerCase()
+                                          .contains(string.toLowerCase())))
+                                      .toList();
+                                });
+                              });
+                            },
                           ),
                         ),
                       ),
@@ -106,8 +125,8 @@ class _DaftarUndanganPageState extends State<DaftarUndanganPage> {
               Container(
                 height: SizeConfig.screenHight /1.1,
                 width: SizeConfig.screenWidth,
-                child: modelItemUndanganList.length> 0?ListView.builder(
-                  itemCount: modelItemUndanganList.length,
+                child: filteredData.length> 0?ListView.builder(
+                  itemCount: filteredData.length,
                   itemBuilder: (BuildContext context, int index) {
                     return AnimationConfiguration.staggeredList(
                       position: index,
@@ -121,10 +140,18 @@ class _DaftarUndanganPageState extends State<DaftarUndanganPage> {
                                 padding: const EdgeInsets.only(left: 50.0),
                                 child: InkWell(
                                   onTap: (){
-                                    Navigator.push(
-                                        context, MaterialPageRoute(builder: (context) => DetailUndanganPage(
-                                        modelItemUndangan:modelItemUndanganList[index]
-                                    )));
+                                    print(id_pic +" \n"+ modelItemUndanganList[index].pic_id +"\n"+ status_login );
+                                    if(id_pic == filteredData[index].pic_id || status_login == IS_ADMIN){
+                                      Navigator.push(
+                                          context, MaterialPageRoute(builder: (context) => DetailUndanganPage(
+                                        modelItemUndangan:filteredData[index],status :"ketua"
+                                      )));
+                                    }else{
+                                      Navigator.push(
+                                          context, MaterialPageRoute(builder: (context) => DetailUndanganPage(
+                                          modelItemUndangan:filteredData[index],status :"bukan ketua"
+                                      )));
+                                    }
                                   },
                                   child: new Card(
                                     margin: new EdgeInsets.all(20.0),
@@ -142,13 +169,13 @@ class _DaftarUndanganPageState extends State<DaftarUndanganPage> {
                                                 padding:
                                                 const EdgeInsets.all(4.0),
                                                 child: Text(
-                                                    modelItemUndanganList[index].judul),
+                                                    filteredData[index].judul),
                                               ),
                                               Padding(
                                                 padding:
                                                 const EdgeInsets.all(4.0),
                                                 child: Text(
-                                                    "Event Type : " +modelItemUndanganList[index].eventType),
+                                                    "Event Type : " +filteredData[index].eventType),
                                               ),
                                               Padding(
                                                 padding:
@@ -160,7 +187,7 @@ class _DaftarUndanganPageState extends State<DaftarUndanganPage> {
                                                       child: Padding(
                                                         padding: const EdgeInsets.all(4.0),
                                                         child: Card(color:greenColors,
-                                                          child: Text("${modelItemUndanganList[index].tglPelaksanan} "
+                                                          child: Text("${filteredData[index].tglPelaksanan} "
                                                               "",style: TextStyle(color: whiteColor),),),
                                                       ),
                                                     )
@@ -178,7 +205,7 @@ class _DaftarUndanganPageState extends State<DaftarUndanganPage> {
                                                       Padding(
                                                         padding: const EdgeInsets.all(4.0),
                                                         child: Card(color:orangeColor,
-                                                          child: Text("${modelItemUndanganList[index].WaktuPelaksana} ",
+                                                          child: Text("${filteredData[index].WaktuPelaksana} ",
                                                             style: TextStyle(color: whiteColor),),),
                                                       )
                                                     ],
@@ -228,7 +255,6 @@ class _DaftarUndanganPageState extends State<DaftarUndanganPage> {
                     height:100,width: 100,child: Center
                   (child: CircularProgressIndicator())),
               ),
-              SizedBox(height: 200,)
             ],
           ),
         )
@@ -238,6 +264,7 @@ class _DaftarUndanganPageState extends State<DaftarUndanganPage> {
 
   void addData() async{
     String token = await storage.read(key: TOKEN_LOGIN);
+    id_pic = await storage.read(key: ID_PIC);
     ServiceApiConfig().getAllKegiatan(token).then((val){
       if(val.data != null){
         for(int i =0; i< val.data.length;i++){
@@ -249,9 +276,15 @@ class _DaftarUndanganPageState extends State<DaftarUndanganPage> {
                 tglPelaksanan: val.data[i].eventDate.toString().replaceAll("00:00:00.000Z", ""),
                 WaktuPelaksana: val.data[i].eventTime,
                 eventType: val.data[i].eventType,
+                pic_id: val.data[i].picId.toString()
             ));
           });
         }
+        setState(() {
+          filteredData= modelItemUndanganList;
+        });
+        print(filteredData.length.toString());
+        print(modelItemUndanganList.length.toString());
       }
     }).catchError((onError){
     });

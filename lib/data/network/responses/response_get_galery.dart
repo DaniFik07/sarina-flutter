@@ -1,15 +1,20 @@
+/**
+ * Created by Bayu Nugroho
+ * Copyright (c) 2020 . All rights reserved.
+ */
+
 // To parse this JSON data, do
 //
-//     final responseDataKegiatan = responseDataKegiatanFromJson(jsonString);
+//     final responseGetGallery = responseGetGalleryFromJson(jsonString);
 
 import 'dart:convert';
 
-ResponseDataKegiatan responseDataKegiatanFromJson(String str) => ResponseDataKegiatan.fromJson(json.decode(str));
+ResponseGetGallery responseGetGalleryFromJson(String str) => ResponseGetGallery.fromJson(json.decode(str));
 
-String responseDataKegiatanToJson(ResponseDataKegiatan data) => json.encode(data.toJson());
+String responseGetGalleryToJson(ResponseGetGallery data) => json.encode(data.toJson());
 
-class ResponseDataKegiatan {
-  ResponseDataKegiatan({
+class ResponseGetGallery {
+  ResponseGetGallery({
     this.status,
     this.data,
   });
@@ -17,7 +22,7 @@ class ResponseDataKegiatan {
   String status;
   List<Datum> data;
 
-  factory ResponseDataKegiatan.fromJson(Map<String, dynamic> json) => ResponseDataKegiatan(
+  factory ResponseGetGallery.fromJson(Map<String, dynamic> json) => ResponseGetGallery(
     status: json["status"] == null ? null : json["status"],
     data: json["data"] == null ? null : List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
   );
@@ -31,6 +36,8 @@ class ResponseDataKegiatan {
 class Datum {
   Datum({
     this.id,
+    this.eventId,
+    this.image,
     this.usersId,
     this.sumberId,
     this.galleryId,
@@ -47,6 +54,8 @@ class Datum {
   });
 
   int id;
+  int eventId;
+  String image;
   int usersId;
   int sumberId;
   int galleryId;
@@ -54,7 +63,7 @@ class Datum {
   String eventType;
   String eventName;
   int eventProgress;
-  DateTime eventDate;
+  dynamic eventDate;
   String eventTime;
   String eventDescription;
   DateTime createdAt;
@@ -63,6 +72,8 @@ class Datum {
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
     id: json["id"] == null ? null : json["id"],
+    eventId: json["event_id"] == null ? null : json["event_id"],
+    image: json["image"] == null ? null : json["image"],
     usersId: json["users_id"] == null ? null : json["users_id"],
     sumberId: json["sumber_id"] == null ? null : json["sumber_id"],
     galleryId: json["gallery_id"] == null ? null : json["gallery_id"],
@@ -70,7 +81,7 @@ class Datum {
     eventType: json["event_type"] == null ? null : json["event_type"],
     eventName: json["event_name"] == null ? null : json["event_name"],
     eventProgress: json["event_progress"] == null ? null : json["event_progress"],
-    eventDate: json["event_date"] == null ? null : DateTime.parse(json["event_date"]),
+    eventDate: json["event_date"],
     eventTime: json["event_time"] == null ? null : json["event_time"],
     eventDescription: json["event_description"] == null ? null : json["event_description"],
     createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
@@ -80,6 +91,8 @@ class Datum {
 
   Map<String, dynamic> toJson() => {
     "id": id == null ? null : id,
+    "event_id": eventId == null ? null : eventId,
+    "image": image == null ? null : image,
     "users_id": usersId == null ? null : usersId,
     "sumber_id": sumberId == null ? null : sumberId,
     "gallery_id": galleryId == null ? null : galleryId,
@@ -87,7 +100,7 @@ class Datum {
     "event_type": eventType == null ? null : eventType,
     "event_name": eventName == null ? null : eventName,
     "event_progress": eventProgress == null ? null : eventProgress,
-    "event_date": eventDate == null ? null : eventDate.toIso8601String(),
+    "event_date": eventDate,
     "event_time": eventTime == null ? null : eventTime,
     "event_description": eventDescription == null ? null : eventDescription,
     "created_at": createdAt == null ? null : createdAt.toIso8601String(),

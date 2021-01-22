@@ -124,7 +124,7 @@ class _PengaduanPageState extends State<PengaduanPage> {
               ),
               Container(
                 height: SizeConfig.screenHight / 1.5,
-                child: ListView.builder(
+                child: filteredData.length > 0?ListView.builder(
                   itemCount: filteredData.length,
                   itemBuilder: (BuildContext context, int index) {
                     return AnimationConfiguration.staggeredList(
@@ -185,7 +185,7 @@ class _PengaduanPageState extends State<PengaduanPage> {
                                               padding:
                                                   const EdgeInsets.all(4.0),
                                               child: Text(
-                                                  listItem[index].Deskripsi),
+                                                  "${listItem[index].Deskripsi}"),
                                             ),
                                           ],
                                         ),
@@ -225,7 +225,7 @@ class _PengaduanPageState extends State<PengaduanPage> {
                       ),
                     );
                   },
-                ),
+                ):Image.asset("assets/img/not.png"),
               )
             ],
           ),
@@ -236,19 +236,38 @@ class _PengaduanPageState extends State<PengaduanPage> {
 
   void addData() async {
     String token = await storage.read(key: TOKEN_LOGIN);
-    ServiceApiConfig().getAllPengaduan(token).then((data) {
-      data.data.forEach((element) {
+    status_login = await storage.read(key: STATUS_LOGIN);
+    String pic_id = await storage.read(key: ID_PIC);
+
+    if(status_login == IS_ADMIN){
+      ServiceApiConfig().getAllPengaduan(token).then((data) {
+        data.data.forEach((element) {
+          setState(() {
+            listItem.add(new ModelPengaduan(
+                judul: element.judul,
+                Deskripsi: element.deskripsiKejadian,
+                status: element.status == "Sudah Ditangani" ? "1" : "2"));
+          });
+        });
         setState(() {
-          listItem.add(new ModelPengaduan(
-              judul: element.judul,
-              Deskripsi: element.deskripsiKejadian,
-              status: element.status == "Sudah Ditangani" ? "1" : "2"));
+          filteredData = listItem;
         });
       });
-      setState(() {
-        filteredData = listItem;
+    }else{
+      ServiceApiConfig().getPengaduan(token,pic_id).then((data) {
+        data.data.forEach((element) {
+          setState(() {
+            listItem.add(new ModelPengaduan(
+                judul: element.judul,
+                Deskripsi: element.deskripsiKejadian,
+                status: element.status == "Sudah Ditangani" ? "1" : "2"));
+          });
+        });
+        setState(() {
+          filteredData = listItem;
+        });
       });
-    });
+    }
   }
 
   void checkRole() async {

@@ -13,8 +13,9 @@ class ModelItemUndangan{
   String tglPelaksanan;
   String WaktuPelaksana;
   String eventType;
+  String pic_id;
 
-  ModelItemUndangan({this.id,this.judul, this.Deskripsi, this.tglPelaksanan, this.WaktuPelaksana,this.eventType});
+  ModelItemUndangan({this.id,this.judul, this.Deskripsi, this.tglPelaksanan, this.WaktuPelaksana,this.eventType,this.pic_id});
 }
 
 class GambarKegiatan{

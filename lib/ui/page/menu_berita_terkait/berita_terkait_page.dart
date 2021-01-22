@@ -1,7 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:sarina/data/network/servis_api_config.dart';
 import 'package:sarina/models/model_home.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
@@ -18,6 +20,7 @@ class BeritaTerkait extends StatefulWidget {
 
 class _BeritaTerkaitState extends State<BeritaTerkait> {
   Color red800 = Colors.red[800];
+  final storage = new FlutterSecureStorage();
   List<ModelBeritaTerkait> listBerita = [];
 
   @override
@@ -31,8 +34,10 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
     SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Berita Terkait',
-          style: TextStyle(),),
+        title: Text(
+          'Berita Terkait',
+          style: TextStyle(),
+        ),
         centerTitle: true,
       ),
       body: Container(
@@ -50,12 +55,9 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 5),
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width * 0.8,
+                        padding:
+                        EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                        width: MediaQuery.of(context).size.width * 0.8,
                         decoration: BoxDecoration(
                           color: whiteColor,
                           borderRadius: BorderRadius.circular(20),
@@ -64,8 +66,7 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
                           cursorColor: Colors.black,
                           decoration: InputDecoration(
                             hintText: "Cari",
-                            hintStyle: TextStyle(
-                                fontSize: 16),
+                            hintStyle: TextStyle(fontSize: 16),
                             suffixIcon: IconButton(
                               onPressed: () {},
                               icon: Icon(Icons.search_outlined),
@@ -107,9 +108,12 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
                                             mainAxisAlignment:
                                             MainAxisAlignment.start,
                                             children: [
-                                              Flexible(child: Image.asset(
-                                                listBerita[index].img, width: 50,
-                                                height: 50,)),
+                                              Flexible(
+                                                  child: Image.asset(
+                                                    listBerita[index].img,
+                                                    width: 50,
+                                                    height: 50,
+                                                  )),
                                               Expanded(
                                                 child: Column(
                                                   crossAxisAlignment:
@@ -119,20 +123,25 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                      const EdgeInsets.all(4.0),
+                                                      const EdgeInsets.all(
+                                                          4.0),
                                                       child: Text(
                                                         listBerita[index].judul,
                                                         style: TextStyle(
-                                                            color: Colors
-                                                                .black),),
+                                                            color:
+                                                            Colors.black),
+                                                      ),
                                                     ),
                                                     Padding(
-                                                        padding:
-                                                        const EdgeInsets.all(4.0),
-                                                        child: Text(
-                                                          listBerita[index].Deskripsi,
-                                                          style: TextStyle(
-                                                              color: abuAbu),),
+                                                      padding:
+                                                      const EdgeInsets.all(
+                                                          4.0),
+                                                      child: Text(
+                                                        "${formatString(listBerita[index]
+                                                            .Deskripsi,20)}",
+                                                        style: TextStyle(
+                                                            color: abuAbu),
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
@@ -178,7 +187,6 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
                   },
                 ),
               )
-
             ],
           ),
         ),
@@ -186,17 +194,24 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
     );
   }
 
-  void addData() {
-    setState(() {
-      listBerita.add(new ModelBeritaTerkait(
-          judul: "judul ",
-          Deskripsi: "Lorem Ipsum Lorem Ipsum",
-          img: "assets/img/logokm.png"));
+  void addData() async {
+    String token = await storage.read(key: TOKEN_LOGIN);
+    ServiceApiConfig().getBerita(token).then((val) {
+      for (int i = 0; i < val.data.length; i++) {
+        setState(() {
+          listBerita.add(new ModelBeritaTerkait(
+              judul: val.data[i].judul,
+              Deskripsi: val.data[i].deskripsi,
+              img: "assets/img/logokm.png"));
+        });
+      }
+    }).catchError((_) {});
+  }
 
-      listBerita.add(new ModelBeritaTerkait(
-          judul: "judul2",
-          Deskripsi: "Lorem Ipsum Lorem Ipsum2 Lorem Ipsum Lorem Ipsum2",
-          img: "assets/img/logokm.png"));
-    });
+  // String formatString(String deskripsi) {
+  //   return deskripsi.replaceRange(0, deskripsi.length, '...');
+  // }
+  String formatString(String data, int length) {
+    return (data.length >= length) ? '${data.substring(0, length)}...' : data;
   }
 }

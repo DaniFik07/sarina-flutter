@@ -18,6 +18,7 @@ import 'dart:math' as Math;
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:sarina/data/network/servis_api_config.dart';
 import 'package:sarina/models/model_home.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
@@ -32,8 +33,8 @@ import 'detail_gambar_kegiatan.dart';
 
 class DetailUndanganPage extends StatefulWidget {
   ModelItemUndangan modelItemUndangan;
-
-  DetailUndanganPage({this.modelItemUndangan});
+  String status ="";
+  DetailUndanganPage({this.modelItemUndangan,this.status});
 
   @override
   _DetailUndanganPageState createState() => _DetailUndanganPageState();
@@ -123,7 +124,7 @@ class _DetailUndanganPageState extends State<DetailUndanganPage> {
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   DetailGambarKegiatan(
-                                                      img:
+                                                        img:
                                                           listGambar[index].img,
                                                       gbr: "gambar" +
                                                           index.toString()))),
@@ -152,73 +153,75 @@ class _DetailUndanganPageState extends State<DetailUndanganPage> {
   }
 
   Widget addImages(BuildContext context) {
-    return Container(
-      height: 200,
-      child: InkWell(
-        onTap: (){
-          AwesomeDialog(
-            context: context,
-            dialogType: DialogType.NO_HEADER,
-            animType: AnimType.BOTTOMSLIDE,
-            title: 'Tambah Gallery',
-            body:  Center(
+    return Visibility(
+      visible: widget.status == "ketua"?true:false,
+      child: Container(
+        height: 200,
+        child: InkWell(
+          onTap: (){
+            AwesomeDialog(
+              context: context,
+              dialogType: DialogType.NO_HEADER,
+              animType: AnimType.BOTTOMSLIDE,
+              title: 'Tambah Gallery',
+              body:  Center(
+                child: _image==null
+                    ? new Text("No image selected!")
+                    : Column(
+                      children: [
+                        new Image.file(_image),
+                        FlatButton(
+                          onPressed: () {
+                            upload(_image,context,token);
+                          },
+                          child: Text('Upload this Image'),
+                          shape: StadiumBorder(),
+                          color: Colors.blue,
+                          textColor: Colors.white,
+                        ),
+                      ],
+                    ),
+              ),
+              desc: '',
+              btnCancelText: 'Via Gallery',
+              btnOkText: 'Via Camera',
+              btnCancelOnPress: () {
+                getImageGallery();
+              },
+              btnOkOnPress: () {
+                getImageCamera();
+              },
+            )..show();
+          },
+          child: Card(
+              elevation: 4,
               child: _image==null
-                  ? new Text("No image selected!")
-                  : Column(
-                    children: [
-                      new Image.file(_image),
-                      FlatButton(
-                        onPressed: () {
-                          upload(_image,context,token);
-                        },
-                        child: Text('Upload this Image'),
-                        shape: StadiumBorder(),
-                        color: Colors.blue,
-                        textColor: Colors.white,
-                      ),
-                    ],
-                  ),
-            ),
-            desc: '',
-            btnCancelText: 'Via Gallery',
-            btnOkText: 'Via Camera',
-            btnCancelOnPress: () {
-              getImageGallery();
-            },
-            btnOkOnPress: () {
-              getImageCamera();
-            },
-          )..show();
-        },
-        child: Card(
-            elevation: 4,
-            child: _image==null
-                ? Center(
-                child: Icon(
-                  Icons.add,
-                  size: 40,
-                )) : new Image.file(_image),),
+                  ? Center(
+                  child: Icon(
+                    Icons.add,
+                    size: 40,
+                  )) : new Image.file(_image),),
+        ),
       ),
     );
   }
 
   void addImage() async{
     token = await storage.read(key: TOKEN_LOGIN);
+
     setState(() {
-      listGambar.add(new GambarKegiatan(
-          img:
-              "https://res.cloudinary.com/practicaldev/image/fetch/s--xjV2-xvw--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/psw782jgf7z3dl08tcag.jpg"));
-      listGambar.add(new GambarKegiatan(
-          img:
-              "https://res.cloudinary.com/practicaldev/image/fetch/s--xjV2-xvw--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/psw782jgf7z3dl08tcag.jpg"));
-      listGambar.add(new GambarKegiatan(
-          img:
-              "https://res.cloudinary.com/practicaldev/image/fetch/s--xjV2-xvw--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/psw782jgf7z3dl08tcag.jpg"));
-      listGambar.add(new GambarKegiatan(
-          img:
-              "https://res.cloudinary.com/practicaldev/image/fetch/s--xjV2-xvw--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/psw782jgf7z3dl08tcag.jpg"));
       listGambar.add(new GambarKegiatan(img: "addData"));
     });
+
+    ServiceApiConfig().getGallery(token, widget.modelItemUndangan.id).then((val){
+      val.data.forEach((element) {
+        setState(() {
+          listGambar.add(new GambarKegiatan(
+              img: BASE_URL+element.image
+          ));
+        });
+      });
+    }).catchError((_){});
   }
 
 
@@ -267,7 +270,7 @@ class _DetailUndanganPageState extends State<DetailUndanganPage> {
     Map<String, String> headers = { "Authorization": "Bearer $token"};
     var stream= new http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
     var length= await imageFile.length();
-    var uri = Uri.parse("https://lencanaapi2020.herokuapp.com/api/v1/gallery/submit");
+    var uri = Uri.parse("https://sarinaapi.bayunugroho404.dev/api/v1/gallery/submit");
     var request = new http.MultipartRequest("POST", uri);
     request.headers.addAll(headers);
     var multipartFile = new http.MultipartFile("photo", stream, length, filename: basename(imageFile.path));

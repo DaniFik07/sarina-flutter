@@ -60,7 +60,7 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                 height: 100,
                 child: InkWell(
                   onTap: () {
-                    if (status_login == IS_STAFF) {
+                    if (status_login == IS_ADMIN) {
                       Navigator.of(context).push(
                           MaterialPageRoute(
                               builder: (context) =>
@@ -126,14 +126,17 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
                       Navigator.of(context).push(
                           MaterialPageRoute(
                               builder: (context) =>
-                                  DataSaranaPrasaranaPage(
+                                  DataKapasitasBPDBPage(
                                       title: "Data Sarana Prasarana")));
                     } else {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  InputSaranaPrasaranaPage(
-                                      title: "Data Sarana Prasarana")));
+                      if(kab_id != ""){
+                        Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    InputSaranaPrasaranaPage(title: "Data Sarana Prasarana",kab_id: kab_id,kab: kab,prov: prov,prov_id: prov_id)));
+                      }else{
+                        print("wait");
+                      }
                     }
                   },
                   child: Card(
@@ -247,7 +250,6 @@ class _ProfileDaerahPageState extends State<ProfileDaerahPage> {
   }
 
   void chekRole() async {
-    //baca vale dari kunci STATuS_LOGIN
     status_login = await storage.read(key: STATUS_LOGIN);
     String id_pic = await storage.read(key: ID_PIC);
     String token = await storage.read(key: TOKEN_LOGIN);

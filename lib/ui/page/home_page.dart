@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
             Icon(Icons.home_filled,color: blueColors, size: 30),
             Icon(Icons.chat, color: blueColors, size: 30,),
             Icon(Icons.person,color: blueColors, size: 30),
-            Icon(Icons.settings,color: blueColors, size: 30),
+            // Icon(Icons.settings,color: blueColors, size: 30),
           ],
           color: whiteColor,
           buttonBackgroundColor: whiteColor,
@@ -69,9 +69,6 @@ class _HomePageState extends State<HomePage> {
         break;
       case 2:
         return ProfilePage();
-        break;
-      case 3:
-        return Center(child: Text('setting'),);
         break;
     }
   }

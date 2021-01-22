@@ -4,7 +4,10 @@ import 'package:http/http.dart' show Client, Response;
 import 'package:sarina/data/network/responses/get_sumber.dart';
 import 'package:sarina/data/network/responses/reponse_pic.dart';
 import 'package:sarina/data/network/responses/response_data_kegiatan.dart';
+import 'package:sarina/data/network/responses/response_get_berita.dart';
+import 'package:sarina/data/network/responses/response_get_galery.dart';
 import 'package:sarina/data/network/responses/response_get_kegiatan.dart';
+import 'package:sarina/data/network/responses/response_get_kuesioner.dart';
 import 'package:sarina/data/network/responses/response_get_pengaduan.dart';
 import 'package:sarina/data/network/responses/response_get_submit_bpbd.dart';
 import 'package:sarina/data/network/responses/response_kabupaten.dart';
@@ -391,6 +394,64 @@ class ServiceApiConfig {
     if (response.statusCode == 200) {
       print('200 ok');
       return ResponseGetAllPengaduan.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+  Future<ResponseGetKuesioner> getKuesioner(
+      String token) async {
+    Response response;
+    response = await client.get("$base_url/kuesioner",
+        headers: {"Authorization": "Bearer $token"});
+    print(response.body.toString());
+    if (response.statusCode == 200) {
+      print('200 ok');
+      return ResponseGetKuesioner.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+  Future<ResponseGetAllPengaduan> getPengaduan(
+      String token,
+      String id_city
+      ) async {
+    Response response;
+    response = await client.get("$base_url/data_pengaduan/$id_city",
+        headers: {"Authorization": "Bearer $token"});
+    if (response.statusCode == 200) {
+      print('200 ok');
+      return ResponseGetAllPengaduan.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+  Future<ResponseGetGallery> getGallery(
+      String token,
+      String id_kegiatan
+      ) async {
+    Response response;
+    response = await client.get("$base_url/gallery/$id_kegiatan",
+        headers: {"Authorization": "Bearer $token"});
+    if (response.statusCode == 200) {
+      print('200 ok');
+      return ResponseGetGallery.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+  Future<ResponseGetBerita> getBerita(
+      String token,
+      ) async {
+    Response response;
+    response = await client.get("$base_url/data_pengaduan/status",
+        headers: {"Authorization": "Bearer $token"});
+    if (response.statusCode == 200) {
+      print('${response.body}');
+      return ResponseGetBerita.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
     }
