@@ -5,8 +5,10 @@ import 'package:sarina/data/network/responses/get_kendaraan.dart';
 import 'package:sarina/data/network/responses/response_get_kuesionerap.dart';
 import 'package:sarina/data/network/servis_api_config.dart';
 import 'package:sarina/models/dropdown_model.dart';
+import 'package:sarina/ui/page/home_page.dart';
 import 'package:sarina/utils/constants.dart';
 import 'package:sarina/utils/size_config.dart';
+import 'package:sarina/utils/util_widget.dart';
 
 /**
  * Created by Bayu Nugroho
@@ -30,7 +32,14 @@ class InputSaranaPrasaranaPage extends StatefulWidget {
 
 class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
   final storage = new FlutterSecureStorage();
-
+  TextEditingController deskKeteranganFaslitasPController =
+      new TextEditingController();
+  TextEditingController jumlahUnitAlatController = new TextEditingController();
+  TextEditingController deskUnitKendaraanController =
+      new TextEditingController();
+  TextEditingController deskAlatPendukungController =
+      new TextEditingController();
+  TextEditingController jumlahUnitController = new TextEditingController();
   List<NamaBangunan> listNamaBangunan = [];
   int namaBangunan;
 
@@ -42,17 +51,20 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
 
   String tahunPerolehan = "2020";
 
-  List<NamaKendaraan> listNamaKendaraan = [];
-  int namaKendaraan;
+  List<NamaKendaraan> listNamaUnitKendaraan = [];
+  int namaUnitKendaraan;
+
+  List<JenisUKendaraan> listJenisUnitKendaraan = [];
+  int jenisUnitKendaraan;
 
   List<Kepemilikan> listKepemilikan = [];
   int kepemilikan;
 
-  List<KondisiKendaraan> listKondisiKendaraan = [];
-  int kondisiKendaraan;
+  List<KondisiKendaraan> listKondisiUnitKendaraan = [];
+  int kondisiUnitKendaraan;
 
-  List<SumberKendaraan> listSumberKendaraan = [];
-  int sumberKendaraan;
+  List<SumberKendaraan> listSumberUnitKendaraan = [];
+  int sumberUnitKendaraan;
 
   List<JenisAlat> listJenisAlat = [];
   int jenisAlat;
@@ -63,9 +75,12 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
   List<SumberAlat> listSumberAlat = [];
   int sumberAlat;
 
+  String pic_id = "";
+
   @override
   void initState() {
     addDropdown();
+    getPicById();
     super.initState();
   }
 
@@ -291,6 +306,7 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
               TextField(
                 minLines: 10,
                 maxLines: 15,
+                controller: deskKeteranganFaslitasPController,
                 autocorrect: false,
                 decoration: InputDecoration(
                   hintText: 'Deskripsikan di sini..',
@@ -319,6 +335,34 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Jenis Kendaraan',
+                textAlign: TextAlign.left,
+                style: TextStyle(fontSize: 14, color: Colors.black),
+              ),
+              DropdownButton(
+                elevation: 5,
+                underline: SizedBox(),
+                hint: Text("Pilih"),
+                dropdownColor: Colors.grey[200],
+                isExpanded: true,
+                items: listJenisUnitKendaraan.map((item) {
+                  return DropdownMenuItem(
+                      child: Text(item.name), value: item.id);
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    jenisUnitKendaraan = value;
+                  });
+                },
+                value: jenisUnitKendaraan,
+              ),
+              SizedBox(
+                height: 10,
+              ),
               Text(
                 'Nama Kendaraan',
                 textAlign: TextAlign.left,
@@ -330,16 +374,16 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
                 hint: Text("Pilih"),
                 dropdownColor: Colors.grey[200],
                 isExpanded: true,
-                items: listNamaKendaraan.map((item) {
+                items: listNamaUnitKendaraan.map((item) {
                   return DropdownMenuItem(
                       child: Text(item.name), value: item.id);
                 }).toList(),
                 onChanged: (value) {
                   setState(() {
-                    namaKendaraan = value;
+                    namaUnitKendaraan = value;
                   });
                 },
-                value: namaKendaraan,
+                value: namaUnitKendaraan,
               ),
               SizedBox(
                 height: 10,
@@ -355,16 +399,16 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
                 hint: Text("Pilih"),
                 dropdownColor: Colors.grey[200],
                 isExpanded: true,
-                items: listKondisiKendaraan.map((item) {
+                items: listKondisiUnitKendaraan.map((item) {
                   return DropdownMenuItem(
                       child: Text(item.name), value: item.id);
                 }).toList(),
                 onChanged: (value) {
                   setState(() {
-                    kondisiKendaraan = value;
+                    kondisiUnitKendaraan = value;
                   });
                 },
-                value: kondisiKendaraan,
+                value: kondisiUnitKendaraan,
               ),
               SizedBox(
                 height: 10,
@@ -380,16 +424,16 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
                 hint: Text("Pilih"),
                 dropdownColor: Colors.grey[200],
                 isExpanded: true,
-                items: listSumberKendaraan.map((item) {
+                items: listSumberUnitKendaraan.map((item) {
                   return DropdownMenuItem(
                       child: Text(item.name), value: item.id);
                 }).toList(),
                 onChanged: (value) {
                   setState(() {
-                    sumberKendaraan = value;
+                    sumberUnitKendaraan = value;
                   });
                 },
-                value: sumberKendaraan,
+                value: sumberUnitKendaraan,
               ),
               SizedBox(
                 height: 10,
@@ -401,6 +445,8 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
               ),
               TextField(
                 cursorColor: Colors.black,
+                controller: jumlahUnitController,
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                     hintText: "Masukkan jumlah unit",
                     hintStyle: TextStyle(fontSize: 14, color: abuAbu)),
@@ -418,6 +464,7 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
               ),
               TextField(
                 minLines: 10,
+                controller: deskUnitKendaraanController,
                 maxLines: 15,
                 autocorrect: false,
                 decoration: InputDecoration(
@@ -528,7 +575,9 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
                 style: TextStyle(fontSize: 14, color: Colors.black),
               ),
               TextField(
+                controller: jumlahUnitAlatController,
                 cursorColor: Colors.black,
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                     hintText: "Masukkan jumlah unit",
                     hintStyle: TextStyle(fontSize: 14, color: abuAbu)),
@@ -548,6 +597,7 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
                 minLines: 10,
                 maxLines: 15,
                 autocorrect: false,
+                controller: deskAlatPendukungController,
                 decoration: InputDecoration(
                   hintText: 'Deskripsikan di sini..',
                   filled: true,
@@ -578,7 +628,10 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
     }).catchError((onError) {});
 
     await ServiceApiConfig().getKendaraan(token).then((data) {
-      addKendaraan(data.data.kendaraan.data);
+      addJenisKendaraan(data.data.jenisKendaraan.data);
+      addNamaKendaraan(data.data.kendaraan.data);
+      addSumberKendaraan(data.data.sumber.data);
+      addKondisiKendaraan(data.data.kondisi.data);
     }).catchError((onError) {});
 
     await ServiceApiConfig().getPeralatanPendukung(token).then((data) {
@@ -595,8 +648,6 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
             new KondisiBangunan(id: data[i].id, name: data[i].conditionName));
         listKondisiAlat
             .add(new KondisiAlat(id: data[i].id, name: data[i].conditionName));
-        listKondisiKendaraan.add(
-            new KondisiKendaraan(id: data[i].id, name: data[i].conditionName));
       });
     }
   }
@@ -608,9 +659,6 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
             .add(new SumberAlat(id: data[i].id, name: data[i].sumberdanaName));
         listSumberBangunan.add(
             new SumberBangunan(id: data[i].id, name: data[i].sumberdanaName));
-
-        listSumberKendaraan.add(
-            new SumberKendaraan(id: data[i].id, name: data[i].sumberdanaName));
       });
     }
   }
@@ -624,10 +672,37 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
     }
   }
 
-  void addKendaraan(List<KendaraanDatum> data) {
+  void addJenisKendaraan(List<JenisKendaraanDatum> data) {
     for (int i = 0; i < data.length; i++) {
       setState(() {
-        listNamaKendaraan
+        listJenisUnitKendaraan.add(
+            new JenisUKendaraan(id: data[i].id, name: data[i].vehicleType));
+      });
+    }
+  }
+
+  void addSumberKendaraan(List<JenisKendaraanDatum> data) {
+    for (int i = 0; i < data.length; i++) {
+      setState(() {
+        listSumberUnitKendaraan.add(
+            new SumberKendaraan(id: data[i].id, name: data[i].sumberdanaName));
+      });
+    }
+  }
+
+  void addKondisiKendaraan(List<JenisKendaraanDatum> data) {
+    for (int i = 0; i < data.length; i++) {
+      setState(() {
+        listKondisiUnitKendaraan.add(
+            new KondisiKendaraan(id: data[i].id, name: data[i].conditionName));
+      });
+    }
+  }
+
+  void addNamaKendaraan(List<KendaraanDatum> data) {
+    for (int i = 0; i < data.length; i++) {
+      setState(() {
+        listNamaUnitKendaraan
             .add(new NamaKendaraan(id: data[i].id, name: data[i].vehicleName));
       });
     }
@@ -642,16 +717,111 @@ class _InputSaranaPrasaranaPageState extends State<InputSaranaPrasaranaPage> {
     }
   }
 
-  void addPeralatanPendukung(List<PeralatanDatum> data) {
+  void addPeralatanPendukung(List<KondisiDatum> data) {
     for (int i = 0; i < data.length; i++) {
       setState(() {
         listJenisAlat
-            .add(new JenisAlat(id: data[i].id, name: data[i].id.toString()));
+            .add(new JenisAlat(id: data[i].id, name: data[i].equipmentName));
       });
     }
   }
 
   uploadData() async {
-    print('dsadsadsadsasasdadas');
+    String token = await storage.read(key: TOKEN_LOGIN);
+    String id_user = await storage.read(key: ID_USER);
+    if (pic_id == "") {
+      showToast(context, "PIC tidak ditemukan");
+    } else {
+      await inputFasilitasP(id_user, token);
+      await inputUnitKendaraan(id_user, token);
+      await inputAlatPendukung(id_user, token);
+    }
+  }
+
+  Future<void> inputUnitKendaraan(String id_user, String token) {
+    print('masssuk 2');
+    ServiceApiConfig()
+        .postUnitKendaraan(
+            widget.prov_id,
+            widget.kab_id,
+            jenisUnitKendaraan.toString(),
+            kondisiUnitKendaraan.toString(),
+            sumberUnitKendaraan.toString(),
+            namaUnitKendaraan.toString(),
+            ID_USER,
+            pic_id,
+            deskUnitKendaraanController.text,
+            jumlahUnitController.text,
+            token)
+        .then((val) {})
+        .catchError((e) {
+      showToast(context, "periksa data kembali \n $e ");
+    });
+  }
+
+  void getPicById() async {
+    String token = await storage.read(key: TOKEN_LOGIN);
+    ServiceApiConfig().getPic(widget.kab_id, token).then((val) {
+      setState(() {
+        pic_id = val.data[0].id.toString();
+      });
+    }).catchError((_) {});
+  }
+
+  Future<void> inputAlatPendukung(String id_user, String token) {
+    print('masssuk 3');
+    print(widget.prov_id+ "\n" +
+      widget.kab_id+ "\n" +
+      jenisAlat.toString()+ "\n" +
+      kondisiAlat.toString()+ "\n" +
+      sumberAlat.toString()+ "\n" +
+      id_user+ "\n" +
+      pic_id+ "\n" +
+      deskAlatPendukungController.text+ "\n" +
+      jumlahUnitAlatController.text);
+    ServiceApiConfig()
+        .postAlatPendukung(
+            widget.prov_id,
+            widget.kab_id,
+            jenisAlat.toString(),
+            kondisiAlat.toString(),
+            sumberAlat.toString(),
+            id_user,
+            pic_id,
+            deskAlatPendukungController.text,
+            jumlahUnitAlatController.text,
+            token)
+        .then((data) {
+      showToast(context, data.msg);
+      if(data.msg =="Form Submitted") {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+      } else{
+        showToast(context, "periksa data kembali \n ${data.msg} ");
+      }
+    }).catchError((e) {
+      showToast(context, "periksa data kembali \n $e ");
+    });
+  }
+
+  Future<void> inputFasilitasP(String id_user, String token) {
+    print('masssuk 1');
+    ServiceApiConfig()
+        .postFasilitasPenunjang(
+            widget.prov_id,
+            widget.kab_id,
+            namaBangunan.toString(),
+            kondisiBangunan.toString(),
+            sumberBangunan.toString(),
+            tahunPerolehan,
+            id_user,
+            pic_id,
+            deskKeteranganFaslitasPController.text,
+            kepemilikan.toString(),
+            token)
+        .then((fp) {})
+        .catchError((e) {
+      showToast(context, "periksa data kembali \n $e ");
+    });
   }
 }

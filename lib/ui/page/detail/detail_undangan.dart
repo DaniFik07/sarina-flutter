@@ -270,7 +270,7 @@ class _DetailUndanganPageState extends State<DetailUndanganPage> {
     Map<String, String> headers = { "Authorization": "Bearer $token"};
     var stream= new http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
     var length= await imageFile.length();
-    var uri = Uri.parse("https://sarinaapi.bayunugroho404.dev/api/v1/gallery/submit");
+    var uri = Uri.parse("http://lencanaapi2020.herokuapp.com/api/v1/gallery/submit");
     var request = new http.MultipartRequest("POST", uri);
     request.headers.addAll(headers);
     var multipartFile = new http.MultipartFile("photo", stream, length, filename: basename(imageFile.path));

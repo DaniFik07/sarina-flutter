@@ -1,12 +1,4 @@
-/**
- * Created by Bayu Nugroho
- * Copyright (c) 2020 . All rights reserved.
- */
-
-/**
- * Created by Bayu Nugroho
- * Copyright (c) 2020 . All rights reserved.
- */
+// To parse this JSON data, do
 //
 //     final responseGetKuesionerAp = responseGetKuesionerApFromJson(jsonString);
 
@@ -38,40 +30,44 @@ class ResponseGetKuesionerAp {
 
 class Data {
   Data({
+    this.ancillaryEquipment,
     this.peralatan,
     this.kondisi,
     this.sumber,
   });
 
-  Peralatan peralatan;
+  AncillaryEquipment ancillaryEquipment;
+  Kondisi peralatan;
   Kondisi kondisi;
   Kondisi sumber;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    peralatan: json["peralatan"] == null ? null : Peralatan.fromJson(json["peralatan"]),
+    ancillaryEquipment: json["ancillary_equipment"] == null ? null : AncillaryEquipment.fromJson(json["ancillary_equipment"]),
+    peralatan: json["peralatan"] == null ? null : Kondisi.fromJson(json["peralatan"]),
     kondisi: json["kondisi"] == null ? null : Kondisi.fromJson(json["kondisi"]),
     sumber: json["sumber"] == null ? null : Kondisi.fromJson(json["sumber"]),
   );
 
   Map<String, dynamic> toJson() => {
+    "ancillary_equipment": ancillaryEquipment == null ? null : ancillaryEquipment.toJson(),
     "peralatan": peralatan == null ? null : peralatan.toJson(),
     "kondisi": kondisi == null ? null : kondisi.toJson(),
     "sumber": sumber == null ? null : sumber.toJson(),
   };
 }
 
-class Kondisi {
-  Kondisi({
+class AncillaryEquipment {
+  AncillaryEquipment({
     this.title,
     this.data,
   });
 
   String title;
-  List<KondisiDatum> data;
+  List<AncillaryEquipmentDatum> data;
 
-  factory Kondisi.fromJson(Map<String, dynamic> json) => Kondisi(
+  factory AncillaryEquipment.fromJson(Map<String, dynamic> json) => AncillaryEquipment(
     title: json["title"] == null ? null : json["title"],
-    data: json["data"] == null ? null : List<KondisiDatum>.from(json["data"].map((x) => KondisiDatum.fromJson(x))),
+    data: json["data"] == null ? null : List<AncillaryEquipmentDatum>.from(json["data"].map((x) => AncillaryEquipmentDatum.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -80,64 +76,8 @@ class Kondisi {
   };
 }
 
-class KondisiDatum {
-  KondisiDatum({
-    this.id,
-    this.conditionName,
-    this.createdAt,
-    this.updatedAt,
-    this.deletedAt,
-    this.sumberdanaName,
-  });
-
-  int id;
-  String conditionName;
-  DateTime createdAt;
-  DateTime updatedAt;
-  DateTime deletedAt;
-  String sumberdanaName;
-
-  factory KondisiDatum.fromJson(Map<String, dynamic> json) => KondisiDatum(
-    id: json["id"] == null ? null : json["id"],
-    conditionName: json["condition_name"] == null ? null : json["condition_name"],
-    createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-    updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-    deletedAt: json["deleted_at"] == null ? null : DateTime.parse(json["deleted_at"]),
-    sumberdanaName: json["sumberdana_name"] == null ? null : json["sumberdana_name"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": id == null ? null : id,
-    "condition_name": conditionName == null ? null : conditionName,
-    "created_at": createdAt == null ? null : createdAt.toIso8601String(),
-    "updated_at": updatedAt == null ? null : updatedAt.toIso8601String(),
-    "deleted_at": deletedAt == null ? null : deletedAt.toIso8601String(),
-    "sumberdana_name": sumberdanaName == null ? null : sumberdanaName,
-  };
-}
-
-class Peralatan {
-  Peralatan({
-    this.title,
-    this.data,
-  });
-
-  String title;
-  List<PeralatanDatum> data;
-
-  factory Peralatan.fromJson(Map<String, dynamic> json) => Peralatan(
-    title: json["title"] == null ? null : json["title"],
-    data: json["data"] == null ? null : List<PeralatanDatum>.from(json["data"].map((x) => PeralatanDatum.fromJson(x))),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "title": title == null ? null : title,
-    "data": data == null ? null : List<dynamic>.from(data.map((x) => x.toJson())),
-  };
-}
-
-class PeralatanDatum {
-  PeralatanDatum({
+class AncillaryEquipmentDatum {
+  AncillaryEquipmentDatum({
     this.id,
     this.provincesId,
     this.regenciesId,
@@ -169,7 +109,7 @@ class PeralatanDatum {
   DateTime updatedAt;
   DateTime deletedAt;
 
-  factory PeralatanDatum.fromJson(Map<String, dynamic> json) => PeralatanDatum(
+  factory AncillaryEquipmentDatum.fromJson(Map<String, dynamic> json) => AncillaryEquipmentDatum(
     id: json["id"] == null ? null : json["id"],
     provincesId: json["provinces_id"] == null ? null : json["provinces_id"],
     regenciesId: json["regencies_id"] == null ? null : json["regencies_id"],
@@ -201,5 +141,65 @@ class PeralatanDatum {
     "created_at": createdAt == null ? null : createdAt.toIso8601String(),
     "updated_at": updatedAt == null ? null : updatedAt.toIso8601String(),
     "deleted_at": deletedAt == null ? null : deletedAt.toIso8601String(),
+  };
+}
+
+class Kondisi {
+  Kondisi({
+    this.title,
+    this.data,
+  });
+
+  String title;
+  List<KondisiDatum> data;
+
+  factory Kondisi.fromJson(Map<String, dynamic> json) => Kondisi(
+    title: json["title"] == null ? null : json["title"],
+    data: json["data"] == null ? null : List<KondisiDatum>.from(json["data"].map((x) => KondisiDatum.fromJson(x))),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "title": title == null ? null : title,
+    "data": data == null ? null : List<dynamic>.from(data.map((x) => x.toJson())),
+  };
+}
+
+class KondisiDatum {
+  KondisiDatum({
+    this.id,
+    this.conditionName,
+    this.createdAt,
+    this.updatedAt,
+    this.deletedAt,
+    this.equipmentName,
+    this.sumberdanaName,
+  });
+
+  int id;
+  String conditionName;
+  DateTime createdAt;
+  DateTime updatedAt;
+  DateTime deletedAt;
+  String equipmentName;
+  String sumberdanaName;
+
+  factory KondisiDatum.fromJson(Map<String, dynamic> json) => KondisiDatum(
+    id: json["id"] == null ? null : json["id"],
+    conditionName: json["condition_name"] == null ? null : json["condition_name"],
+    createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
+    updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
+    deletedAt: json["deleted_at"] == null ? null : DateTime.parse(json["deleted_at"]),
+    equipmentName: json["equipment_name"] == null ? null : json["equipment_name"],
+    sumberdanaName: json["sumberdana_name"] == null ? null : json["sumberdana_name"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id == null ? null : id,
+    "condition_name": conditionName == null ? null : conditionName,
+    "created_at": createdAt == null ? null : createdAt.toIso8601String(),
+    "updated_at": updatedAt == null ? null : updatedAt.toIso8601String(),
+    "deleted_at": deletedAt == null ? null : deletedAt.toIso8601String(),
+    "equipment_name": equipmentName == null ? null : equipmentName,
+    "sumberdana_name": sumberdanaName == null ? null : sumberdanaName,
   };
 }

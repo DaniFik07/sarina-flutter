@@ -280,10 +280,6 @@ class _DashboardPageState extends State<DashboardPage> {
     } else {
       setState(() {
         itemDashboard.add(new DashboardItems(
-            title: "Program & \n Kegiatan",
-            subtitle: "dsadas",
-            img: "assets/icons/Artboard – 16.png"));
-        itemDashboard.add(new DashboardItems(
             title: "Info Publik",
             subtitle: "dsadas",
             img: "assets/icons/Artboard – 17.png"));

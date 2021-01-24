@@ -126,7 +126,8 @@ class ServiceApiConfig {
       "ID_KEPLAK": ID_KEPLAK,
       "KETERANGAN": KETERANGAN,
       "ID_KEPEMILIKAN": ID_KEPEMILIKAN,
-    });
+    },    headers: {"Authorization": "Bearer $token"});
+    print(response.body +"output 1");
     if (response.statusCode == 200) {
       return ResponseMessage.fromJson(json.decode(response.body));
     } else {
@@ -159,7 +160,8 @@ class ServiceApiConfig {
       "ID_KEPLAK": ID_KEPLAK,
       "KETERANGAN": KETERANGAN,
       "JUMLAH_UNIT": JUMLAH_UNIT,
-    });
+    },    headers: {"Authorization": "Bearer $token"});
+    print(response.body +"output 2");
     if (response.statusCode == 200) {
       return ResponseMessage.fromJson(json.decode(response.body));
     } else {
@@ -184,13 +186,16 @@ class ServiceApiConfig {
     response = await client.post("$base_url/kuesionerap/submit", body: {
       "ID_PROVINSI": ID_PROVINSI,
       "ID_KABUPATEN": ID_KABUPATEN,
+      "ID_PERALATAN":ID_PERALATAN,
       "ID_KONDISI": ID_KONDISI,
       "ID_SUMBER": ID_SUMBER,
       "ID_USER": ID_USER,
       "ID_KEPLAK": ID_KEPLAK,
       "KETERANGAN": KETERANGAN,
       "JUMLAH_UNIT": JUMLAH_UNIT,
-    });
+    },
+        headers: {"Authorization": "Bearer $token"});
+    print(response.body +"output 3");
     if (response.statusCode == 200) {
       return ResponseMessage.fromJson(json.decode(response.body));
     } else {
@@ -215,7 +220,6 @@ class ServiceApiConfig {
     Response response;
     response = await client.post("$base_url/picbyid",
         body: {"PIC_ID": id}, headers: {"Authorization": "Bearer $token"});
-    print(response.body + " DATAAAAA");
     if (response.statusCode == 200) {
       return ResponsePicbyId.fromJson(json.decode(response.body));
     } else {
@@ -227,7 +231,6 @@ class ServiceApiConfig {
     Response response;
     response = await client
         .get("$base_url/image", headers: {"Authorization": "Bearer $token"});
-    print(response.body.toString() + "dsadsa");
     if (response.statusCode == 200) {
       return ResponseGetSlider.fromJson(json.decode(response.body));
     } else {
@@ -250,7 +253,6 @@ class ServiceApiConfig {
     Response response;
     response = await client.get("$base_url/data_kegiatan/$type",
         headers: {"Authorization": "Bearer $token"});
-    print(response.body.toString() + "dsadsa");
     if (response.statusCode == 200) {
       return ResponseGetKegiatan.fromJson(json.decode(response.body));
     } else {
@@ -288,7 +290,6 @@ class ServiceApiConfig {
     }, headers: {
       "Authorization": "Bearer $token"
     });
-    print(response.body + " DATAAAAA");
     if (response.statusCode == 200) {
       return ResponseMessage.fromJson(json.decode(response.body));
     } else {
@@ -332,7 +333,6 @@ class ServiceApiConfig {
     }, headers: {
       "Authorization": "Bearer $token"
     });
-    print(response.body + " DATAAAAA");
     if (response.statusCode == 200) {
       return ResponseMessage.fromJson(json.decode(response.body));
     } else {
@@ -378,7 +378,6 @@ class ServiceApiConfig {
     }, headers: {
       "Authorization": "Bearer $token"
     });
-    print(response.body + " DATAAAAA");
     if (response.statusCode == 200) {
       return ResponseMessage.fromJson(json.decode(response.body));
     } else {
@@ -404,9 +403,7 @@ class ServiceApiConfig {
       "PROVINSI": id_prov,
       "KABUPATEN": id_city,
     });
-    print(response.body.toString());
     if (response.statusCode == 200) {
-      print('200 ok');
       return ResponseRegister.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
@@ -417,9 +414,7 @@ class ServiceApiConfig {
     Response response;
     response = await client
         .post("$base_url/auth", body: {"PASSWORD": password, "EMAIL": email});
-    print(response.body.toString());
     if (response.statusCode == 200) {
-      print('200 ok');
       return ResponseLogin.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
@@ -449,9 +444,7 @@ class ServiceApiConfig {
     }, headers: {
       "Authorization": "Bearer $token"
     });
-    print(response.body.toString());
     if (response.statusCode == 200) {
-      print('200 ok');
       return ResponseMessage.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
@@ -464,9 +457,7 @@ class ServiceApiConfig {
     response = await client.post("$base_url/kapasitas_bpbd",
         body: {"ID_KABUPATEN": id_kab},
         headers: {"Authorization": "Bearer $token"});
-    print(response.body.toString());
     if (response.statusCode == 200) {
-      print('200 ok');
       return ResponseGetSubmitBpbd.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
@@ -477,9 +468,7 @@ class ServiceApiConfig {
     Response response;
     response = await client.get("$base_url/data_kegiatan",
         headers: {"Authorization": "Bearer $token"});
-    print(response.body.toString());
     if (response.statusCode == 200) {
-      print('200 ok');
       return ResponseDataKegiatan.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
@@ -491,7 +480,6 @@ class ServiceApiConfig {
     response = await client.get("$base_url/data_pengaduan",
         headers: {"Authorization": "Bearer $token"});
     if (response.statusCode == 200) {
-      print('200 ok');
       return ResponseGetAllPengaduan.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
@@ -502,9 +490,7 @@ class ServiceApiConfig {
     Response response;
     response = await client.get("$base_url/kuesioner",
         headers: {"Authorization": "Bearer $token"});
-    print(response.body.toString());
     if (response.statusCode == 200) {
-      print('200 ok');
       return ResponseGetKuesioner.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
@@ -517,7 +503,6 @@ class ServiceApiConfig {
     response = await client.get("$base_url/data_pengaduan/$id_city",
         headers: {"Authorization": "Bearer $token"});
     if (response.statusCode == 200) {
-      print('200 ok');
       return ResponseGetAllPengaduan.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
@@ -530,7 +515,6 @@ class ServiceApiConfig {
     response = await client.get("$base_url/gallery/$id_kegiatan",
         headers: {"Authorization": "Bearer $token"});
     if (response.statusCode == 200) {
-      print(response.body.toString() + " sda");
       return ResponseGetGallery.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
@@ -544,7 +528,6 @@ class ServiceApiConfig {
     response = await client.get("$base_url/data_pengaduan/status",
         headers: {"Authorization": "Bearer $token"});
     if (response.statusCode == 200) {
-      print('${response.body}');
       return ResponseGetBerita.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
@@ -558,7 +541,6 @@ class ServiceApiConfig {
     response = await client.get("$base_url/kuesionerap",
         headers: {"Authorization": "Bearer $token"});
     if (response.statusCode == 200) {
-      print('${response.body}');
       return ResponseGetKuesionerAp.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
@@ -572,7 +554,6 @@ class ServiceApiConfig {
     response = await client.get("$base_url/kuesioner",
         headers: {"Authorization": "Bearer $token"});
     if (response.statusCode == 200) {
-      print('${response.body}');
       return ResponseGetFasilitasP.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
@@ -586,7 +567,6 @@ class ServiceApiConfig {
     response = await client.get("$base_url/kuesioneruk",
         headers: {"Authorization": "Bearer $token"});
     if (response.statusCode == 200) {
-      print('${response.body}');
       return ResponseGetKendaraan.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');

@@ -11,8 +11,8 @@ const String EMAIL_LOGIN= "EMAIL_LOGIN";
 const String FULL_NAME_LOGIN= "FULL_NAME_LOGIN";
 const String ID_PIC = "ID_PIC";
 const String BASE_URL_COVID = "https://data.covid19.go.id/public/api/";
-const String BASE_URL = "https://sarinaapi.bayunugroho404.dev/api/v1";
-const String SUBMIT_PENGADUAN = "https://sarinaapi.bayunugroho404.dev/api/v1/data_pengaduan/submit";
+const String BASE_URL = "https://lencanaapi2020.herokuapp.com/api/v1";
+const String SUBMIT_PENGADUAN = "https://lencanaapi2020.herokuapp.com/api/v1/data_pengaduan/submit";
 
 const kPrimaryColor = Color(0xFFDFC2EA);
 const orangeColor = Color(0xFFff8017);
