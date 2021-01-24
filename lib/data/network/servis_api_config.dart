@@ -198,6 +198,7 @@ class ServiceApiConfig {
     print(response.body +"output 3");
     if (response.statusCode == 200) {
       return ResponseMessage.fromJson(json.decode(response.body));
+
     } else {
       throw Exception('gagal');
     }
