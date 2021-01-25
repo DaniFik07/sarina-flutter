@@ -20,6 +20,7 @@ class _ProfilePageState extends State<ProfilePage> {
   String userId = "";
   String pangkat = "";
   String instansi = "";
+  String status_login = "";
   String telephone_number = "";
   TextEditingController emailController = new TextEditingController();
   TextEditingController alamatController = new TextEditingController();
@@ -32,8 +33,8 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     getProfile();
     setState(() {
-      emailController.text = "atung@gmail.com";
-      hpController.text = "08212122233";
+      emailController.text = "bayu404.dart@gmail.com";
+      hpController.text = "082125990090";
       alamatController.text = "jl. Putri Tunggal";
     });
     super.initState();
@@ -133,7 +134,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             height: 10.0,
                           ),
                           Text(
-                            'User',
+                            '$status_login',
                             style: TextStyle(color: blueColors),
                           )
                         ],
@@ -176,100 +177,88 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   Container(
                     height: SizeConfig.screenHight / 2,
-                    color: blueColors,
+                    color: whiteColor,
                   ),
                   Column(
                     children: [
                       Container(
                         width: SizeConfig.screenHight,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            margin: EdgeInsets.symmetric(vertical: 10),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 5),
-                            width: MediaQuery.of(context).size.width * 0.8,
-                            decoration: BoxDecoration(
-                              color: whiteColor,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: TextField(
-                              controller: emailController,
-                              cursorColor: Colors.black,
-                              decoration: InputDecoration(
-                                labelText: "Email",
-                                hintText: "-",
-                                suffixIcon: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(Icons.mail),
-                                ),
-                                border: InputBorder.none,
+                        child: Container(
+                          margin: EdgeInsets.symmetric(vertical: 10),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 5),
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          decoration: BoxDecoration(
+                            color: whiteColor,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: TextField(
+                            controller: emailController,
+                            cursorColor: Colors.black,
+                            decoration: InputDecoration(
+                              labelText: "Email",
+                              hintText: "-",
+                              suffixIcon: IconButton(
+                                onPressed: () {},
+                                icon: Icon(Icons.mail),
                               ),
+                              border: InputBorder.none,
                             ),
                           ),
                         ),
                       ),
                       Container(
                         width: SizeConfig.screenHight,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            margin: EdgeInsets.symmetric(vertical: 10),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 5),
-                            width: MediaQuery.of(context).size.width * 0.8,
-                            decoration: BoxDecoration(
-                              color: whiteColor,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: TextField(
-                              controller: hpController,
-                              cursorColor: Colors.black,
-                              decoration: InputDecoration(
-                                labelText: "No HP",
-                                hintText: "-",
-                                suffixIcon: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(Icons.call),
-                                ),
-                                border: InputBorder.none,
+                        child: Container(
+                          margin: EdgeInsets.symmetric(vertical: 0),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 5),
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          decoration: BoxDecoration(
+                            color: whiteColor,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: TextField(
+                            controller: hpController,
+                            cursorColor: Colors.black,
+                            decoration: InputDecoration(
+                              labelText: "No HP",
+                              hintText: "-",
+                              suffixIcon: IconButton(
+                                onPressed: () {},
+                                icon: Icon(Icons.call),
                               ),
+                              border: InputBorder.none,
                             ),
                           ),
                         ),
                       ),
                       Container(
                         width: SizeConfig.screenHight,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            margin: EdgeInsets.symmetric(vertical: 10),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 5),
-                            width: MediaQuery.of(context).size.width * 0.8,
-                            decoration: BoxDecoration(
-                              color: whiteColor,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: TextField(
-                              controller: alamatController,
-                              cursorColor: Colors.black,
-                              decoration: InputDecoration(
-                                labelText: "Full Name",
-                                hintText: "-",
-                                suffixIcon: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(Icons.person),
-                                ),
-                                border: InputBorder.none,
+                        child: Container(
+                          margin: EdgeInsets.symmetric(vertical: 10),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 5),
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          decoration: BoxDecoration(
+                            color: whiteColor,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: TextField(
+                            controller: alamatController,
+                            cursorColor: Colors.black,
+                            decoration: InputDecoration(
+                              labelText: "Full Name",
+                              hintText: "-",
+                              suffixIcon: IconButton(
+                                onPressed: () {},
+                                icon: Icon(Icons.person),
                               ),
+                              border: InputBorder.none,
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 40,
-                      )
                     ],
                   )
                 ],
@@ -292,8 +281,11 @@ class _ProfilePageState extends State<ProfilePage> {
   void getProfile() async {
     String pic_id = await storage.read(key: ID_PIC);
     String token = await storage.read(key: TOKEN_LOGIN);
+    status_login = await storage.read(key: STATUS_LOGIN);
     fullname = await storage.read(key: FULL_NAME_LOGIN);
-
+    print(status_login + "bayunugroho404");
+    setState(() {
+    });
     hpController.text = await storage.read(key: PHONE_LOGIN);
     emailController.text = await storage.read(key: EMAIL_LOGIN);
     alamatController.text = await storage.read(key: FULL_NAME_LOGIN);

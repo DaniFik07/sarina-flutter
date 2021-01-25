@@ -24,6 +24,7 @@ const redColors = Color(0xFFfa0c0c);
 const blueSecondColors = Color(0xFFB7DFF2);
 const darkColors = Color(0xFF6D8591);
 const kPrimaryLightColor = Color(0xFFB5B0C2);
+const textColor = Color(0xFF292927);
 const blueAsLogoColor=Color(0xFF03386A);
 const abuMuda = Color(0xFFF5F5F5);
 const orange2Color = Color(0xFFffa931);

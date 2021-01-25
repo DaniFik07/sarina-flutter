@@ -230,6 +230,7 @@ class _FormInputKegiatanState extends State<FormInputKegiatan> {
                           ),
                           child: TextField(
                             cursorColor: Colors.black,
+                            enabled: false,
                             decoration: InputDecoration(
                                 icon: Icon(
                                   Icons.camera,
@@ -504,14 +505,6 @@ class _FormInputKegiatanState extends State<FormInputKegiatan> {
   void doSubmit() async {
     String token = await storage.read(key: TOKEN_LOGIN);
     String id_user = await storage.read(key: ID_USER);
-    print( id_user+ "\n "+
-        sumberId+ "\n "+
-        widget.title+ "\n "+
-        namaKegiatanController.text+ "\n "+
-        prosesKegiatanController.text+ "\n "+
-        _dateController.text+ "\n "+
-        _fromController.text + " - " + _toController.text+ "\n "+
-        deskKegiatanController.text);
     ServiceApiConfig()
         .postKegiatan(
             id_user,

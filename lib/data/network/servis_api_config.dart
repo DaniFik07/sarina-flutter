@@ -5,6 +5,7 @@ import 'package:sarina/data/network/responses/get_fasilitas_p.dart';
 import 'package:sarina/data/network/responses/get_kendaraan.dart';
 import 'package:sarina/data/network/responses/get_sumber.dart';
 import 'package:sarina/data/network/responses/reponse_pic.dart';
+import 'package:sarina/data/network/responses/response_chat_room.dart';
 import 'package:sarina/data/network/responses/response_data_kegiatan.dart';
 import 'package:sarina/data/network/responses/response_get_berita.dart';
 import 'package:sarina/data/network/responses/response_get_galery.dart';
@@ -20,6 +21,7 @@ import 'package:sarina/data/network/responses/response_pic_by_id.dart';
 import 'package:sarina/data/network/responses/response_province.dart';
 import 'package:sarina/data/network/responses/response_register.dart';
 import 'package:sarina/data/network/responses/response_slider.dart';
+import 'package:sarina/data/network/responses/response_user_kontak.dart';
 import 'package:sarina/utils/constants.dart';
 
 import 'responses/response_covid_provinsi.dart';
@@ -126,8 +128,10 @@ class ServiceApiConfig {
       "ID_KEPLAK": ID_KEPLAK,
       "KETERANGAN": KETERANGAN,
       "ID_KEPEMILIKAN": ID_KEPEMILIKAN,
-    },    headers: {"Authorization": "Bearer $token"});
-    print(response.body +"output 1");
+    }, headers: {
+      "Authorization": "Bearer $token"
+    });
+    print(response.body + "output 1");
     if (response.statusCode == 200) {
       return ResponseMessage.fromJson(json.decode(response.body));
     } else {
@@ -160,15 +164,16 @@ class ServiceApiConfig {
       "ID_KEPLAK": ID_KEPLAK,
       "KETERANGAN": KETERANGAN,
       "JUMLAH_UNIT": JUMLAH_UNIT,
-    },    headers: {"Authorization": "Bearer $token"});
-    print(response.body +"output 2");
+    }, headers: {
+      "Authorization": "Bearer $token"
+    });
+    print(response.body + "output 2");
     if (response.statusCode == 200) {
       return ResponseMessage.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
     }
   }
-
 
   Future<ResponseMessage> postAlatPendukung(
     String ID_PROVINSI,
@@ -186,19 +191,19 @@ class ServiceApiConfig {
     response = await client.post("$base_url/kuesionerap/submit", body: {
       "ID_PROVINSI": ID_PROVINSI,
       "ID_KABUPATEN": ID_KABUPATEN,
-      "ID_PERALATAN":ID_PERALATAN,
+      "ID_PERALATAN": ID_PERALATAN,
       "ID_KONDISI": ID_KONDISI,
       "ID_SUMBER": ID_SUMBER,
       "ID_USER": ID_USER,
       "ID_KEPLAK": ID_KEPLAK,
       "KETERANGAN": KETERANGAN,
       "JUMLAH_UNIT": JUMLAH_UNIT,
-    },
-        headers: {"Authorization": "Bearer $token"});
-    print(response.body +"output 3");
+    }, headers: {
+      "Authorization": "Bearer $token"
+    });
+    print(response.body + "output 3");
     if (response.statusCode == 200) {
       return ResponseMessage.fromJson(json.decode(response.body));
-
     } else {
       throw Exception('gagal');
     }
@@ -223,6 +228,23 @@ class ServiceApiConfig {
         body: {"PIC_ID": id}, headers: {"Authorization": "Bearer $token"});
     if (response.statusCode == 200) {
       return ResponsePicbyId.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+  Future<ResponseMessage> sendMessage(
+      String ID_PENGIRIM, String ID_PENERIMA, String CHAT, String token) async {
+    Response response;
+    response = await client.post("$base_url/chat/submit", body: {
+      "ID_PENGIRIM": ID_PENGIRIM,
+      "ID_PENERIMA": ID_PENERIMA,
+      "CHAT": CHAT,
+    }, headers: {
+      "Authorization": "Bearer $token"
+    });
+    if (response.statusCode == 200) {
+      return ResponseMessage.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
     }
@@ -517,6 +539,57 @@ class ServiceApiConfig {
         headers: {"Authorization": "Bearer $token"});
     if (response.statusCode == 200) {
       return ResponseGetGallery.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+  Future<ResponseUserKontak> getKontakUser(String token) async {
+    Response response;
+    response = await client.post("$base_url/get_user",
+        body: {"PAGE": "0"}, headers: {"Authorization": "Bearer $token"});
+    print(response.body.toString());
+    if (response.statusCode == 200) {
+      return ResponseUserKontak.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+  Future<ResponseChatRoom> getChatRoom(
+    String token,
+    String ID_PENERIMA,
+    String ID_PENGIRIM,
+  ) async {
+    Response response;
+    response = await client.post("$base_url/chat",
+        body: {"ID_PENGIRIM": ID_PENGIRIM, "ID_PENERIMA": ID_PENERIMA},
+        headers: {"Authorization": "Bearer $token"});
+    print(response.body.toString());
+    if (response.statusCode == 200) {
+      return ResponseChatRoom.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+  Future<ResponseUserKontak> getKontakPic(String token) async {
+    Response response;
+    response = await client.post("$base_url/get_pic",
+        body: {"PAGE": "0"}, headers: {"Authorization": "Bearer $token"});
+    if (response.statusCode == 200) {
+      return ResponseUserKontak.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('gagal');
+    }
+  }
+
+  Future<ResponseUserKontak> getKontakAdmin(String token) async {
+    Response response;
+    response = await client.post("$base_url/get_admin",
+        body: {"PAGE": "0"}, headers: {"Authorization": "Bearer $token"});
+    if (response.statusCode == 200) {
+      return ResponseUserKontak.fromJson(json.decode(response.body));
     } else {
       throw Exception('gagal');
     }

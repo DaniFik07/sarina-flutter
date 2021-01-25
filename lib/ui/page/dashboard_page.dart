@@ -43,7 +43,6 @@ class _DashboardPageState extends State<DashboardPage> {
     chekRole();
     initMenu();
     getSlider();
-    //cek role sebelm widget dibangun / pertama kali page ini di jalankan
     super.initState();
   }
 
@@ -53,7 +52,7 @@ class _DashboardPageState extends State<DashboardPage> {
     return Scaffold(
       body: Container(
         height: SizeConfig.screenHight,
-        color: blueColors,
+        // color: blueColors,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -61,12 +60,21 @@ class _DashboardPageState extends State<DashboardPage> {
                 height: SizeConfig.screenHight / 11,
               ),
               Container(
+                  child: Card(
+                color: blueColors,
+                elevation: 10,
+                child: Container(
+                  padding: EdgeInsets.all(8.0),
+                  width: SizeConfig.screenWidth / 1.2,
                   child: Text(
-                'SARINA',
-                style: TextStyle(
-                    fontSize: SizeConfig.blockVertical * 4,
-                    color: whiteColor,
-                    fontWeight: FontWeight.bold),
+                    'SARINA',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: SizeConfig.blockVertical * 4,
+                        color: whiteColor,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
               )),
               SizedBox(
                 height: 10,
@@ -90,8 +98,9 @@ class _DashboardPageState extends State<DashboardPage> {
                         margin: EdgeInsets.all(5.0),
                         child: Center(
                           child: ClipRRect(
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(5.0)),
+                                  BorderRadius.all(Radius.circular(15.0)),
                               child: Image.network(item,
                                   fit: BoxFit.cover,
                                   width: MediaQuery.of(context).size.width)),
@@ -142,16 +151,20 @@ class _DashboardPageState extends State<DashboardPage> {
                                                 ProfileDaerahPage()));
                                   } else if (itemDashboard[index].title ==
                                       "Program & \n Kegiatan") {
-                                    if(status_login == IS_ADMIN){
-                                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => FormInputKegiatan(
-                                          title:"Pusat"
-                                      )));
-                                    }else if (status_login == IS_STAFF){
-                                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => FormInputKegiatan(
-                                          title:"Daerah"
-                                      )));
+                                    if (status_login == IS_ADMIN) {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  FormInputKegiatan(
+                                                      title: "Pusat")));
+                                    } else if (status_login == IS_STAFF) {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  FormInputKegiatan(
+                                                      title: "Daerah")));
                                     }
-                                   } else if (itemDashboard[index].title ==
+                                  } else if (itemDashboard[index].title ==
                                       "Info Publik") {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
@@ -188,9 +201,6 @@ class _DashboardPageState extends State<DashboardPage> {
                                                 alignment: Alignment.center,
                                                 height: 72,
                                                 width: 72,
-                                                decoration: BoxDecoration(
-                                                    color: kuningColor,
-                                                    shape: BoxShape.circle),
                                                 child: Image.asset(
                                                     itemDashboard[index].img),
                                               ),
@@ -206,7 +216,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: SizeConfig.blockHorizontal * 3,
-                                    color: Colors.white)),
+                                    color: textColor)),
                           ],
                         ),
                       )));
@@ -228,73 +238,73 @@ class _DashboardPageState extends State<DashboardPage> {
         itemDashboard.add(new DashboardItems(
             title: "Profile Daerah",
             subtitle: "dsadas",
-            img: "assets/icons/Artboard – 18.png"));
+            img: "assets/icons/pd.png"));
         itemDashboard.add(new DashboardItems(
             title: "Program & \n Kegiatan",
             subtitle: "dsadas",
-            img: "assets/icons/Artboard – 16.png"));
+            img: "assets/icons/peng.png"));
         itemDashboard.add(new DashboardItems(
             title: "Info Publik",
             subtitle: "dsadas",
-            img: "assets/icons/Artboard – 17.png"));
+            img: "assets/icons/ip.png"));
         itemDashboard.add(new DashboardItems(
             title: "Berita Terkait",
             subtitle: "dsadas",
-            img: "assets/icons/Artboard – 21.png"));
+            img: "assets/icons/bt.png"));
         itemDashboard.add(new DashboardItems(
             title: "Pengaduan",
             subtitle: "dsadas",
-            img: "assets/icons/Artboard – 20.png"));
+            img: "assets/icons/prog.png"));
         itemDashboard.add(new DashboardItems(
             title: "Info Covid-19",
             subtitle: "dsadas",
-            img: "assets/icons/Artboard – 19.png"));
+            img: "assets/icons/cov.png"));
       });
     } else if (status_login == IS_STAFF) {
       setState(() {
         itemDashboard.add(new DashboardItems(
             title: "Profile Daerah",
             subtitle: "dsadas",
-            img: "assets/icons/Artboard – 18.png"));
+            img: "assets/icons/pd.png"));
         itemDashboard.add(new DashboardItems(
             title: "Program & \n Kegiatan",
             subtitle: "dsadas",
-            img: "assets/icons/Artboard – 16.png"));
+            img: "assets/icons/peng.png"));
         itemDashboard.add(new DashboardItems(
             title: "Info Publik",
             subtitle: "dsadas",
-            img: "assets/icons/Artboard – 17.png"));
+            img: "assets/icons/ip.png"));
         itemDashboard.add(new DashboardItems(
             title: "Berita Terkait",
             subtitle: "dsadas",
-            img: "assets/icons/Artboard – 21.png"));
+            img: "assets/icons/bt.png"));
         itemDashboard.add(new DashboardItems(
             title: "Pengaduan",
             subtitle: "dsadas",
-            img: "assets/icons/Artboard – 20.png"));
+            img: "assets/icons/prog.png"));
         itemDashboard.add(new DashboardItems(
             title: "Info Covid-19",
             subtitle: "dsadas",
-            img: "assets/icons/Artboard – 19.png"));
+            img: "assets/icons/cov.png"));
       });
     } else {
       setState(() {
         itemDashboard.add(new DashboardItems(
             title: "Info Publik",
             subtitle: "dsadas",
-            img: "assets/icons/Artboard – 17.png"));
+            img: "assets/icons/ip.png"));
         itemDashboard.add(new DashboardItems(
             title: "Berita Terkait",
             subtitle: "dsadas",
-            img: "assets/icons/Artboard – 21.png"));
+            img: "assets/icons/bt.png"));
         itemDashboard.add(new DashboardItems(
             title: "Pengaduan",
             subtitle: "dsadas",
-            img: "assets/icons/Artboard – 20.png"));
+            img: "assets/icons/prog.png"));
         itemDashboard.add(new DashboardItems(
             title: "Info Covid-19",
             subtitle: "dsadas",
-            img: "assets/icons/Artboard – 19.png"));
+            img: "assets/icons/cov.png"));
       });
     }
   }

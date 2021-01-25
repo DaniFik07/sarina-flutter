@@ -55,7 +55,8 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
       ),
       body: Container(
         child: SingleChildScrollView(
-          child: Column(
+          child: listBerita.length >0?
+          Column(
             children: <Widget>[
               Container(
                 width: SizeConfig.screenWidth,
@@ -303,7 +304,9 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
                 ),
               )
             ],
-          ),
+          ):Container(
+            height: SizeConfig.screenHight,
+            child: Center(child: CircularProgressIndicator()),),
         ),
       ),
     );

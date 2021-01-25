@@ -5,6 +5,8 @@ import 'package:sarina/ui/page/dashboard_page.dart';
 import 'package:sarina/ui/page/profile_page.dart';
 import 'package:sarina/utils/constants.dart';
 
+import 'chat_bayu_page/index_page.dart';
+
 /**
  * Created by Bayu Nugroho
  * Copyright (c) 2020 . All rights reserved.
@@ -40,14 +42,14 @@ class _HomePageState extends State<HomePage> {
           index: _page== null?0:_page,
           height: 50.0,
           items: <Widget>[
-            Icon(Icons.home_filled,color: blueColors, size: 30),
-            Icon(Icons.chat, color: blueColors, size: 30,),
-            Icon(Icons.person,color: blueColors, size: 30),
+            Icon(Icons.home_filled,color: whiteColor, size: 30),
+            Icon(Icons.chat, color: whiteColor, size: 30,),
+            Icon(Icons.person,color: whiteColor, size: 30),
             // Icon(Icons.settings,color: blueColors, size: 30),
           ],
-          color: whiteColor,
-          buttonBackgroundColor: whiteColor,
-          backgroundColor: blueColors,
+          color: blueColors,
+          buttonBackgroundColor: blueColors,
+          backgroundColor: whiteColor,
           animationCurve: Curves.easeInOut,
           animationDuration: Duration(milliseconds: 600),
           onTap: (index) {
@@ -65,11 +67,12 @@ class _HomePageState extends State<HomePage> {
         return DashboardPage();
         break;
       case 1:
-        return ChatHomeScreen();
+        return ChatBayuPage();
         break;
       case 2:
         return ProfilePage();
         break;
+
     }
   }
 

@@ -54,14 +54,6 @@ class ChatHomeScreen extends StatelessWidget {
                         width: 2,
                         color: Colors.green[400],
                       ),
-                      // shape: BoxShape.circle,
-                      // boxShadow: [
-                      //   BoxShadow(
-                      //     color: Colors.green,
-                      //     spreadRadius: 2,
-                      //     blurRadius: 5,
-                      //   ),
-                      // ],
                     )
                         : BoxDecoration(
                       shape: BoxShape.circle,
