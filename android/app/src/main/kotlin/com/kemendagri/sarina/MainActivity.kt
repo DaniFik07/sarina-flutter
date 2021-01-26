@@ -1,4 +1,4 @@
-package com.bayunugroho404.sarina
+package com.kemendagri.sarina
 
 import io.flutter.embedding.android.FlutterActivity
 

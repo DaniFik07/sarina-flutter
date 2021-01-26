@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1054357895534",
+    "project_id": "sarina-3d986",
+    "storage_bucket": "sarina-3d986.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054357895534:android:34254cd891d5eeff95a97f",
+        "android_client_info": {
+          "package_name": "com.kemendagri.sarina"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054357895534-7t3b1d9ocpq718opo0ofnokp2lgrskjv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9RmWOYnoO5_clO0t-0vHVecFDbbHPW-w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1054357895534-7t3b1d9ocpq718opo0ofnokp2lgrskjv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

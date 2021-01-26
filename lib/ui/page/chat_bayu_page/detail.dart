@@ -1,9 +1,7 @@
 
+import 'package:chat_bubbles/bubbles/bubble_normal.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_bubble/bubble_type.dart';
-import 'package:flutter_chat_bubble/chat_bubble.dart';
-import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_1.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:sarina/data/network/responses/response_chat_room.dart';
@@ -76,35 +74,18 @@ class _ChatRoomState extends State<ChatRoom> {
                         child: Container(
                           // ignore: unrelated_type_equality_checks
                           child: listChat[index].id  != null ?
-                          ChatBubble(
-                            clipper: ChatBubbleClipper1(type: BubbleType.sendBubble),
-                            alignment: Alignment.topRight,
-                            margin: EdgeInsets.only(top: 20),
-                            backGroundColor: Colors.blue,
-                            child: Container(
-                              constraints: BoxConstraints(
-                                maxWidth: MediaQuery.of(context).size.width * 0.7,
-                              ),
-                              child: Text(
-                                "${listChat[index].chat}",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          ):
-                          ChatBubble(
-                            clipper: ChatBubbleClipper1(type: BubbleType.receiverBubble),
-                            backGroundColor: Color(0xffE7E7ED),
-                            margin: EdgeInsets.only(top: 20),
-                            child: Container(
-                              constraints: BoxConstraints(
-                                maxWidth: MediaQuery.of(context).size.width * 0.7,
-                              ),
-                              child: Text(
-                                "${listChat[index].chat}",
-                                style: TextStyle(color: Colors.black),
-                              ),
-                            ),
-                          )
+                          BubbleNormal(
+                            text: listChat[index].chat,
+                            isSender: true,
+                            color: Color(0xFFE2FFC7),
+                            tail: true,
+                          ) :
+                          BubbleNormal(
+                            text: listChat[index].chat,
+                            isSender: false,
+                            color: Color(0xFFFFFFFF),
+                            tail: true,
+                          ),
                         ),
                       ),
                     ),
