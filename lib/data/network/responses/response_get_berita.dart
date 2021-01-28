@@ -1,13 +1,3 @@
-/**
- * Created by Bayu Nugroho
- * Copyright (c) 2020 . All rights reserved.
- */
-/**
- * Created by Bayu Nugroho
- * Copyright (c) 2020 . All rights reserved.
- */
-//
-//     final responseGetBerita = responseGetBeritaFromJson(jsonString);
 
 import 'dart:convert';
 

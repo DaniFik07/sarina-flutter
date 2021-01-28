@@ -125,7 +125,7 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
                                                 MainAxisAlignment.start,
                                             children: [
                                               Flexible(
-                                                  child: Image.asset(
+                                                  child: Image.network(
                                                 listBerita[index].img,
                                                 width: 50,
                                                 height: 50,
@@ -226,7 +226,7 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
                                             MainAxisAlignment.start,
                                             children: [
                                               Flexible(
-                                                  child: Image.asset(
+                                                  child: Image.network(
                                                     listBerita[index].img,
                                                     width: 50,
                                                     height: 50,
@@ -320,7 +320,7 @@ class _BeritaTerkaitState extends State<BeritaTerkait> {
           listBerita.add(new ModelBeritaTerkait(
               judul: val.data[i].judul,
               Deskripsi: val.data[i].deskripsi,
-              img: "assets/img/logokm.png"));
+              img: val.data[i].image));
         });
       }
     }).catchError((_) {});

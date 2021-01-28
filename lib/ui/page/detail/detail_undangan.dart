@@ -184,12 +184,12 @@ class _DetailUndanganPageState extends State<DetailUndanganPage> {
               ),
               desc: '',
               btnCancelText: 'Via Gallery',
-              btnOkText: 'Via Camera',
+              btnOkText: 'Cancel',
               btnCancelOnPress: () {
                 getImageGallery();
               },
               btnOkOnPress: () {
-                getImageCamera();
+                // Navigator.pop(context);
               },
             )..show();
           },
@@ -244,27 +244,6 @@ class _DetailUndanganPageState extends State<DetailUndanganPage> {
       _image = compressImg;
     });
   }
-
-  Future getImageCamera() async{
-    var imageFile = await ImagePicker.pickImage(source: ImageSource.camera);
-
-    final tempDir =await getTemporaryDirectory();
-    final path = tempDir.path;
-
-    int rand= new Math.Random().nextInt(100000);
-
-    Img.Image image= Img.decodeImage(imageFile.readAsBytesSync());
-    Img.Image smallerImg = Img.copyResize(image,height: 500,width: 500);
-
-    var compressImg= new File("$path/image_$rand.jpg")
-      ..writeAsBytesSync(Img.encodeJpg(smallerImg, quality: 85));
-
-
-    setState(() {
-      _image = compressImg;
-    });
-  }
-
 
   Future upload(File imageFile, BuildContext context, String token) async{
     Map<String, String> headers = { "Authorization": "Bearer $token"};

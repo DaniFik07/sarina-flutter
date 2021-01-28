@@ -649,7 +649,7 @@ class _InformasiBencanaPageState extends State<InformasiBencanaPage> {
 
   chooseImage() {
     setState(() {
-      file = ImagePicker.pickImage(source: ImageSource.camera);
+      file = ImagePicker.pickImage(source: ImageSource.gallery);
     });
     setStatus('');
   }
